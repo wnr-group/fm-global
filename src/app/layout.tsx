@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import { SplashProvider } from "@/components/providers/splash-provider";
+import { VideoPreloadProvider } from "@/components/providers/video-preload-provider";
 import "./globals.css";
 
 // Brand typography: Poppins for headings (strong, modern, clean)
@@ -59,7 +60,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
       >
-        <SplashProvider>{children}</SplashProvider>
+        <VideoPreloadProvider videoSrc="/hero-oil-rig.mp4">
+          <SplashProvider>{children}</SplashProvider>
+        </VideoPreloadProvider>
       </body>
     </html>
   );

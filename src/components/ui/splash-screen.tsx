@@ -8,24 +8,42 @@ interface SplashScreenProps {
   minDuration?: number;
   /** Callback when splash is complete */
   onComplete?: () => void;
+  /** Whether to wait for video to load */
+  waitForVideo?: boolean;
+  /** Video loading progress (0-100) */
+  videoProgress?: number;
 }
 
-export function SplashScreen({ minDuration = 1500, onComplete }: SplashScreenProps) {
+export function SplashScreen({
+  minDuration = 1500,
+  onComplete,
+  waitForVideo = false,
+  videoProgress = 0,
+}: SplashScreenProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
 
+  // Track minimum duration
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsExiting(true);
-      // Wait for exit animation to complete
-      setTimeout(() => {
-        setIsVisible(false);
-        onComplete?.();
-      }, 500);
+      setMinTimeElapsed(true);
     }, minDuration);
 
     return () => clearTimeout(timer);
-  }, [minDuration, onComplete]);
+  }, [minDuration]);
+
+  // Complete when both conditions met: min time elapsed AND (video loaded OR not waiting)
+  useEffect(() => {
+    if (minTimeElapsed && !waitForVideo) {
+      setIsExiting(true);
+      const exitTimer = setTimeout(() => {
+        setIsVisible(false);
+        onComplete?.();
+      }, 500);
+      return () => clearTimeout(exitTimer);
+    }
+  }, [minTimeElapsed, waitForVideo, onComplete]);
 
   if (!isVisible) return null;
 
@@ -55,16 +73,31 @@ export function SplashScreen({ minDuration = 1500, onComplete }: SplashScreenPro
         FM Global Careers
       </h1>
 
-      {/* Loading indicator */}
+      {/* Loading indicator with progress */}
       <div
-        className="flex items-center gap-2 animate-fade-in"
+        className="flex flex-col items-center gap-4 animate-fade-in"
         style={{ animationDelay: "400ms" }}
       >
-        <div className="flex gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-white/80 animate-bounce" style={{ animationDelay: "0ms" }} />
-          <span className="w-2 h-2 rounded-full bg-white/80 animate-bounce" style={{ animationDelay: "150ms" }} />
-          <span className="w-2 h-2 rounded-full bg-white/80 animate-bounce" style={{ animationDelay: "300ms" }} />
-        </div>
+        {waitForVideo ? (
+          <>
+            {/* Progress bar */}
+            <div className="w-48 h-1 bg-white/20 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-white/80 rounded-full transition-all duration-300 ease-out"
+                style={{ width: `${videoProgress}%` }}
+              />
+            </div>
+            <span className="text-xs text-white/60">
+              Loading {videoProgress}%
+            </span>
+          </>
+        ) : (
+          <div className="flex gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-white/80 animate-bounce" style={{ animationDelay: "0ms" }} />
+            <span className="w-2 h-2 rounded-full bg-white/80 animate-bounce" style={{ animationDelay: "150ms" }} />
+            <span className="w-2 h-2 rounded-full bg-white/80 animate-bounce" style={{ animationDelay: "300ms" }} />
+          </div>
+        )}
       </div>
 
       {/* Tagline */}
