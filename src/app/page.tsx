@@ -2,7 +2,7 @@ import { InteractiveGlobe, GlobeStatic } from "@/components/ui/interactive-globe
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { ScrollReveal, AnimatedCounter } from "@/components/ui/scroll-reveal";
-import { ParallaxHero } from "@/components/ui/parallax-hero";
+import { ScrollSequenceHero } from "@/components/ui/scroll-sequence-hero";
 import { ArrowRight, ArrowUpRight, GraduationCap, Globe2, Shield, QrCode } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,14 +10,13 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="min-h-screen">
-        {/* Hero Section with Parallax */}
-        <ParallaxHero
-          videoSrc="/hero-oil-rig.mp4"
-          imageSrc="/hero-oil-rig.webp"
-          imageAlt="Oil rig platform in the ocean"
+        {/* Hero Section with Scroll-driven Animation */}
+        <ScrollSequenceHero
+          frameCount={120}
+          framePath="/hero-frames/frame_"
+          frameExtension="webp"
           overlayOpacity={0.35}
-          parallaxSpeed={0.35}
-          scrollControlledVideo={true}
+          preloadCount={30}
           className="min-h-[85vh] sm:min-h-screen"
         >
           {/* Navigation - on top of parallax */}
@@ -190,7 +189,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </ParallaxHero>
+        </ScrollSequenceHero>
 
         {/* Global Network Section - Globe showcase */}
         <section className="py-16 sm:py-20 lg:py-24 bg-background relative overflow-hidden">

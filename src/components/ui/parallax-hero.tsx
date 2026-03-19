@@ -2,7 +2,6 @@
 
 import { useRef, useEffect, useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useVideoPreload } from "@/components/providers/video-preload-provider";
 
 interface ParallaxHeroProps {
   videoSrc?: string;
@@ -39,10 +38,6 @@ export function ParallaxHero({
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
   const [videoError, setVideoError] = useState(false);
-
-  // Use preloaded video URL if available (blob URL stays in memory across navigation)
-  const { videoUrl: preloadedVideoUrl } = useVideoPreload();
-  const effectiveVideoSrc = preloadedVideoUrl || videoSrc;
 
   // Check for reduced motion preference
   useEffect(() => {
@@ -198,7 +193,7 @@ export function ParallaxHero({
         className="absolute inset-0 w-full h-[110%] sm:h-[110%] lg:h-[120%] -top-[5%] sm:-top-[5%] lg:-top-[10%] will-change-transform"
         style={{ transform: "translate3d(0, 0, 0) scale(1)" }}
       >
-        {effectiveVideoSrc && !videoError ? (
+        {videoSrc && !videoError ? (
           <video
             ref={videoRef}
             muted
@@ -206,7 +201,7 @@ export function ParallaxHero({
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src={effectiveVideoSrc} type="video/mp4" />
+            <source src={videoSrc} type="video/mp4" />
             {/* Fallback for browsers that don't support video */}
             {imageSrc && (
               <img
@@ -218,7 +213,7 @@ export function ParallaxHero({
           </video>
         ) : null}
         {/* Show image if no video, video errored, or as fallback */}
-        {((!effectiveVideoSrc || videoError) && imageSrc) && (
+        {((!videoSrc || videoError) && imageSrc) && (
           <img
             src={imageSrc}
             alt={imageAlt}
