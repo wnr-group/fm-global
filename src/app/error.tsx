@@ -36,9 +36,9 @@ export default function Error({
             <RefreshCw className="w-4 h-4" />
             Try again
           </Button>
-          <Button variant="outline" asChild>
-            <a href="/">Go to homepage</a>
-          </Button>
+          <a href="/">
+            <Button variant="outline">Go to homepage</Button>
+          </a>
         </div>
         {error.digest && (
           <p className="mt-6 text-xs text-muted-foreground">
