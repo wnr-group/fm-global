@@ -9,17 +9,16 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <>
-      <main className="min-h-screen">
+    <main className="min-h-screen">
         {/* Hero Section with Parallax */}
         <ParallaxHero
           videoSrc="/hero-oil-rig.mp4"
           imageSrc="/hero-oil-rig.webp"
           imageAlt="Oil rig platform in the ocean"
-          overlayOpacity={0.55}
+          overlayOpacity={0.35}
           parallaxSpeed={0.35}
           scrollControlledVideo={true}
-          className="min-h-screen"
+          className="min-h-[85vh] sm:min-h-screen"
         >
           {/* Navigation - on top of parallax */}
           <nav
@@ -98,27 +97,31 @@ export default function Home() {
           </nav>
 
           {/* Hero Content */}
-          <div className="relative w-full min-h-[calc(100vh-5rem)] px-5 sm:px-8 lg:px-[6%] xl:px-[8%] flex items-center">
-            <div className="w-full max-w-7xl mx-auto py-16 lg:py-0">
-              <div className="max-w-2xl">
+          <div className="relative w-full min-h-[calc(85vh-5rem)] sm:min-h-[calc(100vh-5rem)] px-4 sm:px-8 lg:px-[6%] xl:px-[8%] flex items-center">
+            <div className="w-full max-w-7xl mx-auto py-6 sm:py-16 lg:py-0">
+              {/* Content area */}
+              <div className="max-w-2xl relative">
+                {/* Darker background for text contrast - no blur */}
+                <div className="absolute -inset-3 sm:-inset-8 lg:-inset-10 bg-gradient-to-br from-black/60 via-black/50 to-black/30 rounded-xl sm:rounded-3xl -z-10" />
+
                 {/* Badge */}
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 text-xs font-medium text-white mb-8 w-fit animate-fade-in-up">
-                  <span className="size-2 rounded-full bg-white animate-pulse-subtle" />
+                <div className="inline-flex items-center gap-2 rounded-full bg-black/50 border border-white/40 px-2.5 py-1 sm:px-4 sm:py-2 text-[9px] sm:text-xs font-medium text-white mb-3 sm:mb-8 w-fit animate-fade-in-up">
+                  <span className="size-1.5 sm:size-2 rounded-full bg-white animate-pulse-subtle" />
                   <span>Applications open for 2026 batch</span>
                 </div>
 
-                {/* Heading */}
+                {/* Heading with text shadow for better readability */}
                 <h1
                   id="hero-heading"
-                  className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.05] mb-6 tracking-tight animate-fade-in-up"
+                  className="font-display text-2xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.1] mb-2 sm:mb-6 tracking-tight animate-fade-in-up drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] break-words hyphens-auto"
                   style={{ animationDelay: "100ms" }}
                 >
                   Build your career in{" "}
-                  <span className="text-white/90">Oil & Gas</span>
+                  <span className="text-white">Oil & Gas</span>
                 </h1>
 
                 <p
-                  className="text-lg sm:text-xl text-white/75 max-w-lg leading-relaxed mb-10 animate-fade-in-up"
+                  className="text-sm sm:text-xl text-white/90 max-w-lg leading-relaxed mb-4 sm:mb-10 animate-fade-in-up drop-shadow-[0_1px_5px_rgba(0,0,0,0.3)]"
                   style={{ animationDelay: "200ms" }}
                 >
                   Industry-focused training with direct placement to leading companies
@@ -127,51 +130,51 @@ export default function Home() {
 
                 {/* CTAs */}
                 <div
-                  className="flex flex-col sm:flex-row gap-4 mb-14 animate-fade-in-up"
+                  className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 mb-0 sm:mb-14 animate-fade-in-up"
                   style={{ animationDelay: "300ms" }}
                 >
-                  <Link href="/contact">
-                    <Button size="lg" className="w-full sm:w-auto gap-2 h-14 px-8 bg-white text-primary hover:bg-white/90 shadow-xl shadow-black/20 font-semibold text-base">
+                  <Link href="/contact" className="group">
+                    <Button size="lg" className="w-full sm:w-auto gap-2 h-10 sm:h-14 px-5 sm:px-8 bg-white text-primary hover:bg-white/90 shadow-xl shadow-black/30 font-semibold text-sm sm:text-base active:scale-[0.98] transition-all duration-200">
                       Enquire Now
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 arrow-animate" />
                     </Button>
                   </Link>
                   <Link href="/training">
                     <Button
                       size="lg"
-                      className="w-full sm:w-auto h-14 px-8 bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-semibold text-base"
+                      className="w-full sm:w-auto h-10 sm:h-14 px-5 sm:px-8 bg-white/10 border-2 border-white/50 text-white hover:bg-white/20 hover:border-white/70 font-semibold text-sm sm:text-base"
                     >
                       Explore Courses
                     </Button>
                   </Link>
                 </div>
 
-                {/* Stats */}
+                {/* Stats - hidden on very small screens */}
                 <dl
-                  className="grid grid-cols-3 gap-8 sm:gap-12 animate-fade-in-up"
+                  className="hidden sm:grid grid-cols-3 gap-6 sm:gap-12 animate-fade-in-up"
                   style={{ animationDelay: "400ms" }}
                 >
                   <div>
-                    <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1">
+                    <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
                       <AnimatedCounter value={500} suffix="+" />
                     </dd>
-                    <dt className="text-sm text-white/60 font-medium">
+                    <dt className="text-xs sm:text-sm text-white/80 font-medium">
                       Students Placed
                     </dt>
                   </div>
                   <div>
-                    <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1">
+                    <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
                       <AnimatedCounter value={15} suffix="+" />
                     </dd>
-                    <dt className="text-sm text-white/60 font-medium">
+                    <dt className="text-xs sm:text-sm text-white/80 font-medium">
                       Partners
                     </dt>
                   </div>
                   <div>
-                    <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1">
+                    <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
                       <AnimatedCounter value={98} suffix="%" />
                     </dd>
-                    <dt className="text-sm text-white/60 font-medium">
+                    <dt className="text-xs sm:text-sm text-white/80 font-medium">
                       Placement Rate
                     </dt>
                   </div>
@@ -222,7 +225,7 @@ export default function Home() {
                       Global Reach
                     </span>
                   </div>
-                  <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.1] mb-6">
+                  <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.1] mb-6 break-words">
                     Connecting talent with{" "}
                     <span className="text-primary">opportunities worldwide</span>
                   </h2>
@@ -231,10 +234,10 @@ export default function Home() {
                     connecting trained professionals with leading employers in UAE,
                     Qatar, Saudi Arabia, Kuwait, Bahrain, and Oman.
                   </p>
-                  <Link href="/placement">
-                    <Button variant="outline" className="gap-2 h-12 px-6">
+                  <Link href="/placement" className="group">
+                    <Button variant="outline" className="gap-2 h-12 px-6 hover:border-primary/50 active:scale-[0.98] transition-all duration-200">
                       View Placement Network
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 arrow-animate" />
                     </Button>
                   </Link>
                 </ScrollReveal>
@@ -433,10 +436,10 @@ export default function Home() {
             {/* CTA */}
             <ScrollReveal delay={400}>
               <div className="mt-12 lg:mt-16 text-center">
-                <Link href="/about">
-                  <Button variant="outline" className="gap-2 h-12 px-8">
+                <Link href="/about" className="group">
+                  <Button variant="outline" className="gap-2 h-12 px-8 hover:border-primary/50 active:scale-[0.98] transition-all duration-200">
                     Learn more about us
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 arrow-animate" />
                   </Button>
                 </Link>
               </div>
@@ -471,13 +474,13 @@ export default function Home() {
                 Global careers start here.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact">
+                <Link href="/contact" className="group">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto gap-2 bg-white text-primary hover:bg-white/90 h-14 px-8 shadow-lg font-semibold"
+                    className="w-full sm:w-auto gap-2 bg-white text-primary hover:bg-white/90 h-14 px-8 shadow-lg font-semibold active:scale-[0.98] transition-all duration-200"
                   >
                     Enquire Now
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-5 h-5 arrow-animate" />
                   </Button>
                 </Link>
                 <Link href="/verify">
@@ -603,7 +606,6 @@ export default function Home() {
             </div>
           </div>
         </footer>
-      </main>
-    </>
+    </main>
   );
 }

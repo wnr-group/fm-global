@@ -98,8 +98,7 @@ const processSteps = [
 
 export default function TrainingPage() {
   return (
-    <>
-      <main className="min-h-screen">
+    <main className="min-h-screen">
         {/* Hero Section */}
         <section
           aria-labelledby="training-hero-heading"
@@ -120,8 +119,8 @@ export default function TrainingPage() {
                   className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-sm group"
                 >
                   <Image
-                    src="/logo-fm-global.png"
-                    alt="FM Global Careers"
+                    src="/logo-fm-institute.png"
+                    alt="FM Institute"
                     width={56}
                     height={56}
                     className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
@@ -129,7 +128,7 @@ export default function TrainingPage() {
                   />
                   <div className="hidden sm:block">
                     <p className="font-display text-foreground text-sm tracking-tight">
-                      FM Global Careers
+                      FM Institute
                     </p>
                   </div>
                 </Link>
@@ -294,7 +293,7 @@ export default function TrainingPage() {
                 <ScrollReveal key={course.id} delay={index * 50}>
                   <article className="group h-full bg-background rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 ease-out">
                     {/* Icon */}
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 flex-shrink-0" aria-hidden="true">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 icon-container flex-shrink-0" aria-hidden="true">
                       <course.icon className="w-6 h-6 text-primary" />
                     </div>
 
@@ -330,7 +329,7 @@ export default function TrainingPage() {
                       aria-label={`Learn more about ${course.title}`}
                     >
                       Learn More
-                      <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                      <ArrowRight className="w-3.5 h-3.5 arrow-animate" aria-hidden="true" />
                     </Link>
                   </article>
                 </ScrollReveal>
@@ -446,7 +445,7 @@ export default function TrainingPage() {
                       <div className="relative z-10 w-12 h-12 mx-auto mb-4 rounded-full bg-white text-primary font-display text-lg flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
                         {step.number}
                       </div>
-                      <h3 className="font-display text-lg text-white mb-1">
+                      <h3 className="font-display text-lg text-white mb-1 group-hover:text-white/90 transition-colors">
                         {step.title}
                       </h3>
                       <p className="text-sm text-white/70">
@@ -605,7 +604,6 @@ export default function TrainingPage() {
             </div>
           </div>
         </footer>
-      </main>
-    </>
+    </main>
   );
 }

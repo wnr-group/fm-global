@@ -145,6 +145,7 @@ export function InteractiveGlobe({
   markers = FM_MARKERS,
 }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [canvasSupported, setCanvasSupported] = useState(true);
   // Initial rotation to center on Gulf/Saudi region (longitude ~50°, latitude ~25°)
   const rotYRef = useRef(-0.9);
   const rotXRef = useRef(-0.45);
@@ -190,7 +191,10 @@ export function InteractiveGlobe({
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) {
+      setCanvasSupported(false);
+      return;
+    }
 
     const dpr = window.devicePixelRatio || 1;
     const w = canvas.clientWidth;
@@ -405,6 +409,11 @@ export function InteractiveGlobe({
 
   // Generate accessible description
   const locationList = markers.map(m => m.label).filter(Boolean).join(", ");
+
+  // Fallback if canvas not supported
+  if (!canvasSupported) {
+    return <GlobeStatic className={className} />;
+  }
 
   return (
     <div className={cn("relative", className)}>

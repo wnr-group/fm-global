@@ -37,6 +37,7 @@ export function ParallaxHero({
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   // Check for reduced motion preference
   useEffect(() => {
@@ -59,6 +60,7 @@ export function ParallaxHero({
         video.pause();
         video.currentTime = 0;
         setVideoReady(true);
+        setVideoError(false);
       }
     };
 
@@ -66,9 +68,21 @@ export function ParallaxHero({
       isSeekingRef.current = false;
     };
 
+    const handleError = () => {
+      setVideoError(true);
+      setVideoReady(false);
+    };
+
+    const handleStalled = () => {
+      // Video stalled - don't mark as error, just wait
+      isSeekingRef.current = false;
+    };
+
     video.addEventListener("loadedmetadata", initVideo);
     video.addEventListener("canplaythrough", initVideo);
     video.addEventListener("seeked", handleSeeked);
+    video.addEventListener("error", handleError);
+    video.addEventListener("stalled", handleStalled);
 
     // If already loaded
     if (video.readyState >= 3 && video.duration > 0) {
@@ -79,6 +93,8 @@ export function ParallaxHero({
       video.removeEventListener("loadedmetadata", initVideo);
       video.removeEventListener("canplaythrough", initVideo);
       video.removeEventListener("seeked", handleSeeked);
+      video.removeEventListener("error", handleError);
+      video.removeEventListener("stalled", handleStalled);
     };
   }, [scrollControlledVideo, videoReady]);
 
@@ -113,8 +129,10 @@ export function ParallaxHero({
     const targetTransform = rect.top * parallaxSpeed;
     currentTransform.current += (targetTransform - currentTransform.current) * 0.1;
 
-    // Apply parallax transform
-    media.style.transform = `translate3d(0, ${currentTransform.current}px, 0) scale(1.1)`;
+    // Apply parallax transform - no scale on mobile for better view
+    const isMobile = window.innerWidth < 640;
+    const scale = isMobile ? 1 : 1.03;
+    media.style.transform = `translate3d(0, ${currentTransform.current}px, 0) scale(${scale})`;
 
     // Scroll-controlled video playback
     if (video && videoReady && scrollControlledVideo && videoDuration.current > 0) {
@@ -172,10 +190,10 @@ export function ParallaxHero({
       {/* Media layer - video or image */}
       <div
         ref={mediaRef}
-        className="absolute inset-0 w-full h-[120%] -top-[10%] will-change-transform"
-        style={{ transform: "translate3d(0, 0, 0) scale(1.1)" }}
+        className="absolute inset-0 w-full h-[110%] sm:h-[110%] lg:h-[120%] -top-[5%] sm:-top-[5%] lg:-top-[10%] will-change-transform"
+        style={{ transform: "translate3d(0, 0, 0) scale(1)" }}
       >
-        {videoSrc ? (
+        {videoSrc && !videoError ? (
           <video
             ref={videoRef}
             muted
@@ -184,6 +202,7 @@ export function ParallaxHero({
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source src={videoSrc} type="video/mp4" />
+            {/* Fallback for browsers that don't support video */}
             {imageSrc && (
               <img
                 src={imageSrc}
@@ -192,35 +211,30 @@ export function ParallaxHero({
               />
             )}
           </video>
-        ) : imageSrc ? (
+        ) : null}
+        {/* Show image if no video, video errored, or as fallback */}
+        {((!videoSrc || videoError) && imageSrc) && (
           <img
             src={imageSrc}
             alt={imageAlt}
             className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
           />
-        ) : null}
+        )}
       </div>
 
-      {/* Gradient overlay - moves at different speed */}
+      {/* Minimal overlay - just enough for contrast */}
       <div
         ref={overlayRef}
         className="absolute inset-0 w-full h-[120%] -top-[10%] will-change-transform pointer-events-none"
         style={{
           background: `linear-gradient(
             to bottom,
-            oklch(0.15 0.03 240 / ${overlayOpacity * 0.6}) 0%,
-            oklch(0.12 0.04 240 / ${overlayOpacity}) 40%,
-            oklch(0.10 0.05 240 / ${overlayOpacity * 1.1}) 100%
+            oklch(0.10 0.02 240 / ${overlayOpacity * 0.3}) 0%,
+            oklch(0.10 0.02 240 / ${overlayOpacity * 0.15}) 50%,
+            oklch(0.10 0.02 240 / ${overlayOpacity * 0.4}) 100%
           )`,
           transform: "translate3d(0, 0, 0)",
-        }}
-      />
-
-      {/* Additional cinematic vignette */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, oklch(0.10 0.04 240 / 0.4) 100%)`,
         }}
       />
 

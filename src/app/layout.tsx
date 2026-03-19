@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     "Qatar employment",
     "Saudi Arabia oil jobs",
   ],
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "FM Global Careers | Building Global Oil & Gas Careers",
     description:

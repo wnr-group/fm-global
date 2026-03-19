@@ -118,8 +118,7 @@ const processSteps = [
 
 export default function PlacementPage() {
   return (
-    <>
-      <main className="min-h-screen">
+    <main className="min-h-screen">
         {/* Hero Section */}
         <section
           aria-labelledby="placement-hero-heading"
@@ -140,8 +139,8 @@ export default function PlacementPage() {
                   className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-sm group"
                 >
                   <Image
-                    src="/logo-fm-global.png"
-                    alt="FM Global Careers"
+                    src="/logo-fm-international.png"
+                    alt="FM International"
                     width={56}
                     height={56}
                     className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
@@ -149,7 +148,7 @@ export default function PlacementPage() {
                   />
                   <div className="hidden sm:block">
                     <p className="font-display text-foreground text-sm tracking-tight">
-                      FM Global Careers
+                      FM International
                     </p>
                   </div>
                 </Link>
@@ -362,7 +361,7 @@ export default function PlacementPage() {
                       aria-label={`View opportunities in ${region.country}`}
                     >
                       View Opportunities
-                      <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                      <ArrowUpRight className="w-3.5 h-3.5 arrow-up-animate" aria-hidden="true" />
                     </Link>
                   </article>
                 </ScrollReveal>
@@ -402,7 +401,7 @@ export default function PlacementPage() {
                 <ScrollReveal key={category.title} delay={index * 50}>
                   <article className="group">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0" aria-hidden="true">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center icon-container flex-shrink-0" aria-hidden="true">
                         <category.icon className="w-6 h-6 text-primary" />
                       </div>
                       <h3 className="font-display text-xl text-foreground">
@@ -679,7 +678,6 @@ export default function PlacementPage() {
             </div>
           </div>
         </footer>
-      </main>
-    </>
+    </main>
   );
 }

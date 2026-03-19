@@ -233,9 +233,14 @@ export function AnimatedCounter({
     return () => observer.disconnect();
   }, [value, duration, hasAnimated, prefersReducedMotion]);
 
+  // Format number with locale-aware separators
+  const formattedValue = typeof window !== "undefined"
+    ? new Intl.NumberFormat().format(displayValue)
+    : displayValue.toString();
+
   return (
     <span ref={ref} className={cn("tabular-nums", className)}>
-      {displayValue}
+      {formattedValue}
       {suffix}
     </span>
   );

@@ -13,6 +13,19 @@ export function useSplash() {
   return useContext(SplashContext);
 }
 
+// Safe storage access - handles private browsing, SSR, and quota errors
+function safeSessionStorage() {
+  try {
+    if (typeof window === "undefined") return null;
+    const testKey = "__storage_test__";
+    sessionStorage.setItem(testKey, testKey);
+    sessionStorage.removeItem(testKey);
+    return sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
 interface SplashProviderProps {
   children: ReactNode;
 }
@@ -20,20 +33,39 @@ interface SplashProviderProps {
 export function SplashProvider({ children }: SplashProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [showSplash, setShowSplash] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  // Hydration guard
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Check if this is first visit in session
   useEffect(() => {
-    const hasVisited = sessionStorage.getItem("fm-splash-shown");
+    if (!mounted) return;
+
+    const storage = safeSessionStorage();
+    const hasVisited = storage?.getItem("fm-splash-shown");
     if (hasVisited) {
       setShowSplash(false);
       setIsLoading(false);
     }
-  }, []);
+  }, [mounted]);
 
   const handleSplashComplete = () => {
     setIsLoading(false);
-    sessionStorage.setItem("fm-splash-shown", "true");
+    const storage = safeSessionStorage();
+    storage?.setItem("fm-splash-shown", "true");
   };
+
+  // Show nothing during SSR to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <SplashContext.Provider value={{ isLoading: true }}>
+        <div className="opacity-0">{children}</div>
+      </SplashContext.Provider>
+    );
+  }
 
   return (
     <SplashContext.Provider value={{ isLoading }}>
