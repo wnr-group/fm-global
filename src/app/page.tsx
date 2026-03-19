@@ -1,65 +1,609 @@
+import { InteractiveGlobe, GlobeStatic } from "@/components/ui/interactive-globe";
+import { Button } from "@/components/ui/button";
+import { MobileNav } from "@/components/ui/mobile-nav";
+import { ScrollReveal, AnimatedCounter } from "@/components/ui/scroll-reveal";
+import { ParallaxHero } from "@/components/ui/parallax-hero";
+import { ArrowRight, ArrowUpRight, GraduationCap, Globe2, Shield, QrCode } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <main className="min-h-screen">
+        {/* Hero Section with Parallax */}
+        <ParallaxHero
+          videoSrc="/hero-oil-rig.mp4"
+          imageSrc="/hero-oil-rig.webp"
+          imageAlt="Oil rig platform in the ocean"
+          overlayOpacity={0.55}
+          parallaxSpeed={0.35}
+          scrollControlledVideo={true}
+          className="min-h-screen"
+        >
+          {/* Navigation - on top of parallax */}
+          <nav
+            className="relative z-50 w-full py-4"
+            aria-label="Main navigation"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <div className="w-full px-5 sm:px-8 lg:px-[4%] xl:px-[6%]">
+              <div className="flex items-center justify-between">
+                {/* Logo */}
+                <Link
+                  href="/"
+                  className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded-sm group"
+                >
+                  <Image
+                    src="/logo-fm-global.png"
+                    alt="FM Global Careers"
+                    width={56}
+                    height={56}
+                    className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
+                    priority
+                  />
+                  <div className="hidden sm:block">
+                    <p className="font-display text-white text-sm tracking-tight">
+                      FM Global Careers
+                    </p>
+                  </div>
+                </Link>
+
+                {/* Center pill nav */}
+                <div className="hidden lg:flex items-center gap-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-2 py-1.5">
+                  <Link
+                    href="/about"
+                    className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href="/training"
+                    className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+                  >
+                    Training
+                  </Link>
+                  <Link
+                    href="/placement"
+                    className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+                  >
+                    Placement
+                  </Link>
+                  <Link
+                    href="/verify"
+                    className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+                  >
+                    Verify
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+                  >
+                    Contact
+                  </Link>
+                </div>
+
+                {/* Right side CTA */}
+                <div className="hidden lg:flex items-center gap-4">
+                  <Link href="/contact">
+                    <Button className="rounded-full bg-white text-primary hover:bg-white/90 shadow-lg shadow-black/20 px-6 py-2.5 h-auto font-semibold">
+                      Enquire Now
+                    </Button>
+                  </Link>
+                </div>
+
+                {/* Mobile nav */}
+                <MobileNav variant="dark" />
+              </div>
+            </div>
+          </nav>
+
+          {/* Hero Content */}
+          <div className="relative w-full min-h-[calc(100vh-5rem)] px-5 sm:px-8 lg:px-[6%] xl:px-[8%] flex items-center">
+            <div className="w-full max-w-7xl mx-auto py-16 lg:py-0">
+              <div className="max-w-2xl">
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 text-xs font-medium text-white mb-8 w-fit animate-fade-in-up">
+                  <span className="size-2 rounded-full bg-white animate-pulse-subtle" />
+                  <span>Applications open for 2026 batch</span>
+                </div>
+
+                {/* Heading */}
+                <h1
+                  id="hero-heading"
+                  className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.05] mb-6 tracking-tight animate-fade-in-up"
+                  style={{ animationDelay: "100ms" }}
+                >
+                  Build your career in{" "}
+                  <span className="text-white/90">Oil & Gas</span>
+                </h1>
+
+                <p
+                  className="text-lg sm:text-xl text-white/75 max-w-lg leading-relaxed mb-10 animate-fade-in-up"
+                  style={{ animationDelay: "200ms" }}
+                >
+                  Industry-focused training with direct placement to leading companies
+                  across India and the Gulf region.
+                </p>
+
+                {/* CTAs */}
+                <div
+                  className="flex flex-col sm:flex-row gap-4 mb-14 animate-fade-in-up"
+                  style={{ animationDelay: "300ms" }}
+                >
+                  <Link href="/contact">
+                    <Button size="lg" className="w-full sm:w-auto gap-2 h-14 px-8 bg-white text-primary hover:bg-white/90 shadow-xl shadow-black/20 font-semibold text-base">
+                      Enquire Now
+                      <ArrowRight className="w-5 h-5" />
+                    </Button>
+                  </Link>
+                  <Link href="/training">
+                    <Button
+                      size="lg"
+                      className="w-full sm:w-auto h-14 px-8 bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-semibold text-base"
+                    >
+                      Explore Courses
+                    </Button>
+                  </Link>
+                </div>
+
+                {/* Stats */}
+                <dl
+                  className="grid grid-cols-3 gap-8 sm:gap-12 animate-fade-in-up"
+                  style={{ animationDelay: "400ms" }}
+                >
+                  <div>
+                    <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1">
+                      <AnimatedCounter value={500} suffix="+" />
+                    </dd>
+                    <dt className="text-sm text-white/60 font-medium">
+                      Students Placed
+                    </dt>
+                  </div>
+                  <div>
+                    <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1">
+                      <AnimatedCounter value={15} suffix="+" />
+                    </dd>
+                    <dt className="text-sm text-white/60 font-medium">
+                      Partners
+                    </dt>
+                  </div>
+                  <div>
+                    <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1">
+                      <AnimatedCounter value={98} suffix="%" />
+                    </dd>
+                    <dt className="text-sm text-white/60 font-medium">
+                      Placement Rate
+                    </dt>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
+            {/* Scroll indicator */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 text-white/60">
+              <span className="text-xs uppercase tracking-wider">Scroll</span>
+              <div className="w-5 h-8 rounded-full border-2 border-white/30 flex justify-center pt-1.5">
+                <div className="w-1 h-2 rounded-full bg-white scroll-indicator" />
+              </div>
+            </div>
+          </div>
+        </ParallaxHero>
+
+        {/* Global Network Section - Globe showcase */}
+        <section className="py-16 sm:py-20 lg:py-24 bg-background relative overflow-hidden">
+          <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 max-w-7xl mx-auto">
+              {/* Left - Globe */}
+              <div className="flex-1 flex items-center justify-center w-full">
+                <ScrollReveal>
+                  <div className="globe-container">
+                    {/* Mobile globe */}
+                    <div className="block sm:hidden">
+                      <InteractiveGlobe size={300} />
+                    </div>
+                    {/* Tablet globe */}
+                    <div className="hidden sm:block lg:hidden">
+                      <InteractiveGlobe size={400} />
+                    </div>
+                    {/* Desktop globe */}
+                    <div className="hidden lg:block">
+                      <InteractiveGlobe size={480} />
+                    </div>
+                  </div>
+                </ScrollReveal>
+              </div>
+
+              {/* Right - Content */}
+              <div className="flex-1 max-w-lg">
+                <ScrollReveal delay={100}>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-px w-12 bg-primary" />
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                      Global Reach
+                    </span>
+                  </div>
+                  <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.1] mb-6">
+                    Connecting talent with{" "}
+                    <span className="text-primary">opportunities worldwide</span>
+                  </h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    Our placement network spans across India and the Gulf region,
+                    connecting trained professionals with leading employers in UAE,
+                    Qatar, Saudi Arabia, Kuwait, Bahrain, and Oman.
+                  </p>
+                  <Link href="/placement">
+                    <Button variant="outline" className="gap-2 h-12 px-6">
+                      View Placement Network
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </Link>
+                </ScrollReveal>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Divisions Section */}
+        <section
+          aria-labelledby="divisions-heading"
+          className="py-16 sm:py-20 lg:py-24 bg-secondary/30 relative"
+        >
+          <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
+            {/* Section header - editorial style, left-aligned */}
+            <ScrollReveal>
+              <header className="mb-10 lg:mb-14">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-px w-12 bg-primary" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                    Our Divisions
+                  </span>
+                </div>
+                <h2
+                  id="divisions-heading"
+                  className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl leading-[1.1]"
+                >
+                  Two paths to your
+                  <br />
+                  <span className="text-primary">global career</span>
+                </h2>
+              </header>
+            </ScrollReveal>
+
+            {/* Bento-style layout */}
+            <div className="grid lg:grid-cols-2 gap-4 lg:gap-5">
+              {/* FM Institute - Training Division */}
+              <ScrollReveal delay={100}>
+                <Link
+                  href="/training"
+                  className="group block relative h-full min-h-[400px] lg:min-h-[480px]"
+                >
+                  <article className="absolute inset-0 bg-secondary/60 rounded-3xl p-8 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden transition-all duration-500 hover:bg-secondary/80">
+                    {/* Large background number */}
+                    <span className="absolute -right-8 -top-8 text-[180px] lg:text-[240px] font-display font-bold text-primary/[0.04] leading-none select-none pointer-events-none">
+                      01
+                    </span>
+
+                    <div className="relative">
+                      <span className="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-primary/70 mb-4">
+                        Training Division
+                      </span>
+                      <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl text-foreground mb-4 leading-[1.1]">
+                        FM Institute
+                      </h3>
+                      <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-md">
+                        Industry-focused programs in Oil & Gas, Piping Design, Safety Standards,
+                        and Process Engineering.
+                      </p>
+                    </div>
+
+                    <div className="relative flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                          <GraduationCap className="w-5 h-5 text-primary" />
+                        </div>
+                        <span className="text-sm text-muted-foreground">12+ Courses</span>
+                      </div>
+
+                      <span className="inline-flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                        View Courses
+                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </article>
+                </Link>
+              </ScrollReveal>
+
+              {/* FM International - Placement Division */}
+              <ScrollReveal delay={200}>
+                <Link
+                  href="/placement"
+                  className="group block relative h-full min-h-[400px] lg:min-h-[480px]"
+                >
+                  <article className="absolute inset-0 bg-primary rounded-3xl p-8 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20">
+                    {/* Large background number */}
+                    <span className="absolute -right-8 -top-8 text-[180px] lg:text-[240px] font-display font-bold text-white/[0.06] leading-none select-none pointer-events-none">
+                      02
+                    </span>
+
+                    <div className="relative">
+                      <span className="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-primary-foreground/60 mb-4">
+                        Placement Division
+                      </span>
+                      <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl text-primary-foreground mb-4 leading-[1.1]">
+                        FM International
+                      </h3>
+                      <p className="text-primary-foreground/75 text-base sm:text-lg leading-relaxed max-w-md">
+                        Direct placement in Gulf countries and across India. Connecting trained
+                        professionals with leading employers.
+                      </p>
+                    </div>
+
+                    <div className="relative flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                          <Globe2 className="w-5 h-5 text-primary-foreground" />
+                        </div>
+                        <span className="text-sm text-primary-foreground/70">15+ Partners</span>
+                      </div>
+
+                      <span className="inline-flex items-center gap-2 text-primary-foreground font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                        Explore Jobs
+                        <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </span>
+                    </div>
+                  </article>
+                </Link>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Section */}
+        <section
+          aria-labelledby="features-heading"
+          className="py-16 sm:py-20 lg:py-24 bg-secondary/30 relative overflow-hidden"
+        >
+          {/* Subtle background texture */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, oklch(0.32 0.08 240 / 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, oklch(0.32 0.08 240 / 0.02) 0%, transparent 40%)' }} />
+          </div>
+
+          <div className="relative w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
+            {/* Section header */}
+            <ScrollReveal>
+              <header className="text-center mb-10 lg:mb-14">
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <div className="h-px w-8 bg-primary/40" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                    Why Choose Us
+                  </span>
+                  <div className="h-px w-8 bg-primary/40" />
+                </div>
+                <h2
+                  id="features-heading"
+                  className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl mx-auto leading-[1.1]"
+                >
+                  From training to placement,{" "}
+                  <span className="text-primary">we&apos;ve got you covered</span>
+                </h2>
+              </header>
+            </ScrollReveal>
+
+            {/* Feature grid - clean, no cards */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-12 lg:gap-y-16">
+              {[
+                {
+                  number: "01",
+                  title: "Industry Certified",
+                  description: "Certifications recognized by employers across India and the Gulf region.",
+                },
+                {
+                  number: "02",
+                  title: "Global Network",
+                  description: "Partnerships with companies in UAE, Qatar, Saudi Arabia, Kuwait, Bahrain, and Oman.",
+                },
+                {
+                  number: "03",
+                  title: "Expert Faculty",
+                  description: "Learn from professionals with 10+ years of real industry experience.",
+                },
+                {
+                  number: "04",
+                  title: "QR-Verified",
+                  description: "Every certificate comes with QR verification for authenticity.",
+                },
+              ].map((item, index) => (
+                <ScrollReveal key={item.number} delay={index * 80}>
+                  <article className="group">
+                    {/* Large number */}
+                    <span className="block font-display text-6xl lg:text-7xl text-primary/10 mb-4 leading-none transition-colors duration-300 group-hover:text-primary/20">
+                      {item.number}
+                    </span>
+                    <h3 className="font-display text-xl lg:text-2xl text-foreground mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm lg:text-base">
+                      {item.description}
+                    </p>
+                  </article>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <ScrollReveal delay={400}>
+              <div className="mt-12 lg:mt-16 text-center">
+                <Link href="/about">
+                  <Button variant="outline" className="gap-2 h-12 px-8">
+                    Learn more about us
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section
+          aria-labelledby="cta-heading"
+          className="py-16 sm:py-20 lg:py-24 bg-primary text-primary-foreground relative overflow-hidden"
+        >
+          {/* Decorative elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-white/5 -translate-y-1/2" />
+            <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-white/5 translate-y-1/2" />
+          </div>
+
+          <div className="relative w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
+            <ScrollReveal className="max-w-3xl mx-auto text-center">
+              <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary-foreground/70 mb-4">
+                Get Started
+              </span>
+              <h2
+                id="cta-heading"
+                className="font-display text-3xl sm:text-4xl lg:text-5xl text-primary-foreground mb-6"
+              >
+                Ready to start your journey?
+              </h2>
+              <p className="text-lg sm:text-xl text-primary-foreground/80 mb-10 max-w-xl mx-auto">
+                Take the first step towards an international career in Oil & Gas.
+                Global careers start here.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto gap-2 bg-white text-primary hover:bg-white/90 h-14 px-8 shadow-lg font-semibold"
+                  >
+                    Enquire Now
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </Link>
+                <Link href="/verify">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto border-2 border-white bg-transparent text-white hover:bg-white/10 h-14 px-8 font-semibold"
+                  >
+                    Verify Certificate
+                  </Button>
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-foreground text-background py-16 lg:py-20" role="contentinfo">
+          <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+              {/* Brand */}
+              <div className="sm:col-span-2 lg:col-span-1">
+                <Link
+                  href="/"
+                  className="inline-flex items-center gap-3 mb-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-sm group"
+                >
+                  <Image
+                    src="/logo-fm-global.png"
+                    alt="FM Global Careers"
+                    width={56}
+                    height={56}
+                    className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
+                  />
+                  <div>
+                    <p className="font-display text-background text-sm">FM Global Careers</p>
+                    <p className="text-xs text-background/60">Global Careers Start Here</p>
+                  </div>
+                </Link>
+                <p className="text-background/70 text-sm max-w-xs leading-relaxed">
+                  Your trusted partner for specialized training in Oil & Gas and
+                  international career placement.
+                </p>
+              </div>
+
+              {/* Quick Links */}
+              <nav aria-label="Footer navigation">
+                <h3 className="font-display text-background text-sm mb-4">Quick Links</h3>
+                <ul className="space-y-3">
+                  {[
+                    { label: "About Us", href: "/about" },
+                    { label: "Training Programs", href: "/training" },
+                    { label: "Job Placement", href: "/placement" },
+                    { label: "Verify Certificate", href: "/verify" },
+                  ].map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-background/70 hover:text-background transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-sm"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              {/* Divisions */}
+              <div>
+                <h3 className="font-display text-background text-sm mb-4">Divisions</h3>
+                <ul className="space-y-3">
+                  <li>
+                    <Link
+                      href="/training"
+                      className="text-sm text-background/70 hover:text-background transition-colors flex items-center gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-background/50" />
+                      FM Institute
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/placement"
+                      className="text-sm text-background/70 hover:text-background transition-colors flex items-center gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-background/50" />
+                      FM International
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Contact */}
+              <div>
+                <h3 className="font-display text-background text-sm mb-4">Contact</h3>
+                <address className="not-italic space-y-3 text-sm text-background/70">
+                  <p>Chennai, Tamil Nadu, India</p>
+                  <p>
+                    <a
+                      href="mailto:contact@fmglobalcareers.com"
+                      className="hover:text-background transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-sm"
+                    >
+                      contact@fmglobalcareers.com
+                    </a>
+                  </p>
+                  <p>
+                    <a
+                      href="tel:+919999999999"
+                      className="hover:text-background transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-sm"
+                    >
+                      +91 99999 99999
+                    </a>
+                  </p>
+                </address>
+              </div>
+            </div>
+
+            <div className="border-t border-background/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-background/60">
+                &copy; {new Date().getFullYear()} FM Global Careers. All rights reserved.
+              </p>
+              <p className="text-xs text-background/40">
+                Building Global Oil & Gas Careers
+              </p>
+            </div>
+          </div>
+        </footer>
       </main>
-    </div>
+    </>
   );
 }
