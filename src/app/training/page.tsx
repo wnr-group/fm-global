@@ -98,7 +98,7 @@ const processSteps = [
 
 export default function TrainingPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen training-theme bg-background">
         {/* Hero Section */}
         <section
           aria-labelledby="training-hero-heading"
@@ -127,7 +127,7 @@ export default function TrainingPage() {
                     priority
                   />
                   <div className="hidden sm:block">
-                    <p className="font-display text-foreground text-sm tracking-tight">
+                    <p className="font-poppins text-foreground text-sm tracking-tight">
                       FM Institute
                     </p>
                   </div>
@@ -171,14 +171,14 @@ export default function TrainingPage() {
                 {/* Left content */}
                 <div>
                   {/* Badge */}
-                  <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs font-medium text-primary mb-8">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] px-4 py-2 text-xs font-medium  mb-8">
                     <GraduationCap className="w-4 h-4" />
                     <span>FM Institute - Training Division</span>
                   </div>
 
                   <h1
                     id="training-hero-heading"
-                    className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-6 tracking-tight"
+                    className="font-poppins text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-6 tracking-tight"
                   >
                     Industry-Focused Training for{" "}
                     <span className="text-primary">Global Careers</span>
@@ -192,7 +192,7 @@ export default function TrainingPage() {
                   {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-3 mb-12">
                     <Link href="/contact">
-                      <Button size="lg" className="w-full sm:w-auto gap-2 h-12 px-6 shadow-lg shadow-primary/25 bg-primary hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all duration-200">
+                      <Button size="lg" className="w-full sm:w-auto gap-2 h-12 px-6 shadow-lg shadow-primary/25 bg-accent hover:bg-accent/90 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all duration-200">
                         Enquire Now
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                       </Button>
@@ -207,7 +207,7 @@ export default function TrainingPage() {
                   {/* Stats */}
                   <dl className="grid grid-cols-3 gap-6 max-w-md">
                     <div>
-                      <dd className="font-display text-2xl sm:text-3xl text-foreground mb-1">
+                      <dd className="font-poppins text-2xl sm:text-3xl text-foreground mb-1">
                         <AnimatedCounter value={12} suffix="" />
                         <span className="text-primary">+</span>
                       </dd>
@@ -216,7 +216,7 @@ export default function TrainingPage() {
                       </dt>
                     </div>
                     <div>
-                      <dd className="font-display text-2xl sm:text-3xl text-foreground mb-1">
+                      <dd className="font-poppins text-2xl sm:text-3xl text-foreground mb-1">
                         <AnimatedCounter value={500} suffix="" />
                         <span className="text-primary">+</span>
                       </dd>
@@ -225,7 +225,7 @@ export default function TrainingPage() {
                       </dt>
                     </div>
                     <div>
-                      <dd className="font-display text-2xl sm:text-3xl text-foreground mb-1">
+                      <dd className="font-poppins text-2xl sm:text-3xl text-foreground mb-1">
                         <AnimatedCounter value={98} suffix="" />
                         <span className="text-primary">%</span>
                       </dd>
@@ -266,7 +266,7 @@ export default function TrainingPage() {
         <section
           id="courses"
           aria-labelledby="courses-heading"
-          className="py-16 sm:py-20 lg:py-24 bg-secondary/30"
+          className="py-16 sm:py-20 lg:py-24 bg-background"
         >
           <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
             <ScrollReveal>
@@ -279,7 +279,7 @@ export default function TrainingPage() {
                 </div>
                 <h2
                   id="courses-heading"
-                  className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl leading-[1.1]"
+                  className="font-poppins text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl leading-[1.1]"
                 >
                   Industry-certified courses for{" "}
                   <span className="text-primary">your success</span>
@@ -303,7 +303,7 @@ export default function TrainingPage() {
                       <span>{course.duration}</span>
                     </div>
 
-                    <h3 className="font-display text-lg text-foreground mb-2 leading-tight line-clamp-2 min-h-[3.5rem]">
+                    <h3 className="font-poppins text-lg text-foreground mb-2 leading-tight line-clamp-2 min-h-[3.5rem]">
                       {course.title}
                     </h3>
 
@@ -355,7 +355,7 @@ export default function TrainingPage() {
                 </div>
                 <h2
                   id="why-choose-heading"
-                  className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl mx-auto leading-[1.1]"
+                  className="font-poppins text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl mx-auto leading-[1.1]"
                 >
                   Training that leads to{" "}
                   <span className="text-primary">real careers</span>
@@ -393,12 +393,12 @@ export default function TrainingPage() {
               ].map((item, index) => (
                 <ScrollReveal key={item.number} delay={index * 80}>
                   <article className="group">
-                    <span className="block font-display text-6xl lg:text-7xl text-primary/10 mb-4 leading-none transition-colors duration-300 group-hover:text-primary/20">
+                    <span className="block font-poppins text-6xl lg:text-7xl text-primary/10 mb-4 leading-none transition-colors duration-300 group-hover:text-primary/20">
                       {item.number}
                     </span>
                     <div className="flex items-center gap-3 mb-3">
                       <item.icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                      <h3 className="font-display text-xl lg:text-2xl text-foreground">
+                      <h3 className="font-poppins text-xl lg:text-2xl text-foreground">
                         {item.title}
                       </h3>
                     </div>
@@ -425,7 +425,7 @@ export default function TrainingPage() {
                 </span>
                 <h2
                   id="process-heading"
-                  className="font-display text-3xl sm:text-4xl lg:text-5xl text-white max-w-2xl mx-auto"
+                  className="font-poppins text-3xl sm:text-4xl lg:text-5xl text-white max-w-2xl mx-auto"
                 >
                   From enquiry to employment
                 </h2>
@@ -442,10 +442,10 @@ export default function TrainingPage() {
                   <ScrollReveal key={step.number} delay={index * 100}>
                     <div className="relative text-center group">
                       {/* Number circle */}
-                      <div className="relative z-10 w-12 h-12 mx-auto mb-4 rounded-full bg-white text-primary font-display text-lg flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
+                      <div className="relative z-10 w-12 h-12 mx-auto mb-4 rounded-full bg-white text-primary font-poppins text-lg flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
                         {step.number}
                       </div>
-                      <h3 className="font-display text-lg text-white mb-1 group-hover:text-white/90 transition-colors">
+                      <h3 className="font-poppins text-lg text-white mb-1 group-hover:text-white/90 transition-colors">
                         {step.title}
                       </h3>
                       <p className="text-sm text-white/70">
@@ -472,7 +472,7 @@ export default function TrainingPage() {
                 </span>
                 <h2
                   id="training-cta-heading"
-                  className="font-display text-3xl sm:text-4xl lg:text-5xl text-foreground mb-6"
+                  className="font-poppins text-3xl sm:text-4xl lg:text-5xl text-foreground mb-6"
                 >
                   Ready to build your career?
                 </h2>
@@ -483,7 +483,7 @@ export default function TrainingPage() {
                   <Link href="/contact">
                     <Button
                       size="lg"
-                      className="w-full sm:w-auto gap-2 h-14 px-8 shadow-lg shadow-primary/25 bg-primary hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] font-semibold transition-all duration-200"
+                      className="w-full sm:w-auto gap-2 h-14 px-8 shadow-lg shadow-primary/25 bg-accent hover:bg-accent/90 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] font-semibold transition-all duration-200"
                     >
                       Enquire Now
                       <ArrowRight className="w-5 h-5" />
@@ -521,7 +521,7 @@ export default function TrainingPage() {
                     className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
                   />
                   <div>
-                    <p className="font-display text-background text-sm">FM Global Careers</p>
+                    <p className="font-poppins text-background text-sm">FM Global Careers</p>
                     <p className="text-xs text-background/60">Global Careers Start Here</p>
                   </div>
                 </Link>
@@ -532,7 +532,7 @@ export default function TrainingPage() {
               </div>
 
               <nav aria-label="Footer navigation">
-                <h3 className="font-display text-background text-sm mb-4">Quick Links</h3>
+                <h3 className="font-poppins text-background text-sm mb-4">Quick Links</h3>
                 <ul className="space-y-3">
                   {[
                     { label: "About Us", href: "/about" },
@@ -553,7 +553,7 @@ export default function TrainingPage() {
               </nav>
 
               <div>
-                <h3 className="font-display text-background text-sm mb-4">Divisions</h3>
+                <h3 className="font-poppins text-background text-sm mb-4">Divisions</h3>
                 <ul className="space-y-3">
                   <li>
                     <Link
@@ -577,7 +577,7 @@ export default function TrainingPage() {
               </div>
 
               <div>
-                <h3 className="font-display text-background text-sm mb-4">Contact</h3>
+                <h3 className="font-poppins text-background text-sm mb-4">Contact</h3>
                 <address className="not-italic space-y-3 text-sm text-background/70">
                   <p>Chennai, Tamil Nadu, India</p>
                   <p>

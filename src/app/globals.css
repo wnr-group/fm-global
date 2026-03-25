@@ -115,6 +115,47 @@
   --sidebar-ring: oklch(0.32 0.08 240);
 }
 
+.training-theme {
+  --primary: #579620;
+  --background: #fcfcfa;         
+  --color-background: #fcfcfa;  
+  --accent: #d45339;
+}
+
+.placement-theme {
+  /* PRIMARY */
+  --primary: #ad462f;
+  --color-primary: #ad462f;
+
+  /* BACKGROUND */
+  --background: #fefbf6;
+  --color-background: #fefbf6;
+
+  /* SECONDARY (sections like bg-secondary) */
+  --secondary: #fefbf6;
+  --color-secondary: #fefbf6;
+
+  /* MUTED */
+  --muted: #ad462f;
+  --color-muted: #ad462f;
+
+  /* ACCENT */
+  --accent: #c89974;
+  --color-accent: #c89974;
+
+  /* BORDER (important for cards) */
+  --border: #e6d5c8;
+}
+
+.font-poppins {
+  font-family: var(--font-display);
+}
+
+/* Body font (already default via font-sans) */
+.font-inter {
+  font-family: var(--font-sans);
+}
+
 /* Dark theme - Deep azure, professional night mode */
 .dark {
   --background: oklch(0.14 0.03 240);
