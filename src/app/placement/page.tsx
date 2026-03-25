@@ -588,7 +588,7 @@ export default function PlacementPage() {
                   className="inline-flex items-center gap-3 mb-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-sm group"
                 >
                   <Image
-                    src="/logo-fm-global.png"
+                    src="/Brand-Logo.png"
                     alt="FM Global Careers"
                     width={56}
                     height={56}

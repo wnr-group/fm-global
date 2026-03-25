@@ -135,7 +135,7 @@ export function MobileNav({ variant = "dark" }: MobileNavProps) {
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <Image
-                src="/logo-fm-global.png"
+                src="/Brand-Logo.png"
                 alt="FM Global Careers"
                 width={56}
                 height={56}
