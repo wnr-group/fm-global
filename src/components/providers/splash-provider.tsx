@@ -59,13 +59,11 @@ export function SplashProvider({ children }: SplashProviderProps) {
     storage?.setItem("fm-splash-shown", "true");
   };
 
-  // Show nothing during SSR to prevent hydration mismatch
+  // CRITICAL: On first render (server + client first pass), render children
+  // with NO wrapper element. Server HTML has no SplashProvider DOM nodes,
+  // so client must also produce none — they will match.
   if (!mounted) {
-    return (
-      <SplashContext.Provider value={{ isLoading: true }}>
-        <div className="opacity-0">{children}</div>
-      </SplashContext.Provider>
-    );
+    return <>{children}</>;
   }
 
   return (
