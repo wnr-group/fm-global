@@ -137,7 +137,7 @@ export default function AboutPage() {
                 className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded-sm group"
               >
                 <Image
-                  src="/Brand-Logo.png"
+                  src="/apple-touch-icon.png"
                   alt="FM Global Careers"
                   width={56}
                   height={56}
@@ -510,7 +510,7 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-3 mb-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-sm group"
               >
                 <Image
-                  src="/Brand-Logo.png"
+                  src="/apple-touch-icon.png"
                   alt="FM Global Careers"
                   width={56}
                   height={56}

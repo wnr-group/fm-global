@@ -38,7 +38,7 @@ export function SplashScreen({ minDuration = 1500, onComplete }: SplashScreenPro
       {/* Logo */}
       <div className="relative mb-8 animate-fade-in">
         <Image
-          src="/Brand-Logo.png"
+          src="/apple-touch-icon.png"
           alt="FM Global Careers"
           width={120}
           height={120}
