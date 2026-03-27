@@ -69,7 +69,7 @@ const mechanicalTechnician: Course = {
   number: "01",
   title: "Mechanical Technician",
   tagline: "Learn Heat Exchangers, Vessels, Tanks & Columns with Real Site Methods",
-  image: "/training/course-mechanical-technician.png",
+  image: "/training/course-mechanical-technician.webp",
   highlights: [
     "14 Modules – Complete Shutdown Training",
     "Online Learning + Weekly Live Sessions",
@@ -136,7 +136,7 @@ const permitReceiver: Course = {
   number: "02",
   title: "Permit Receiver",
   tagline: "Learn PTW System, Safety Procedures & Real Shutdown Site Practices",
-  image: "/training/course-permit-receiver.png",
+  image: "/training/course-permit-receiver.webp",
   highlights: [
     "No Experience Required",
     "Gulf Standard Training (KNPC, ADNOC, Qatar Gas)",
@@ -272,7 +272,7 @@ function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/training/hero-refinery-dusk.png"
+          src="/training/hero-refinery-dusk.webp"
           alt=""
           fill
           className="object-cover"
@@ -781,7 +781,7 @@ function WhyChooseSection() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/training/training-transformation.png"
+          src="/training/training-transformation.webp"
           alt=""
           fill
           className="object-cover opacity-30"
@@ -849,7 +849,7 @@ function CareerDestinationsSection() {
           <ScrollReveal>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <Image
-                src="/training/gulf-skyline.png"
+                src="/training/gulf-skyline.webp"
                 alt="Gulf skyline with industrial facilities"
                 fill
                 className="object-cover"
@@ -921,7 +921,7 @@ function CTASection() {
       {/* Background */}
       <div className="absolute inset-0">
         <Image
-          src="/training/career-aerial-facility.png"
+          src="/training/career-aerial-facility.webp"
           alt=""
           fill
           className="object-cover"
