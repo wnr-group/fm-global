@@ -115,36 +115,30 @@
   --sidebar-ring: oklch(0.32 0.08 240);
 }
 
+body {
+  font-family: var(--font-sans); /* Inter */
+  line-height: 1.6; /* slightly open */
+}
+
 .training-theme {
   --primary: #579620;
   --background: #fcfcfa;         
   --color-background: #fcfcfa;  
   --accent: #d45339;
+  --cta-bg: var(--primary);
 }
 
 .placement-theme {
-  /* PRIMARY */
-  --primary: #ad462f;
-  --color-primary: #ad462f;
+  --primary: #ad462f;       /* main brand */
+  --background: #fefbf6;    /* page background */
 
-  /* BACKGROUND */
-  --background: #fefbf6;
-  --color-background: #fefbf6;
+  --secondary: #c89974;     /* supporting */
+  --accent: #c89974;        /* same as secondary */
 
-  /* SECONDARY (sections like bg-secondary) */
-  --secondary: #fefbf6;
-  --color-secondary: #fefbf6;
+  --muted: #c89974;         /* softer tone */
 
-  /* MUTED */
-  --muted: #ad462f;
-  --color-muted: #ad462f;
-
-  /* ACCENT */
-  --accent: #c89974;
-  --color-accent: #c89974;
-
-  /* BORDER (important for cards) */
   --border: #e6d5c8;
+  --cta-bg: var(--primary);
 }
 
 .font-poppins {
@@ -154,6 +148,11 @@
 /* Body font (already default via font-sans) */
 .font-inter {
   font-family: var(--font-sans);
+}
+
+input, textarea, select {
+  font-family: var(--font-sans); /* Inter */
+  font-size: 0.95rem;
 }
 
 /* Dark theme - Deep azure, professional night mode */

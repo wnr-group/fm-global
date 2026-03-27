@@ -147,7 +147,7 @@ export default function PlacementPage() {
                     priority
                   />
                   <div className="hidden sm:block">
-                    <p className="font-poppins text-foreground text-sm tracking-tight">
+                    <p className="font-display text-foreground text-sm tracking-tight">
                       FM International
                     </p>
                   </div>
@@ -198,7 +198,7 @@ export default function PlacementPage() {
 
                   <h1
                     id="placement-hero-heading"
-                    className="font-poppins text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-6 tracking-tight"
+                    className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-6 tracking-tight"
                   >
                     Your Gateway to{" "}
                     <span className="text-primary">Gulf Careers</span>
@@ -227,7 +227,7 @@ export default function PlacementPage() {
                   {/* Stats */}
                   <dl className="grid grid-cols-3 gap-6 max-w-md">
                     <div>
-                      <dd className="font-poppinstext-2xl sm:text-3xl text-foreground mb-1">
+                      <dd className="font-display text-2xl sm:text-3xl text-foreground mb-1">
                         <AnimatedCounter value={15} suffix="" />
                         <span className="text-primary">+</span>
                       </dd>
@@ -236,7 +236,7 @@ export default function PlacementPage() {
                       </dt>
                     </div>
                     <div>
-                      <dd className="font-poppins text-2xl sm:text-3xl text-foreground mb-1">
+                      <dd className="font-display text-2xl sm:text-3xl text-foreground mb-1">
                         <AnimatedCounter value={6} suffix="" />
                         <span className="text-primary"></span>
                       </dd>
@@ -245,7 +245,7 @@ export default function PlacementPage() {
                       </dt>
                     </div>
                     <div>
-                      <dd className="font-poppins text-2xl sm:text-3xl text-foreground mb-1">
+                      <dd className="font-display text-2xl sm:text-3xl text-foreground mb-1">
                         <AnimatedCounter value={500} suffix="" />
                         <span className="text-primary">+</span>
                       </dd>
@@ -311,7 +311,7 @@ export default function PlacementPage() {
                 </div>
                 <h2
                   id="regions-heading"
-                  className="font-poppins text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl leading-[1.1]"
+                  className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl leading-[1.1]"
                 >
                   Opportunities across the{" "}
                   <span className="text-primary">Gulf region</span>
@@ -327,7 +327,7 @@ export default function PlacementPage() {
                     {/* Header */}
                     <div className="flex items-start justify-between mb-5">
                       <div>
-                        <h3 className="font-poppins text-xl text-foreground mb-1 truncate">
+                        <h3 className="font-display text-xl text-foreground mb-1 truncate">
                           {region.country}
                         </h3>
                         <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -387,7 +387,7 @@ export default function PlacementPage() {
                 </div>
                 <h2
                   id="categories-heading"
-                  className="font-poppins text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl mx-auto leading-[1.1]"
+                  className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl mx-auto leading-[1.1]"
                 >
                   Find your perfect{" "}
                   <span className="text-primary">role</span>
@@ -404,7 +404,7 @@ export default function PlacementPage() {
                       <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center icon-container flex-shrink-0" aria-hidden="true">
                         <category.icon className="w-6 h-6 text-primary" />
                       </div>
-                      <h3 className="font-poppins text-xl text-foreground">
+                      <h3 className="font-display text-xl text-foreground">
                         {category.title}
                       </h3>
                     </div>
@@ -436,7 +436,7 @@ export default function PlacementPage() {
                 </span>
                 <h2
                   id="how-it-works-heading"
-                  className="font-poppins text-3xl sm:text-4xl lg:text-5xl text-white max-w-2xl mx-auto"
+                  className="font-display text-3xl sm:text-4xl lg:text-5xl text-white max-w-2xl mx-auto"
                 >
                   From registration to deployment
                 </h2>
@@ -453,10 +453,10 @@ export default function PlacementPage() {
                   <ScrollReveal key={step.number} delay={index * 80}>
                     <div className="relative text-center group">
                       {/* Number circle */}
-                      <div className="relative z-10 w-12 h-12 mx-auto mb-4 rounded-full bg-white text-primary font-poppins text-lg flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
+                      <div className="relative z-10 w-12 h-12 mx-auto mb-4 rounded-full bg-white text-primary font-display text-lg flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
                         {step.number}
                       </div>
-                      <h3 className="font-poppins text-base text-white mb-1">
+                      <h3 className="font-display text-base text-white mb-1">
                         {step.title}
                       </h3>
                       <p className="text-xs text-white/70">
@@ -488,7 +488,7 @@ export default function PlacementPage() {
                     </div>
                     <h2
                       id="employers-heading"
-                      className="font-poppins text-3xl sm:text-4xl lg:text-5xl text-foreground mb-6 leading-[1.1]"
+                      className="font-display text-3xl sm:text-4xl lg:text-5xl text-foreground mb-6 leading-[1.1]"
                     >
                       Looking for skilled{" "}
                       <span className="text-primary">manpower?</span>
@@ -518,7 +518,7 @@ export default function PlacementPage() {
                         key={item.title}
                         className="p-5 bg-background rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
                       >
-                        <h3 className="font-poppins text-base text-foreground mb-1">
+                        <h3 className="font-display text-base text-foreground mb-1">
                           {item.title}
                         </h3>
                         <p className="text-sm text-muted-foreground">
@@ -546,7 +546,7 @@ export default function PlacementPage() {
                 </span>
                 <h2
                   id="placement-cta-heading"
-                  className="font-poppins text-3xl sm:text-4xl lg:text-5xl text-foreground mb-6"
+                  className="font-display text-3xl sm:text-4xl lg:text-5xl text-foreground mb-6"
                 >
                   Ready to work abroad?
                 </h2>
@@ -595,7 +595,7 @@ export default function PlacementPage() {
                     className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
                   />
                   <div>
-                    <p className="font-poppins text-background text-sm">FM Global Careers</p>
+                    <p className="font-display text-background text-sm">FM Global Careers</p>
                     <p className="text-xs text-background/60">Global Careers Start Here</p>
                   </div>
                 </Link>
@@ -606,7 +606,7 @@ export default function PlacementPage() {
               </div>
 
               <nav aria-label="Footer navigation">
-                <h3 className="font-poppins text-background text-sm mb-4">Quick Links</h3>
+                <h3 className="font-display text-background text-sm mb-4">Quick Links</h3>
                 <ul className="space-y-3">
                   {[
                     { label: "About Us", href: "/about" },
@@ -627,7 +627,7 @@ export default function PlacementPage() {
               </nav>
 
               <div>
-                <h3 className="font-poppins text-background text-sm mb-4">Divisions</h3>
+                <h3 className="font-display text-background text-sm mb-4">Divisions</h3>
                 <ul className="space-y-3">
                   <li>
                     <Link
@@ -651,7 +651,7 @@ export default function PlacementPage() {
               </div>
 
               <div>
-                <h3 className="font-poppins text-background text-sm mb-4">Contact</h3>
+                <h3 className="font-display text-background text-sm mb-4">Contact</h3>
                 <address className="not-italic space-y-3 text-sm text-background/70">
                   <p>Chennai, Tamil Nadu, India</p>
                   <p>
