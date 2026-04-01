@@ -2,6 +2,7 @@
 // Server Component — reads URL search params, fetches paginated + filtered certificates
 // from Supabase server-side, then passes data down to CertificatesClient.
 
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import type { Certificate } from "@/types/database";
@@ -76,12 +77,18 @@ export default async function CertificatesPage({ searchParams }: PageProps) {
   const { data, count, error } = await query;
 
   return (
-    <CertificatesClient
-      certificates={(data ?? []) as Certificate[]}
-      totalCount={count ?? 0}
-      currentPage={page}
-      pageSize={PAGE_SIZE}
-      fetchError={error?.message ?? null}
-    />
+    <Suspense fallback={
+      <div className="flex items-center justify-center py-20 text-sm text-muted-foreground">
+        Loading certificates…
+      </div>
+    }>
+      <CertificatesClient
+        certificates={(data ?? []) as Certificate[]}
+        totalCount={count ?? 0}
+        currentPage={page}
+        pageSize={PAGE_SIZE}
+        fetchError={error?.message ?? null}
+      />
+    </Suspense>
   );
 }
