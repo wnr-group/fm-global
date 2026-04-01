@@ -22,12 +22,17 @@ import {
   Copy,
   Check,
   ExternalLink,
-  FileDown,
   Lock,
   ShieldOff,
   ShieldCheck,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import dynamic from "next/dynamic";
+
+const CertificatePDFDownload = dynamic(
+  () => import("@/components/CertificatePDFDownload"),
+  { ssr: false }
+);
 import type { Certificate } from "@/types/database";
 
 // ── Zod Schema ────────────────────────────────────────────────────────────────
@@ -445,16 +450,11 @@ export default function CertificateEditForm({ certificate }: Props) {
                 </>
               )}
             </button>
-            <button
-              type="button"
-              onClick={() =>
-                setToast({ type: "success", message: "PDF generation coming soon." })
-              }
+            <CertificatePDFDownload
+              certificate={currentCert}
               className="inline-flex items-center gap-2 h-9 px-4 rounded-lg border border-border text-xs font-medium text-foreground hover:bg-secondary/40 transition-colors"
-            >
-              <FileDown className="w-3.5 h-3.5" />
-              Download PDF
-            </button>
+              iconClassName="w-3.5 h-3.5"
+            />
           </div>
         </div>
 
