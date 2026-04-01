@@ -10,6 +10,69 @@ import { AnimatedCounter } from "@/components/ui/scroll-reveal";
 const page = () => {
 
 
+   const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  program: "",
+  message: "",
+});
+
+const [loading, setLoading] = useState(false);
+const [status, setStatus] = useState<null | "success" | "error">(null);
+
+const handleChange = (e: any) => {
+  setFormData({ ...formData, [e.target.name]: e.target.value });
+};
+
+
+const handleSubmit = async (e: any) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const res = await fetch(
+  "https://tqnwevpmcagrbzmelgro.supabase.co/functions/v1/send-contact-email",
+  {
+    method: "POST",
+   headers: {
+    "Content-Type": "application/json",
+    "apikey": "sb_publishable_3qF7syWLc7HGeqb2wu7pFA_juvVuW7F",
+    "Authorization": "Bearer sb_publishable_3qF7syWLc7HGeqb2wu7pFA_juvVuW7F"
+  },
+    body: JSON.stringify(formData),
+  }
+);
+
+    const data = await res.json();
+
+    if (data.success) {
+  setStatus("success");
+  setFormData({
+    name: "",
+    email: "",
+    phone: "",
+    program: "",
+    message: "",
+  });
+    } else {
+  setStatus("error");
+}
+  } catch (error) {
+  console.error(error);
+  setStatus("error");
+} finally {
+    setLoading(false);
+  }
+};
+
+
+useEffect(() => {
+  if (status) {
+    const timer = setTimeout(() => setStatus(null), 3000);
+    return () => clearTimeout(timer);
+  }
+}, [status]);
  
   return (
     <main className="min-h-screen">
@@ -139,29 +202,71 @@ const page = () => {
                 Academic Inquiry
               </h2>
 
-              <form className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5">
 
                 <div className="space-y-4">
-                  <input placeholder="Full Name" className="bg-gray-100 px-4 py-3 text-sm w-full" />
-                  <input placeholder="Academic Email" className="bg-gray-100 px-4 py-3 text-sm w-full" />
+                  <input
+  name="name"
+  value={formData.name}
+  onChange={handleChange}
+  placeholder="Full Name"
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+/>
+                  <input
+  name="email"
+  value={formData.email}
+  onChange={handleChange}
+  placeholder="Academic Email"
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+/>
                 </div>
 
                 <div className="space-y-4">
-                  <input placeholder="Phone Number" className="bg-gray-100 px-4 py-3 text-sm w-full" />
-                  <select className="bg-gray-100 px-4 py-3 text-sm w-full">
-                    <option>Program of Interest</option>
-                  </select>
+                  <input
+  name="phone"
+  value={formData.phone}
+  onChange={handleChange}
+  placeholder="Phone Number"
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+/>
+                  <select
+  name="program"
+  value={formData.program}
+  onChange={handleChange}
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+>
+  <option value="">Program of Interest</option>
+  <option value="Oil & Gas">Oil & Gas</option>
+  <option value="Safety">Safety</option>
+</select>
                 </div>
 
-                <textarea
-                  rows={4}
-                  placeholder="Inquiry details..."
-                  className="bg-gray-100 px-4 py-3 text-sm w-full"
-                />
+               <textarea
+  name="message"
+  value={formData.message}
+  onChange={handleChange}
+  rows={4}
+  placeholder="Inquiry details..."
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+/>
+                <button
+  type="submit"
+  disabled={loading}
+  className="bg-red-600 text-white px-6 py-3 text-sm"
+>
+  {loading ? "Sending..." : "SEND MESSAGE"}
+</button>
+{status === "success" && (
+  <p className="text-green-600 text-sm mt-2">
+    ✅ Message sent successfully!
+  </p>
+)}
 
-                <button className="bg-red-600 text-white px-6 py-3 text-sm">
-                  SEND MESSAGE
-                </button>
+{status === "error" && (
+  <p className="text-red-600 text-sm mt-2">
+    ❌ Failed to send message. Try again.
+  </p>
+)}
 
               </form>
             </div>
