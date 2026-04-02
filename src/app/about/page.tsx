@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { ScrollReveal, AnimatedCounter } from "@/components/ui/scroll-reveal";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { Footer } from "@/components/Footer";
 
 export default function AboutPage() {
   const partners = [
@@ -599,17 +600,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Minimal footer bar */}
-      <footer className="bg-foreground text-background py-6" role="contentinfo">
-        <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-background/60">
-              &copy; {new Date().getFullYear()} FM Global Careers. All rights reserved.
-            </p>
-            <p className="text-xs text-background/40">Building Global Oil &amp; Gas Careers</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
