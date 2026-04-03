@@ -58,6 +58,18 @@ Message: ${message}
 
     const data = await response.text();
 
+if (!response.ok) {
+  return new Response(
+    JSON.stringify({ success: false, error: data }),
+    { status: 500, headers: corsHeaders }
+  );
+}
+
+return new Response(
+  JSON.stringify({ success: true }),
+  { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+);
+
     return new Response(
       JSON.stringify({ success: true, data }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
