@@ -10,29 +10,32 @@ export interface Database {
   public: {
     Tables: {
 
-      // ✅ UNCHANGED — keep as is
+      // ✅ UPDATED — added address, nullable email
       students: {
         Row: {
           id: string
           name: string
-          email: string
+          email: string | null
           phone: string | null
+          address: string | null
           created_at: string
           updated_at: string
         }
         Insert: {
           id?: string
           name: string
-          email: string
+          email?: string | null
           phone?: string | null
+          address?: string | null
           created_at?: string
           updated_at?: string
         }
         Update: {
           id?: string
           name?: string
-          email?: string
+          email?: string | null
           phone?: string | null
+          address?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -153,7 +156,7 @@ export interface Database {
         Relationships: []
       }
 
-      // ✅ UNCHANGED — keep as is
+      // ✅ UPDATED — added requirements, salary_range, pdf_url, pdf_filename; phone replaces link
       job_listings: {
         Row: {
           id: string
@@ -161,7 +164,11 @@ export interface Database {
           company: string
           location: string
           description: string | null
-          contact_type: 'whatsapp' | 'email' | 'link'
+          requirements: string | null
+          salary_range: string | null
+          pdf_url: string | null
+          pdf_filename: string | null
+          contact_type: 'email' | 'whatsapp' | 'phone'
           contact_value: string
           is_active: boolean
           created_at: string
@@ -173,7 +180,11 @@ export interface Database {
           company: string
           location: string
           description?: string | null
-          contact_type: 'whatsapp' | 'email' | 'link'
+          requirements?: string | null
+          salary_range?: string | null
+          pdf_url?: string | null
+          pdf_filename?: string | null
+          contact_type: 'email' | 'whatsapp' | 'phone'
           contact_value: string
           is_active?: boolean
           created_at?: string
@@ -185,11 +196,70 @@ export interface Database {
           company?: string
           location?: string
           description?: string | null
-          contact_type?: 'whatsapp' | 'email' | 'link'
+          requirements?: string | null
+          salary_range?: string | null
+          pdf_url?: string | null
+          pdf_filename?: string | null
+          contact_type?: 'email' | 'whatsapp' | 'phone'
           contact_value?: string
           is_active?: boolean
           created_at?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+
+      // ➕ NEW — course catalog
+      courses: {
+        Row: {
+          id: string
+          name: string
+          code: string
+          description: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          code: string
+          description?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          code?: string
+          description?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+
+      // ➕ NEW — student enrollments
+      enrollments: {
+        Row: {
+          id: string
+          student_id: string
+          course_id: string
+          enrolled_at: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          student_id: string
+          course_id: string
+          enrolled_at: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          student_id?: string
+          course_id?: string
+          enrolled_at?: string
+          created_at?: string
         }
         Relationships: []
       }
@@ -228,6 +298,10 @@ export type Certificate = Database['public']['Tables']['certificates']['Row']
 
 //  NEW helper type for admin_users
 export type AdminUser = Database['public']['Tables']['admin_users']['Row']
+
+// ➕ NEW — WTD-51
+export type Course = Database['public']['Tables']['courses']['Row']
+export type Enrollment = Database['public']['Tables']['enrollments']['Row']
 
 // REMOVED — CertificateWithStudent no longer needed
 // (student info is now stored directly in certificates table)

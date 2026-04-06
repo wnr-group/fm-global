@@ -37,6 +37,7 @@ export function SplashProvider({ children }: SplashProviderProps) {
 
   // Hydration guard
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -48,6 +49,7 @@ export function SplashProvider({ children }: SplashProviderProps) {
     const hasVisited = storage?.getItem("fm-splash-shown");
 
     if (hasVisited) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowSplash(false);
       setIsLoading(false);
     }

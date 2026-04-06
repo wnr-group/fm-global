@@ -109,6 +109,7 @@ export function ParallaxHero({
     const content = contentRef.current;
 
     if (!container || !media) {
+      // eslint-disable-next-line react-hooks/immutability
       rafRef.current = requestAnimationFrame(updateParallax);
       return;
     }
@@ -204,6 +205,7 @@ export function ParallaxHero({
             <source src={videoSrc} type="video/mp4" />
             {/* Fallback for browsers that don't support video */}
             {imageSrc && (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={imageSrc}
                 alt={imageAlt}
@@ -214,6 +216,7 @@ export function ParallaxHero({
         ) : null}
         {/* Show image if no video, video errored, or as fallback */}
         {((!videoSrc || videoError) && imageSrc) && (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={imageSrc}
             alt={imageAlt}
@@ -270,6 +273,7 @@ export function ParallaxSection({
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPrefersReducedMotion(mediaQuery.matches);
 
     const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);

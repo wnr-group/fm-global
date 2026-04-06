@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
+import Link from "next/link";
 
 export default function Error({
   error,
@@ -36,9 +37,9 @@ export default function Error({
             <RefreshCw className="w-4 h-4" />
             Try again
           </Button>
-          <a href="/">
+          <Link href="/">
             <Button variant="outline">Go to homepage</Button>
-          </a>
+          </Link>
         </div>
         {error.digest && (
           <p className="mt-6 text-xs text-muted-foreground">

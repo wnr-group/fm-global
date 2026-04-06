@@ -13,6 +13,9 @@ import {
   LayoutDashboard,
   FileText,
   ShieldCheck,
+  BookOpen,
+  Users,
+  Briefcase,
   LogOut,
   Menu,
   X,
@@ -34,6 +37,21 @@ const NAV_LINKS = [
     label: "Verify Certificate",
     href: "/admin/verify",
     icon: ShieldCheck,
+  },
+  {
+    label: "Courses",
+    href: "/admin/courses",
+    icon: BookOpen,
+  },
+  {
+    label: "Students",
+    href: "/admin/students",
+    icon: Users,
+  },
+  {
+    label: "Job Listings",
+    href: "/admin/jobs",
+    icon: Briefcase,
   },
 ];
 
