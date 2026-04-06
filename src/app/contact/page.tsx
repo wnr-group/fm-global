@@ -1,30 +1,106 @@
-import Link from "next/link";
+
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { ScrollReveal, AnimatedCounter } from "@/components/ui/scroll-reveal";
 import { ArrowRight, Mail, Phone, MapPin, Clock } from "lucide-react";
-import type { Metadata } from "next";
-import { Footer } from "@/components/Footer";
 
-export const metadata: Metadata = {
-  title: "Contact Us | FM Global Careers",
-  description:
-    "Get in touch with FM Global Careers. Reach out to FM Institute for training enquiries or FM International for job placement opportunities.",
+
+const Page = () => {
+
+
+   const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  program: "",
+  message: "",
+});
+
+const [loading, setLoading] = useState(false);
+const [status, setStatus] = useState<null | "success" | "error">(null);
+
+const handleChange = (e: any) => {
+  setFormData({ ...formData, [e.target.name]: e.target.value });
 };
 
-export default function ContactPage() {
+
+const handleSubmit = async (e: any) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const res = await fetch(
+  "https://tqnwevpmcagrbzmelgro.supabase.co/functions/v1/send-contact-email",
+  {
+    method: "POST",
+   headers: {
+    "Content-Type": "application/json",
+    "apikey": "sb_publishable_3qF7syWLc7HGeqb2wu7pFA_juvVuW7F",
+    "Authorization": "Bearer sb_publishable_3qF7syWLc7HGeqb2wu7pFA_juvVuW7F"
+  },
+    body: JSON.stringify(formData),
+  }
+);
+
+    const data = await res.json();
+
+    if (data.success) {
+  setStatus("success");
+  setFormData({
+    name: "",
+    email: "",
+    phone: "",
+    program: "",
+    message: "",
+  });
+    } else {
+  setStatus("error");
+}
+  } catch (error) {
+  console.error(error);
+  setStatus("error");
+} finally {
+    setLoading(false);
+  }
+};
+
+
+useEffect(() => {
+  if (status) {
+    const timer = setTimeout(() => setStatus(null), 3000);
+    return () => clearTimeout(timer);
+  }
+}, [status]);
+ 
   return (
-    <main className="min-h-screen bg-background overflow-x-hidden">
-      {/* Nav — dark navy, "Contact" active */}
-      <nav className="relative z-50 w-full py-4 bg-[#0f385a]" aria-label="Main navigation">
-        <div className="w-full px-5 sm:px-8 lg:px-[4%] xl:px-[6%]">
-          <div className="flex items-center justify-between">
-            <Link
-              href="/"
-              className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded-sm group"
-            >
-              <Image
+    <main className="min-h-screen">
+
+      {/* HERO SECTION */}
+      <section className="relative min-h-[90vh] overflow-hidden">
+
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/contact/contact-banner.png"  
+            alt="FM Global Institute"
+            fill
+            priority
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[#0b1b2b]/70" />
+        </div>
+
+        {/* NAVBAR */}
+        <nav className="relative z-50 w-full py-4" aria-label="Main navigation">
+          <div className="w-full px-5 sm:px-8 lg:px-[4%] xl:px-[6%]">
+            <div className="flex items-center justify-between">
+
+              <Link href="/" className="flex items-center gap-3 group">
+                <Image
                 src="/apple-touch-icon.png"
                 alt="FM Global Careers"
                 width={56}
@@ -32,43 +108,90 @@ export default function ContactPage() {
                 className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
                 priority
               />
-              <div className="hidden sm:block">
-                <p className="font-display text-white text-sm tracking-tight">FM Global Careers</p>
+                <div className="hidden sm:block">
+                  <p className="font-display text-white text-sm tracking-tight">
+                    FM Global Careers
+                  </p>
+                </div>
+              </Link>
+
+              <div className="hidden lg:flex items-center gap-1 bg-white/10 border border-white/20 rounded-full px-2 py-1.5 backdrop-blur">
+                <Link href="/about" className="text-sm text-white/80 hover:text-white px-4 py-2 rounded-full">About</Link>
+                <Link href="/training" className="text-sm text-white/80 hover:text-white px-4 py-2 rounded-full">Training</Link>
+                <Link href="/placement" className="text-sm text-white/80 hover:text-white px-4 py-2 rounded-full">Placement</Link>
+                <Link href="/verify" className="text-sm text-white/80 hover:text-white px-4 py-2 rounded-full">Verify</Link>
+                <Link href="/contact" className="text-sm text-white bg-white/20 px-4 py-2 rounded-full font-medium">Contact</Link>
               </div>
-            </Link>
 
-            <div className="hidden lg:flex items-center gap-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-2 py-1.5">
-              <Link href="/about" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">
-                About
-              </Link>
-              <Link href="/training" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">
-                Training
-              </Link>
-              <Link href="/placement" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">
-                Placement
-              </Link>
-              <Link href="/verify" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">
-                Verify
-              </Link>
-              <Link href="/contact" className="text-sm text-white bg-white/15 px-4 py-2 rounded-full transition-colors font-medium">
-                Contact
-              </Link>
+              <div className="hidden lg:flex items-center gap-4">
+                <Link href="/contact">
+                  <Button className="rounded-full px-6 py-2.5 bg-white text-black hover:bg-white/90">
+                    Enquire Now
+                  </Button>
+                </Link>
+              </div>
+
+              <MobileNav variant="light" />
             </div>
+          </div>
+        </nav>
 
-            <div className="hidden lg:flex items-center gap-4">
-              <Link href="/contact">
-                <Button className="rounded-full bg-white text-primary hover:bg-white/90 shadow-lg shadow-black/20 px-6 py-2.5 h-auto font-semibold">
-                  Enquire Now
-                </Button>
-              </Link>
-            </div>
+        {/* HERO CONTENT */}
+        <div className="relative z-40 w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%] pt-16 lg:pt-24 pb-20">
+          <div className="max-w-4xl">
 
-            <MobileNav variant="dark" />
+            <span className="inline-block bg-red-600 text-white text-xs tracking-wider px-4 py-1 mb-6">
+              CONTACT OUR INSTITUTE
+            </span>
+
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl text-white leading-[1.05] mb-6">
+              Advancing Knowledge
+              <br />
+              Through Global
+              <br />
+              Inquiry.
+            </h1>
+
+            <p className="text-white/80 max-w-xl text-sm sm:text-base leading-relaxed">
+              Join an elite network of researchers and industry leaders. Our
+              administrative team is prepared to facilitate your academic
+              transition.
+            </p>
           </div>
         </div>
-      </nav>
 
-      {/* Hero */}
+        {/* STATS BAR */}
+        <div className="relative z-40 bg-white text-black px-5 sm:px-8 lg:px-[6%] xl:px-[8%] py-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center sm:text-left">
+            <div>
+              <p className="text-xl font-semibold">
+               <AnimatedCounter value={24} />/7
+             </p>
+              <p className="text-xs tracking-wide text-muted-foreground">STUDENT SUPPORT</p>
+            </div>
+            <div>
+              <p className="text-xl font-semibold">
+              <AnimatedCounter value={15} />+
+             </p>
+              <p className="text-xs tracking-wide text-muted-foreground">COUNTRIES SERVED</p>
+            </div>
+            <div>
+              <p className="text-xl font-semibold">
+              <AnimatedCounter value={5} suffix="k+" />
+              </p>
+              <p className="text-xs tracking-wide text-muted-foreground">ALUMNI BASE</p>
+            </div>
+            <div>
+              <p className="text-xl font-semibold">
+              <AnimatedCounter value={100} suffix="%" />
+              </p>
+              <p className="text-xs tracking-wide text-muted-foreground">JOB GUARANTEE</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
       <section className="bg-[#0f385a] relative overflow-hidden pt-16 pb-32 px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
         {/* Grid pattern overlay */}
         <div
@@ -220,8 +343,180 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Office & Map */}
-      <section className="bg-secondary/30 relative">
+      {/* ================= NEXT SECTION ================= */}
+      <section className="bg-[#f5f5f7] py-16 sm:py-20 lg:py-24">
+        <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
+
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+
+            {/* FORM */}
+            <div className="bg-white p-6 sm:p-8 lg:p-10 border border-gray-100">
+              <h2 className="font-display text-2xl sm:text-3xl mb-8">
+                Academic Inquiry
+              </h2>
+
+              <form onSubmit={handleSubmit} className="space-y-5">
+
+                <div className="space-y-4">
+                  <input
+  name="name"
+  value={formData.name}
+  onChange={handleChange}
+  placeholder="Full Name"
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+/>
+                  <input
+  name="email"
+  value={formData.email}
+  onChange={handleChange}
+  placeholder="Academic Email"
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+/>
+                </div>
+
+                <div className="space-y-4">
+                  <input
+  name="phone"
+  value={formData.phone}
+  onChange={handleChange}
+  placeholder="Phone Number"
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+/>
+                  <select
+  name="program"
+  value={formData.program}
+  onChange={handleChange}
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+>
+  <option value="">Program of Interest</option>
+  <option value="Oil & Gas">Oil & Gas</option>
+  <option value="Safety">Safety</option>
+</select>
+                </div>
+
+               <textarea
+  name="message"
+  value={formData.message}
+  onChange={handleChange}
+  rows={4}
+  placeholder="Inquiry details..."
+  className="bg-gray-100 px-4 py-3 text-sm w-full"
+/>
+                <button
+  type="submit"
+  disabled={loading}
+  className="bg-red-600 text-white px-6 py-3 text-sm"
+>
+  {loading ? "Sending..." : "SEND MESSAGE"}
+</button>
+{status === "success" && (
+  <p className="text-green-600 text-sm mt-2">
+    ✅ Message sent successfully!
+  </p>
+)}
+
+{status === "error" && (
+  <p className="text-red-600 text-sm mt-2">
+    ❌ Failed to send message. Try again.
+  </p>
+)}
+
+              </form>
+            </div>
+
+            {/* RIGHT CONTENT */}
+            {/* RIGHT CONTENT - IMPROVED */}
+<div className="relative">
+
+  {/* Heading */}
+  <h2 className="font-display text-2xl sm:text-3xl text-foreground mb-10">
+    Institutional Standards
+  </h2>
+
+  <div className="space-y-6">
+
+    {/* ITEM */}
+    <div className="group flex gap-5 p-5 rounded-xl bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+
+      <span className="font-display text-3xl text-red-400/80 group-hover:text-red-500 transition">
+        01
+      </span>
+
+      <div>
+        <h3 className="font-semibold text-foreground mb-1">
+          Global Credentials
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Our certification and degrees are recognized by over 200 international regulatory bodies, ensuring your prestige is portable across borders.
+        </p>
+      </div>
+    </div>
+
+    {/* ITEM */}
+    <div className="group flex gap-5 p-5 rounded-xl bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+
+      <span className="font-display text-3xl text-red-400/80 group-hover:text-red-500 transition">
+        02
+      </span>
+
+      <div>
+        <h3 className="font-semibold text-foreground mb-1">
+          Industry Faculty
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Instruction is led by active practitioners and world-renowned researchers from Fortune 100 industrial firms.
+        </p>
+      </div>
+    </div>
+
+    {/* ITEM */}
+    <div className="group flex gap-5 p-5 rounded-xl bg-white border border-gray-100 hover:shadow-lg transition-all duration-300">
+
+      <span className="font-display text-3xl text-red-400/80 group-hover:text-red-500 transition">
+        03
+      </span>
+
+      <div>
+        <h3 className="font-semibold text-foreground mb-1">
+          Career Pipelines
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Access the Global Career Nexus, an exclusive placement platform connecting graduates with high-impact leadership roles.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  {/* CTA BOX */}
+  <div className="mt-10 p-6 sm:p-8 rounded-xl bg-[#0b1b2b] text-white shadow-lg">
+
+    <h3 className="font-display text-lg mb-3">
+      Direct Registrar Access
+    </h3>
+
+    <p className="text-sm text-white/70 mb-4">
+      Connect directly with our academic office for priority processing.
+    </p>
+
+    <a
+      href="mailto:registrar@fmglobal.edu"
+      className="inline-block text-red-400 text-sm tracking-wide hover:underline"
+    >
+      REGISTRAR@FMGLOBAL.EDU →
+    </a>
+
+  </div>
+
+</div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ================= GLOBAL REGISTRY SECTION ================= */}
+ <section className="bg-secondary/30 relative">
         <div className="grid lg:grid-cols-2">
           {/* Left — Office info */}
           <div className="py-20 lg:py-24 px-5 sm:px-8 lg:pl-[8%] lg:pr-12">
@@ -320,7 +615,147 @@ export default function ContactPage() {
         </ScrollReveal>
       </section>
 
-      <Footer />
+
+{/* ================= FOOTER ================= */}
+<footer className="bg-foreground text-background py-16 lg:py-20">
+  <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
+
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+
+      {/* LOGO + INFO */}
+      <div className="sm:col-span-2 lg:col-span-1">
+        <Link href="/" className="inline-flex items-center gap-3 mb-5 group">
+          <Image
+            src="/Brand-Logo.png"
+            alt="FM Global Careers"
+            width={56}
+            height={56}
+            className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
+          />
+          <div>
+            <p className="font-display text-background text-sm">
+              FM Global Careers
+            </p>
+            <p className="text-xs text-background/60">
+              Global Careers Start Here
+            </p>
+          </div>
+        </Link>
+
+        <p className="text-background/70 text-sm leading-relaxed">
+          Leading the way in global education and placement services.
+        </p>
+      </div>
+
+      {/* QUICK LINKS */}
+      <div>
+        <h3 className="font-display text-background text-sm mb-4">
+          Quick Links
+        </h3>
+        <ul className="space-y-3">
+          <li><Link href="/about" className="text-sm text-background/70 hover:text-background">About</Link></li>
+          <li><Link href="/training" className="text-sm text-background/70 hover:text-background">Training</Link></li>
+          <li><Link href="/placement" className="text-sm text-background/70 hover:text-background">Placement</Link></li>
+          <li><Link href="/contact" className="text-sm text-background/70 hover:text-background">Contact</Link></li>
+        </ul>
+      </div>
+
+      {/* INSTITUTE */}
+      <div>
+        <h3 className="font-display text-background text-sm mb-4">
+          Institute
+        </h3>
+        <ul className="space-y-3">
+          <li className="text-sm text-background/70">Research</li>
+          <li className="text-sm text-background/70">Sustainability</li>
+          <li className="text-sm text-background/70">Global Offices</li>
+        </ul>
+      </div>
+
+      {/* SOCIAL MEDIA (YOUR IMAGE CONTENT) */}
+      <div>
+  <h3 className="font-display text-background text-sm mb-4">
+    Social Media
+  </h3>
+
+  <div className="space-y-3 text-sm text-background/70">
+
+    {/* Instagram */}
+    <a
+      href="https://www.instagram.com/fminstitute_india/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block hover:text-background transition"
+    >
+      <span className="text-background font-medium">Instagram - </span>
+      FM Institute (@fminstitute_india)
+    </a>
+
+    {/* Facebook */}
+    <a
+      href="https://www.facebook.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block hover:text-background transition"
+    >
+      <span className="text-background font-medium">Facebook - </span>
+      FM Institute | Thovalai
+    </a>
+
+    {/* LinkedIn */}
+    <a
+      href="https://www.linkedin.com/company/fm-institute-%E2%80%93-oil-gas-training-centre/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block text-blue-400 hover:underline"
+    >
+      <span className="text-background font-medium">LinkedIn - </span>
+      View Profile
+    </a>
+
+    {/* App Link */}
+    <a
+      href="https://play.google.com/store"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block hover:text-background transition"
+    >
+      <span className="text-background font-medium">App Link - </span>
+      FM Institute - Play Store
+    </a>
+
+    {/* YouTube */}
+    <a
+      href="https://www.youtube.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block hover:text-background transition"
+    >
+      <span className="text-background font-medium">YouTube - </span>
+      FM Global Career
+    </a>
+
+  </div>
+</div>
+
+    </div>
+
+    {/* BOTTOM */}
+    <div className="border-t border-background/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p className="text-sm text-background/60">
+        © {new Date().getFullYear()} FM Global Careers. All rights reserved.
+      </p>
+      <p className="text-xs text-background/40">
+        Building Global Careers
+      </p>
+    </div>
+
+  </div>
+</footer>
+
     </main>
   );
-}
+};
+
+export default  Page;
+ 

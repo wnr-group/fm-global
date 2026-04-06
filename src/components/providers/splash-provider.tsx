@@ -62,22 +62,22 @@ export function SplashProvider({ children }: SplashProviderProps) {
   // CRITICAL: On first render (server + client first pass), render children
   // with NO wrapper element. Server HTML has no SplashProvider DOM nodes,
   // so client must also produce none — they will match.
-  if (!mounted) {
-    return <>{children}</>;
-  }
+   
 
   return (
-    <SplashContext.Provider value={{ isLoading }}>
-      {showSplash && isLoading && (
-        <SplashScreen minDuration={2000} onComplete={handleSplashComplete} />
-      )}
-      <div
-        className={`transition-opacity duration-300 ${
-          showSplash && isLoading ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        {children}
-      </div>
-    </SplashContext.Provider>
-  );
+  <SplashContext.Provider value={{ isLoading }}>
+    {/* Only show splash AFTER mount */}
+    {mounted && showSplash && isLoading && (
+      <SplashScreen minDuration={2000} onComplete={handleSplashComplete} />
+    )}
+
+    <div
+      className={`transition-opacity duration-300 ${
+        mounted && showSplash && isLoading ? "opacity-0" : "opacity-100"
+      }`}
+    >
+      {children}
+    </div>
+  </SplashContext.Provider>
+);
 }
