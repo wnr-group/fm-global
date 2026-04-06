@@ -262,6 +262,7 @@ export default function CertificatePDF({ certificate, qrCodeDataUrl }: Props) {
           </View>
           {qrCodeDataUrl ? (
             <View style={styles.qrBlock}>
+              {/* eslint-disable-next-line jsx-a11y/alt-text */}
               <Image src={qrCodeDataUrl} style={styles.qrImage} />
               <Text style={styles.qrLabel}>Scan to verify</Text>
             </View>

@@ -30,6 +30,7 @@ export function ScrollReveal({
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPrefersReducedMotion(mediaQuery.matches);
 
     const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
@@ -39,6 +40,7 @@ export function ScrollReveal({
 
   useEffect(() => {
     if (prefersReducedMotion) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsVisible(true);
       return;
     }
@@ -119,6 +121,7 @@ export function StaggerContainer({
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPrefersReducedMotion(mediaQuery.matches);
 
     const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
@@ -128,6 +131,7 @@ export function StaggerContainer({
 
   useEffect(() => {
     if (prefersReducedMotion) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsVisible(true);
       return;
     }
@@ -185,6 +189,7 @@ export function AnimatedCounter({
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPrefersReducedMotion(mediaQuery.matches);
     if (mediaQuery.matches) {
       setDisplayValue(value);

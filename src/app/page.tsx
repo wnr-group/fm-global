@@ -1,9 +1,9 @@
-import { InteractiveGlobe, GlobeStatic } from "@/components/ui/interactive-globe";
+import { InteractiveGlobe } from "@/components/ui/interactive-globe";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { ScrollReveal, AnimatedCounter } from "@/components/ui/scroll-reveal";
 import { ScrollSequenceHero } from "@/components/ui/scroll-sequence-hero";
-import { ArrowRight, ArrowUpRight, GraduationCap, Globe2, Shield, QrCode } from "lucide-react";
+import { ArrowRight, ArrowUpRight, GraduationCap, Globe2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Footer } from "@/components/Footer";

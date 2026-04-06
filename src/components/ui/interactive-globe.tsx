@@ -351,6 +351,7 @@ export function InteractiveGlobe({
       }
     }
 
+    // eslint-disable-next-line react-hooks/immutability
     animRef.current = requestAnimationFrame(draw);
   }, [dotColor, arcColor, markerColor, autoRotateSpeed, connections, markers, prefersReducedMotion]);
 

@@ -20,6 +20,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { Footer } from "@/components/Footer";
+import { CurrentOpenings } from "@/components/placement/CurrentOpenings";
+import { getActiveJobListings } from "./actions";
 
 // Placement regions data
 const regions = [
@@ -117,7 +119,9 @@ const processSteps = [
   { number: "06", title: "Deploy", description: "Start your career", icon: Plane },
 ];
 
-export default function PlacementPage() {
+export default async function PlacementPage() {
+  const { data: jobs, error: jobsError } = await getActiveJobListings();
+
   return (
     <main className="min-h-screen">
         {/* Hero Section */}
@@ -424,6 +428,8 @@ export default function PlacementPage() {
           </div>
         </section>
 
+        <CurrentOpenings initialJobs={jobs} initialError={jobsError} />
+
         {/* How It Works */}
         <section
           aria-labelledby="how-it-works-heading"
@@ -514,7 +520,7 @@ export default function PlacementPage() {
                       { title: "Industry Ready", description: "Trained for immediate deployment" },
                       { title: "Visa Support", description: "End-to-end documentation" },
                       { title: "Quick Turnaround", description: "Efficient recruitment process" },
-                    ].map((item, index) => (
+                    ].map((item) => (
                       <div
                         key={item.title}
                         className="p-5 bg-background rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
