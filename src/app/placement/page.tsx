@@ -115,8 +115,7 @@ const processSteps = [
   { number: "02", title: "Screen", description: "Document verification", icon: ClipboardCheck },
   { number: "03", title: "Prepare", description: "Interview coaching", icon: Users },
   { number: "04", title: "Match", description: "Connect with employers", icon: Building2 },
-  { number: "05", title: "Process", description: "Visa & documentation", icon: FileCheck },
-  { number: "06", title: "Deploy", description: "Start your career", icon: Plane },
+  { number: "05", title: "Deploy", description: "Start your career", icon: Plane },
 ];
 
 export default async function PlacementPage() {
@@ -222,11 +221,6 @@ export default async function PlacementPage() {
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                       </Button>
                     </Link>
-                    <Link href="#regions">
-                      <Button size="lg" variant="outline" className="w-full sm:w-auto h-12 px-6 hover:border-primary/50 hover:text-primary active:scale-[0.98] transition-all duration-200">
-                        View Locations
-                      </Button>
-                    </Link>
                   </div>
 
                   {/* Stats */}
@@ -295,82 +289,6 @@ export default async function PlacementPage() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Placement Regions */}
-        <section
-          id="regions"
-          aria-labelledby="regions-heading"
-          className="py-16 sm:py-20 lg:py-24 bg-secondary/30"
-        >
-          <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
-            <ScrollReveal>
-              <header className="mb-12 lg:mb-16">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="h-px w-12 bg-primary" />
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                    Where We Place
-                  </span>
-                </div>
-                <h2
-                  id="regions-heading"
-                  className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground max-w-3xl leading-[1.1]"
-                >
-                  Opportunities across the{" "}
-                  <span className="text-primary">Gulf region</span>
-                </h2>
-              </header>
-            </ScrollReveal>
-
-            {/* Regions grid */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-              {regions.map((region, index) => (
-                <ScrollReveal key={region.id} delay={index * 50}>
-                  <article className="group h-full bg-background rounded-2xl p-6 lg:p-8 border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 ease-out">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-5">
-                      <div>
-                        <h3 className="font-display text-xl text-foreground mb-1 truncate">
-                          {region.country}
-                        </h3>
-                        <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                          <MapPin className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
-                          {region.cities.slice(0, 2).join(", ")}
-                        </div>
-                      </div>
-                      <div className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        {region.jobs} Jobs
-                      </div>
-                    </div>
-
-                    {/* Industries */}
-                    <div className="mb-5">
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Industries</p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {region.industries.map((industry) => (
-                          <span
-                            key={industry}
-                            className="text-xs px-2.5 py-1 rounded-full bg-secondary text-foreground"
-                          >
-                            {industry}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-primary group-hover:gap-2.5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-sm"
-                      aria-label={`View opportunities in ${region.country}`}
-                    >
-                      View Opportunities
-                      <ArrowUpRight className="w-3.5 h-3.5 arrow-up-animate" aria-hidden="true" />
-                    </Link>
-                  </article>
-                </ScrollReveal>
-              ))}
             </div>
           </div>
         </section>
