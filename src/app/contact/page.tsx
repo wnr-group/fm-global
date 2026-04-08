@@ -33,18 +33,20 @@ const handleSubmit = async (e: any) => {
   setLoading(true);
 
   try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
     const res = await fetch(
-  "https://tqnwevpmcagrbzmelgro.supabase.co/functions/v1/send-contact-email",
-  {
-    method: "POST",
-   headers: {
-    "Content-Type": "application/json",
-    "apikey": "sb_publishable_3qF7syWLc7HGeqb2wu7pFA_juvVuW7F",
-    "Authorization": "Bearer sb_publishable_3qF7syWLc7HGeqb2wu7pFA_juvVuW7F"
-  },
-    body: JSON.stringify(formData),
-  }
-);
+      `${supabaseUrl}/functions/v1/send-contact-email`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": supabaseAnonKey!,
+          "Authorization": `Bearer ${supabaseAnonKey}`,
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
     const data = await res.json();
 

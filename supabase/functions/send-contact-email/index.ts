@@ -33,6 +33,7 @@ serve(async (req) => {
 
     const MAILGUN_API_KEY = Deno.env.get("MAILGUN_API_KEY");
     const MAILGUN_DOMAIN = Deno.env.get("MAILGUN_DOMAIN");
+    const CONTACT_EMAIL = Deno.env.get("CONTACT_EMAIL");
 
     const response = await fetch(
       `https://api.mailgun.net/v3/${MAILGUN_DOMAIN}/messages`,
@@ -43,7 +44,7 @@ serve(async (req) => {
         },
         body: new URLSearchParams({
           from: `Contact Form <mailgun@${MAILGUN_DOMAIN}>`,
-          to: "govardhandegala008@gmail.com",
+          to: CONTACT_EMAIL!,
           subject: "New Contact Form Submission",
           text: `
 Name: ${name}
@@ -58,20 +59,15 @@ Message: ${message}
 
     const data = await response.text();
 
-if (!response.ok) {
-  return new Response(
-    JSON.stringify({ success: false, error: data }),
-    { status: 500, headers: corsHeaders }
-  );
-}
-
-return new Response(
-  JSON.stringify({ success: true }),
-  { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-);
+    if (!response.ok) {
+      return new Response(
+        JSON.stringify({ success: false, error: data }),
+        { status: 500, headers: corsHeaders }
+      );
+    }
 
     return new Response(
-      JSON.stringify({ success: true, data }),
+      JSON.stringify({ success: true }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
 
