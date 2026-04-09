@@ -9,11 +9,73 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Footer } from "@/components/Footer";
 
 export default function AboutPage() {
-  const partners = [
-    { name: "Arabienertech", country: "Kuwait", subtitle: "Energy Solutions" },
-    { name: "Bader Almullah", country: "Kuwait", subtitle: "Industrial Services" },
-    { name: "STALMOST", country: "Russia", subtitle: "Heavy Structures" },
+  const regions = [
+    {
+      name: "Middle East",
+      countries: [
+        { name: "Kuwait", flag: "/flags/kw.png" },
+        { name: "UAE", flag: "/flags/ae.png" },
+        { name: "Qatar", flag: "/flags/qa.png" },
+        { name: "Saudi Arabia", flag: "/flags/sa.png" },
+        { name: "Bahrain", flag: "/flags/bh.png" },
+        { name: "Oman", flag: "/flags/om.png" },
+      ],
+    },
+    {
+      name: "Europe",
+      countries: [
+        { name: "United Kingdom", flag: "/flags/gb.png" },
+        { name: "Germany", flag: "/flags/de.png" },
+        { name: "France", flag: "/flags/fr.png" },
+        { name: "Italy", flag: "/flags/it.png" },
+        { name: "Spain", flag: "/flags/es.png" },
+        { name: "Portugal", flag: "/flags/pt.png" },
+        { name: "Netherlands", flag: "/flags/nl.png" },
+        { name: "Belgium", flag: "/flags/be.png" },
+        { name: "Austria", flag: "/flags/at.png" },
+        { name: "Switzerland", flag: "/flags/ch.png" },
+        { name: "Sweden", flag: "/flags/se.png" },
+        { name: "Norway", flag: "/flags/no.png" },
+        { name: "Denmark", flag: "/flags/dk.png" },
+        { name: "Finland", flag: "/flags/fi.png" },
+        { name: "Iceland", flag: "/flags/is.png" },
+        { name: "Ireland", flag: "/flags/ie.png" },
+        { name: "Poland", flag: "/flags/pl.png" },
+        { name: "Czech Republic", flag: "/flags/cz.png" },
+        { name: "Slovakia", flag: "/flags/sk.png" },
+        { name: "Hungary", flag: "/flags/hu.png" },
+        { name: "Romania", flag: "/flags/ro.png" },
+        { name: "Bulgaria", flag: "/flags/bg.png" },
+        { name: "Croatia", flag: "/flags/hr.png" },
+        { name: "Slovenia", flag: "/flags/si.png" },
+        { name: "Greece", flag: "/flags/gr.png" },
+        { name: "Albania", flag: "/flags/al.png" },
+        { name: "Serbia", flag: "/flags/rs.png" },
+        { name: "Montenegro", flag: "/flags/me.png" },
+        { name: "North Macedonia", flag: "/flags/mk.png" },
+        { name: "Bosnia & Herzegovina", flag: "/flags/ba.png" },
+        { name: "Kosovo", flag: "/flags/xk.png" },
+        { name: "Estonia", flag: "/flags/ee.png" },
+        { name: "Latvia", flag: "/flags/lv.png" },
+        { name: "Lithuania", flag: "/flags/lt.png" },
+        { name: "Ukraine", flag: "/flags/ua.png" },
+        { name: "Moldova", flag: "/flags/md.png" },
+        { name: "Luxembourg", flag: "/flags/lu.png" },
+        { name: "Malta", flag: "/flags/mt.png" },
+        { name: "Cyprus", flag: "/flags/cy.png" },
+      ],
+    },
+    {
+      name: "Other Regions",
+      countries: [
+        { name: "Israel", flag: "/flags/il.png" },
+        { name: "Russia", flag: "/flags/ru.png" },
+        { name: "India", flag: "/flags/in.png" },
+      ],
+    },
   ];
+
+  const totalCountries = regions.reduce((sum, r) => sum + r.countries.length, 0);
 
   const pathwaySteps = [
     {
@@ -497,39 +559,83 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Trusted Partners Section - Minimal, strong */}
-      <section className="py-24 lg:py-32 bg-background">
+      {/* Global Presence — Flag-focused showcase */}
+      <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
         <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
           <div className="max-w-7xl mx-auto">
+            {/* Header */}
             <ScrollReveal>
               <div className="flex items-center gap-4 mb-8">
                 <span className="font-display text-8xl lg:text-9xl text-primary/10 leading-none">05</span>
                 <div>
                   <div className="h-px w-12 bg-primary mb-3" />
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Network</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Global Presence</span>
                 </div>
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[0.95] mb-16 max-w-3xl">
-                Trusted by industry
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[0.95] mb-6 max-w-4xl">
+                We place talent in
                 <br />
-                <span className="text-primary">leaders worldwide</span>
+                <span className="text-primary">{totalCountries} countries</span>
               </h2>
+              <p className="text-muted-foreground text-lg max-w-2xl">
+                Active manpower supply across the Middle East, Europe, Israel, Russia &amp; India
+                in Oil &amp; Gas, Construction, Shutdown, and Industrial sectors.
+              </p>
             </ScrollReveal>
 
-            {/* Partners - Bold list style */}
-            <div className="border-t border-border">
-              {partners.map((partner, i) => (
-                <ScrollReveal key={partner.name} delay={100 + i * 100}>
-                  <div className="py-8 lg:py-10 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:bg-secondary/30 transition-colors -mx-4 px-4 sm:-mx-6 sm:px-6">
-                    <div className="flex items-baseline gap-6">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-primary w-16">{partner.country}</span>
-                      <h3 className="font-display text-2xl lg:text-3xl text-foreground">{partner.name}</h3>
-                    </div>
-                    <span className="text-sm text-muted-foreground sm:text-right">{partner.subtitle}</span>
+            {/* Region groups with flag grids */}
+            {regions.map((region, ri) => (
+              <div key={region.name} className="mt-16 first:mt-20">
+                <ScrollReveal delay={ri * 60}>
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="h-px w-8 bg-primary/40" />
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                      {region.name}
+                    </h3>
+                    <span className="text-xs text-muted-foreground">
+                      {region.countries.length} {region.countries.length === 1 ? "country" : "countries"}
+                    </span>
                   </div>
                 </ScrollReveal>
-              ))}
-            </div>
+
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3 lg:gap-4">
+                  {region.countries.map((country, ci) => (
+                    <ScrollReveal key={country.name} delay={ri * 60 + ci * 30}>
+                      <div className="group text-center">
+                        {/* Flag — big, round-cornered, with hover lift */}
+                        <div className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-sm border border-border/50 group-hover:shadow-lg group-hover:-translate-y-1 group-hover:border-primary/30 transition-all duration-300">
+                          <Image
+                            src={country.flag}
+                            alt={`${country.name} flag`}
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                            sizes="(max-width: 640px) 33vw, (max-width: 1024px) 20vw, 12.5vw"
+                          />
+                        </div>
+                        {/* Country name below */}
+                        <p className="mt-2.5 text-xs sm:text-sm font-medium text-foreground leading-tight">
+                          {country.name}
+                        </p>
+                      </div>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            {/* Bottom CTA */}
+            <ScrollReveal delay={400}>
+              <div className="mt-20 pt-10 border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                <p className="text-muted-foreground max-w-lg">
+                  We continue to expand our global network — delivering skilled manpower with quality,
+                  reliability, and industry-standard deployment.
+                </p>
+                <Link href="/placement" className="group inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all shrink-0">
+                  View current openings
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
