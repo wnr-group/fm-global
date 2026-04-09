@@ -10,6 +10,8 @@ export interface JobListing {
   salary_range: string | null;
   pdf_url: string | null;
   pdf_filename: string | null;
+  image_url: string | null;
+  image_filename: string | null;
   contact_type: ContactType;
   contact_value: string;
   is_active: boolean;

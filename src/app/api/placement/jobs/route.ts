@@ -7,7 +7,7 @@ export async function GET() {
     const supabase = await createClient();
     const { data, error } = await supabase
       .from('job_listings')
-      .select('id, title, company, location, description, requirements, salary_range, pdf_url, pdf_filename, contact_type, contact_value, is_active, created_at, updated_at')
+      .select('id, title, company, location, description, requirements, salary_range, pdf_url, pdf_filename, image_url, image_filename, contact_type, contact_value, is_active, created_at, updated_at')
       .eq('is_active', true)
       .order('created_at', { ascending: false })
       .limit(9);

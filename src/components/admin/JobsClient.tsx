@@ -109,8 +109,17 @@ export default function JobsClient({ jobs, fetchError }: JobsClientProps) {
     if (job.pdf_url) {
       const parts = job.pdf_url.split("/job-pdfs/");
       if (parts.length === 2) {
-        const storagePath = parts[1].split("?")[0]; // strip query params if any
+        const storagePath = parts[1].split("?")[0];
         await supabase.storage.from("job-pdfs").remove([storagePath]);
+      }
+    }
+
+    // Delete image from storage if present
+    if (job.image_url) {
+      const parts = job.image_url.split("/job-images/");
+      if (parts.length === 2) {
+        const storagePath = parts[1].split("?")[0];
+        await supabase.storage.from("job-images").remove([storagePath]);
       }
     }
 

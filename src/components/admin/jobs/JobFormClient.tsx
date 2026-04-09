@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { CloudUpload, FileText, Loader2, Eye } from "lucide-react";
+import { CloudUpload, FileText, Loader2, Eye, ImageIcon } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import type { JobListing } from "@/types/jobs";
 
@@ -68,14 +68,27 @@ type PdfState =
   | { status: "uploading" }
   | { status: "done"; url: string; filename: string; path: string };
 
+type ImageState =
+  | { status: "none" }
+  | { status: "existing"; url: string; filename: string }
+  | { status: "selected"; file: File; previewUrl: string }
+  | { status: "uploading" }
+  | { status: "done"; url: string; filename: string; path: string };
+
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5 MB
+
 export default function JobFormClient({ mode, initialJob }: Props) {
   const router = useRouter();
 
   const [formError, setFormError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [isImageDragging, setIsImageDragging] = useState(false);
   const [pdfError, setPdfError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
 
   const initialPdfState: PdfState =
     mode === "edit" && initialJob?.pdf_url && initialJob?.pdf_filename
@@ -86,7 +99,17 @@ export default function JobFormClient({ mode, initialJob }: Props) {
         }
       : { status: "none" };
 
+  const initialImageState: ImageState =
+    mode === "edit" && initialJob?.image_url && initialJob?.image_filename
+      ? {
+          status: "existing",
+          url: initialJob.image_url,
+          filename: initialJob.image_filename,
+        }
+      : { status: "none" };
+
   const [pdfState, setPdfState] = useState<PdfState>(initialPdfState);
+  const [imageState, setImageState] = useState<ImageState>(initialImageState);
 
   const {
     register,
@@ -174,6 +197,64 @@ export default function JobFormClient({ mode, initialJob }: Props) {
     setPdfState({ status: "none" });
   }
 
+  // ── Image handling ───────────────────────────────────────────────────────────
+  function validateAndSetImage(file: File) {
+    setImageError(null);
+    if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+      setImageError("Only JPG, PNG, and WebP images are allowed.");
+      return;
+    }
+    if (file.size > MAX_IMAGE_SIZE) {
+      setImageError("Image must be 5 MB or smaller.");
+      return;
+    }
+    const previewUrl = URL.createObjectURL(file);
+    setImageState({ status: "selected", file, previewUrl });
+  }
+
+  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) validateAndSetImage(file);
+    e.target.value = "";
+  }
+
+  const handleImageDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsImageDragging(true);
+  }, []);
+
+  const handleImageDragLeave = useCallback(() => setIsImageDragging(false), []);
+
+  const handleImageDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsImageDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) validateAndSetImage(file);
+  }, []);
+
+  function removeImage() {
+    if (imageState.status === "selected") {
+      URL.revokeObjectURL(imageState.previewUrl);
+    }
+    setImageState({ status: "none" });
+    setImageError(null);
+  }
+
+  async function removeExistingImage() {
+    if (imageState.status !== "existing" || !initialJob) return;
+    const supabase = createClient();
+    const parts = imageState.url.split("/job-images/");
+    if (parts.length === 2) {
+      const storagePath = parts[1].split("?")[0];
+      await supabase.storage.from("job-images").remove([storagePath]);
+    }
+    await supabase
+      .from("job_listings")
+      .update({ image_url: null, image_filename: null })
+      .eq("id", initialJob.id);
+    setImageState({ status: "none" });
+  }
+
   // ── Submit ────────────────────────────────────────────────────────────────────
   const onSubmit = async (data: JobFormData, activeStatus?: boolean) => {
     setIsSubmitting(true);
@@ -184,6 +265,9 @@ export default function JobFormClient({ mode, initialJob }: Props) {
       let finalPdfUrl: string | null = null;
       let finalPdfFilename: string | null = null;
       let uploadedPath: string | null = null;
+      let finalImageUrl: string | null = null;
+      let finalImageFilename: string | null = null;
+      let uploadedImagePath: string | null = null;
 
       // Upload new PDF if selected
       if (pdfState.status === "selected") {
@@ -225,7 +309,54 @@ export default function JobFormClient({ mode, initialJob }: Props) {
         finalPdfUrl = pdfState.url;
         finalPdfFilename = pdfState.filename;
       }
-      // status "none" or "done" leaves pdf null (or already set above)
+
+      // Upload new image if selected
+      if (imageState.status === "selected") {
+        setImageState({ status: "uploading" });
+        const jobId =
+          uploadedPath?.split("/")[0] ??
+          (mode === "create" ? crypto.randomUUID() : initialJob!.id);
+        const safeName = imageState.file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+        const imgPath = `${jobId}/${Date.now()}_${safeName}`;
+
+        const { error: imgUploadError } = await supabase.storage
+          .from("job-images")
+          .upload(imgPath, imageState.file, {
+            contentType: imageState.file.type,
+          });
+
+        if (imgUploadError) {
+          setFormError(`Image upload failed: ${imgUploadError.message}`);
+          setImageState({
+            status: "selected",
+            file: imageState.file,
+            previewUrl: URL.createObjectURL(imageState.file),
+          });
+          setIsSubmitting(false);
+          return;
+        }
+
+        const { data: imgPublicUrl } = supabase.storage
+          .from("job-images")
+          .getPublicUrl(imgPath);
+
+        finalImageUrl = imgPublicUrl.publicUrl;
+        finalImageFilename = imageState.file.name;
+        uploadedImagePath = imgPath;
+
+        // Use the same jobId for PDF if not already set
+        if (!uploadedPath) uploadedPath = `${jobId}/placeholder`;
+
+        setImageState({
+          status: "done",
+          url: finalImageUrl,
+          filename: finalImageFilename,
+          path: imgPath,
+        });
+      } else if (imageState.status === "existing") {
+        finalImageUrl = imageState.url;
+        finalImageFilename = imageState.filename;
+      }
 
       const isActive =
         activeStatus !== undefined ? activeStatus : data.is_active;
@@ -239,6 +370,8 @@ export default function JobFormClient({ mode, initialJob }: Props) {
         salary_range: data.salary_range?.trim() || null,
         pdf_url: finalPdfUrl,
         pdf_filename: finalPdfFilename,
+        image_url: finalImageUrl,
+        image_filename: finalImageFilename,
         contact_type: data.contact_type,
         contact_value: data.contact_value.trim(),
         is_active: isActive,
@@ -247,7 +380,9 @@ export default function JobFormClient({ mode, initialJob }: Props) {
       if (mode === "create") {
         const newId = uploadedPath
           ? uploadedPath.split("/")[0]
-          : crypto.randomUUID();
+          : uploadedImagePath
+            ? uploadedImagePath.split("/")[0]
+            : crypto.randomUUID();
 
         // If we uploaded a PDF, the jobId was already used for the path — delete
         // and re-insert with the same id isn't needed; just insert with id.
@@ -267,6 +402,14 @@ export default function JobFormClient({ mode, initialJob }: Props) {
           if (parts.length === 2) {
             const oldPath = parts[1].split("?")[0];
             await supabase.storage.from("job-pdfs").remove([oldPath]);
+          }
+        }
+        // Edit mode: if we uploaded a new image, delete the old one
+        if (uploadedImagePath && initialJob?.image_url) {
+          const parts = initialJob.image_url.split("/job-images/");
+          if (parts.length === 2) {
+            const oldPath = parts[1].split("?")[0];
+            await supabase.storage.from("job-images").remove([oldPath]);
           }
         }
 
@@ -511,6 +654,120 @@ export default function JobFormClient({ mode, initialJob }: Props) {
                   <p className="text-xs text-red-600">
                     {errors.contact_value.message}
                   </p>
+                )}
+              </div>
+
+              {/* Image Upload */}
+              <div className="space-y-1.5">
+                <label className="block text-sm font-medium text-foreground">
+                  Job Image{" "}
+                  <span className="text-xs text-muted-foreground font-normal">
+                    (optional, max 5 MB)
+                  </span>
+                </label>
+
+                {/* Existing image */}
+                {imageState.status === "existing" && (
+                  <div className="space-y-2">
+                    <div className="relative aspect-[16/10] rounded-lg overflow-hidden border border-border">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imageState.url}
+                        alt="Job image"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-muted-foreground flex-1 truncate">
+                        {imageState.filename}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={removeExistingImage}
+                        className="text-xs font-medium text-red-600 hover:underline shrink-0"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Selected image preview */}
+                {imageState.status === "selected" && (
+                  <div className="space-y-2">
+                    <div className="relative aspect-[16/10] rounded-lg overflow-hidden border border-border">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imageState.previewUrl}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-muted-foreground flex-1 truncate">
+                        {imageState.file.name} ({(imageState.file.size / 1024 / 1024).toFixed(2)} MB)
+                      </span>
+                      <button
+                        type="button"
+                        onClick={removeImage}
+                        className="text-xs font-medium text-red-600 hover:underline shrink-0"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Uploading */}
+                {imageState.status === "uploading" && (
+                  <div className="p-3 rounded-lg bg-secondary/40 border border-border space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Uploading image…
+                    </div>
+                    <div className="h-1.5 w-full rounded-full bg-border overflow-hidden">
+                      <div className="h-full bg-primary rounded-full animate-pulse w-3/4" />
+                    </div>
+                  </div>
+                )}
+
+                {/* Drop zone */}
+                {(imageState.status === "none" || imageState.status === "done") && (
+                  <div
+                    onDragOver={handleImageDragOver}
+                    onDragLeave={handleImageDragLeave}
+                    onDrop={handleImageDrop}
+                    onClick={() => imageInputRef.current?.click()}
+                    className={[
+                      "flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed px-4 py-6 cursor-pointer transition-colors",
+                      isImageDragging
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/60 hover:bg-secondary/20",
+                    ].join(" ")}
+                  >
+                    <ImageIcon className="w-8 h-8 text-muted-foreground" />
+                    <p className="text-sm text-muted-foreground text-center">
+                      <span className="font-medium text-foreground">
+                        Click to upload
+                      </span>{" "}
+                      or drag and drop
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      JPG, PNG or WebP, max 5 MB
+                    </p>
+                  </div>
+                )}
+
+                <input
+                  ref={imageInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={handleImageChange}
+                  className="hidden"
+                />
+
+                {imageError && (
+                  <p className="text-xs text-red-600">{imageError}</p>
                 )}
               </div>
 

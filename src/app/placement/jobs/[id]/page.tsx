@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
 import { getJobListingById } from '../../actions';
@@ -62,6 +63,19 @@ export default async function JobDetailPage({ params }: PageProps) {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Job image */}
+        {job.image_url && (
+          <div className="relative aspect-[21/9] rounded-2xl overflow-hidden mb-6 border border-gray-100 shadow-sm">
+            <Image
+              src={job.image_url}
+              alt={`${job.title} at ${job.company}`}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
+
         {/* Hero card */}
         <div className="bg-white rounded-2xl border border-gray-100 p-8 mb-6 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
