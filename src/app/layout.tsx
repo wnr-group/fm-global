@@ -59,6 +59,9 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "FM Global Careers",
   },
+  other: {
+    "og:logo": "https://fmglobalcareers.com/Brand-Logo.png",
+  },
   twitter: {
     card: "summary_large_image",
   },
