@@ -144,7 +144,7 @@ useEffect(() => {
                 </Link>
               </div>
 
-              <MobileNav variant="light" />
+              <MobileNav variant="dark" />
             </div>
           </div>
         </nav>

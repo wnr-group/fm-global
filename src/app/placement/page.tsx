@@ -21,6 +21,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Footer } from "@/components/Footer";
 import { CurrentOpenings } from "@/components/placement/CurrentOpenings";
+import { FloatingFlags } from "@/components/placement/FloatingFlags";
 import { getActiveJobListings } from "./actions";
 
 // Placement regions data
@@ -128,10 +129,88 @@ export default async function PlacementPage() {
           aria-labelledby="placement-hero-heading"
           className="relative min-h-[70vh] bg-background overflow-hidden"
         >
-          {/* Decorative background - orange/warm tinted */}
+          {/* Decorative background — rich, layered */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-primary/[0.06] to-transparent blur-3xl" />
-            <div className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-primary/[0.03] to-transparent blur-3xl" />
+            {/* Gradient blobs */}
+            <div className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-primary/[0.08] to-transparent blur-3xl" />
+            <div className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-primary/[0.05] to-transparent blur-3xl" />
+            <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-primary/[0.04] to-transparent blur-3xl" />
+
+            {/* Dot grid pattern */}
+            <div
+              className="absolute inset-0 opacity-[0.04]"
+              style={{
+                backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
+                backgroundSize: '32px 32px',
+              }}
+            />
+
+            {/* Decorative SVG arcs — flight paths */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1440 800" fill="none" preserveAspectRatio="xMidYMid slice">
+              {/* Curved connection lines */}
+              <path
+                d="M200 600 Q 500 200, 900 350"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeDasharray="6 8"
+                className="text-primary/[0.08]"
+              />
+              <path
+                d="M100 400 Q 400 100, 800 250"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeDasharray="4 6"
+                className="text-primary/[0.06]"
+              />
+              <path
+                d="M300 700 Q 700 300, 1100 400"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeDasharray="6 8"
+                className="text-primary/[0.07]"
+              />
+              <path
+                d="M50 300 Q 350 50, 750 200"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                strokeDasharray="3 5"
+                className="text-primary/[0.05]"
+              />
+
+              {/* Animated traveling dots on paths */}
+              <circle r="3" className="fill-primary/20">
+                <animateMotion dur="8s" repeatCount="indefinite" path="M200 600 Q 500 200, 900 350" />
+              </circle>
+              <circle r="2.5" className="fill-primary/15">
+                <animateMotion dur="10s" repeatCount="indefinite" path="M100 400 Q 400 100, 800 250" />
+              </circle>
+              <circle r="3" className="fill-primary/20">
+                <animateMotion dur="12s" repeatCount="indefinite" path="M300 700 Q 700 300, 1100 400" />
+              </circle>
+
+              {/* Decorative location pins scattered */}
+              <g className="text-primary/[0.06]" fill="currentColor">
+                <circle cx="150" cy="200" r="4" />
+                <circle cx="350" cy="500" r="3" />
+                <circle cx="650" cy="150" r="3.5" />
+                <circle cx="1200" cy="300" r="3" />
+                <circle cx="1100" cy="600" r="4" />
+                <circle cx="500" cy="650" r="3" />
+              </g>
+            </svg>
+
+            {/* Decorative corner accents */}
+            <div className="absolute top-0 left-0 w-48 h-48">
+              <div className="absolute top-8 left-8 w-24 h-px bg-primary/10" />
+              <div className="absolute top-8 left-8 h-24 w-px bg-primary/10" />
+            </div>
+            <div className="absolute bottom-0 right-0 w-48 h-48">
+              <div className="absolute bottom-8 right-8 w-24 h-px bg-primary/10" />
+              <div className="absolute bottom-8 right-8 h-24 w-px bg-primary/10" />
+            </div>
+
+            {/* Bottom fade */}
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
           </div>
 
           {/* Navigation */}
@@ -205,12 +284,12 @@ export default async function PlacementPage() {
                     className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-6 tracking-tight"
                   >
                     Your Gateway to{" "}
-                    <span className="text-primary">Gulf Careers</span>
+                    <span className="text-primary">Global Careers</span>
                   </h1>
 
                   <p className="text-lg text-muted-foreground max-w-lg leading-relaxed mb-10">
-                    Connecting skilled professionals with leading employers across the Gulf region.
-                    Direct placement in UAE, Qatar, Saudi Arabia, Kuwait, Bahrain, and Oman.
+                    Connecting skilled professionals with leading employers worldwide.
+                    Direct placement across the Middle East, Europe, Israel, Russia, and India.
                   </p>
 
                   {/* CTAs */}
@@ -218,7 +297,13 @@ export default async function PlacementPage() {
                     <Link href="/contact">
                       <Button size="lg" className="w-full sm:w-auto gap-2 h-12 px-6 shadow-lg shadow-primary/25 bg-primary hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all duration-200">
                         Register Now
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </Link>
+                    <Link href="#current-openings">
+                      <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2 h-12 px-6 hover:border-primary/50 hover:text-primary active:scale-[0.98] transition-all duration-200">
+                        <Briefcase className="w-4 h-4" />
+                        Live Opportunities
                       </Button>
                     </Link>
                   </div>
@@ -236,8 +321,8 @@ export default async function PlacementPage() {
                     </div>
                     <div>
                       <dd className="font-display text-2xl sm:text-3xl text-foreground mb-1">
-                        <AnimatedCounter value={6} suffix="" />
-                        <span className="text-primary"></span>
+                        <AnimatedCounter value={48} suffix="" />
+                        <span className="text-primary">+</span>
                       </dd>
                       <dt className="text-xs text-muted-foreground uppercase tracking-wider">
                         Countries
@@ -255,37 +340,10 @@ export default async function PlacementPage() {
                   </dl>
                 </div>
 
-                {/* Right - Visual map representation */}
+                {/* Right - Floating flags around globe */}
                 <div className="relative hidden lg:block">
-                  <div className="relative aspect-square max-w-md mx-auto">
-                    {/* Abstract map decoration */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 rounded-[3rem] animate-fade-in" />
-
-                    {/* Country markers */}
-                    <div className="absolute inset-0 p-8">
-                      {regions.map((region, i) => (
-                        <div
-                          key={region.id}
-                          className="absolute flex items-center gap-2 bg-background/90 backdrop-blur rounded-full px-3 py-1.5 shadow-lg border border-primary/10 opacity-0 animate-scale-in hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-default"
-                          style={{
-                            top: `${20 + (i % 3) * 25}%`,
-                            left: `${10 + (i % 2) * 40 + (i * 5)}%`,
-                            animationDelay: `${400 + i * 100}ms`,
-                            animationFillMode: 'forwards',
-                          }}
-                        >
-                          <MapPin className="w-3.5 h-3.5 text-primary" />
-                          <span className="text-xs font-medium text-foreground">{region.shortName}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Center globe icon */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center animate-fade-in delay-200">
-                        <Globe2 className="w-12 h-12 text-primary/50" />
-                      </div>
-                    </div>
+                  <div className="relative aspect-square max-w-lg mx-auto">
+                    <FloatingFlags />
                   </div>
                 </div>
               </div>
