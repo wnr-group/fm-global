@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="bg-foreground text-background py-16 lg:py-20" role="contentinfo">
       <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
@@ -38,6 +38,7 @@ export function Footer() {
                 { label: "About Us", href: "/about" },
                 { label: "Training Programs", href: "/training" },
                 { label: "Job Placement", href: "/placement" },
+                { label: "Partner With Us", href: "/partners" },
                 { label: "Verify Certificate", href: "/verify" },
               ].map((link) => (
                 <li key={link.href}>
@@ -81,24 +82,75 @@ export function Footer() {
           <div>
             <h3 className="font-display text-background text-sm mb-4">Contact</h3>
             <address className="not-italic space-y-3 text-sm text-background/70">
-              <p>Chennai, Tamil Nadu, India</p>
+              <p className="leading-relaxed">
+                2/17, Pannaivilai Street<br />
+                Thovalai 629301<br />
+                Tamil Nadu, India
+              </p>
               <p>
                 <a
-                  href="mailto:contact@fmglobalcareers.com"
+                  href="mailto:fminstitute24@gmail.com"
                   className="hover:text-background transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-sm"
                 >
-                  contact@fmglobalcareers.com
+                  fminstitute24@gmail.com
                 </a>
               </p>
               <p>
                 <a
-                  href="tel:+919999999999"
+                  href="mailto:fminternational.jobs@gmail.com"
                   className="hover:text-background transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-sm"
                 >
-                  +91 99999 99999
+                  fminternational.jobs@gmail.com
                 </a>
               </p>
             </address>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h3 className="font-display text-background text-sm mb-4">Follow Us</h3>
+            <div className="space-y-3 text-sm text-background/70">
+              <a
+                href="https://www.instagram.com/fminstitute_india/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-background transition-colors"
+              >
+                <span className="text-background font-medium w-20 shrink-0">Instagram</span>
+                <span className="text-background/40">·</span>
+                <span>@fminstitute_india</span>
+              </a>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-background transition-colors"
+              >
+                <span className="text-background font-medium w-20 shrink-0">Facebook</span>
+                <span className="text-background/40">·</span>
+                <span>FM Institute | Thovalai</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/fm-institute-%E2%80%93-oil-gas-training-centre/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-background transition-colors"
+              >
+                <span className="text-background font-medium w-20 shrink-0">LinkedIn</span>
+                <span className="text-background/40">·</span>
+                <span>FM Institute</span>
+              </a>
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-background transition-colors"
+              >
+                <span className="text-background font-medium w-20 shrink-0">YouTube</span>
+                <span className="text-background/40">·</span>
+                <span>FM Global Career</span>
+              </a>
+            </div>
           </div>
         </div>
 
