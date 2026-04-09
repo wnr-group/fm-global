@@ -1,12 +1,13 @@
 
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { ScrollReveal, AnimatedCounter } from "@/components/ui/scroll-reveal";
 import { ArrowRight, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { trackFormStart, trackFormSubmit, trackFormSuccess, trackFormError, trackContactClick, trackSocialClick, trackCTAClick } from "@/lib/analytics";
 
 
 const Page = () => {
@@ -22,8 +23,13 @@ const Page = () => {
 
 const [loading, setLoading] = useState(false);
 const [status, setStatus] = useState<null | "success" | "error">(null);
+const formStarted = useRef(false);
 
 const handleChange = (e: any) => {
+  if (!formStarted.current) {
+    formStarted.current = true;
+    trackFormStart("contact_inquiry");
+  }
   setFormData({ ...formData, [e.target.name]: e.target.value });
 };
 
@@ -31,6 +37,7 @@ const handleChange = (e: any) => {
 const handleSubmit = async (e: any) => {
   e.preventDefault();
   setLoading(true);
+  trackFormSubmit("contact_inquiry");
 
   try {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -51,6 +58,7 @@ const handleSubmit = async (e: any) => {
     const data = await res.json();
 
     if (data.success) {
+  trackFormSuccess("contact_inquiry");
   setStatus("success");
   setFormData({
     name: "",
@@ -59,11 +67,14 @@ const handleSubmit = async (e: any) => {
     program: "",
     message: "",
   });
+  formStarted.current = false;
     } else {
+  trackFormError("contact_inquiry", "submission_failed");
   setStatus("error");
 }
   } catch (error) {
   console.error(error);
+  trackFormError("contact_inquiry", "network_error");
   setStatus("error");
 } finally {
     setLoading(false);

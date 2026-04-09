@@ -2,6 +2,7 @@
 
 import { Download, Mail, MessageCircle, Phone } from 'lucide-react';
 import type { JobListing } from '@/types/jobs';
+import { trackJobApply, trackJobPDFDownload } from '@/lib/analytics';
 
 interface JobDetailViewProps {
   job: JobListing;
@@ -49,6 +50,7 @@ export default function JobDetailView({
         download
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackJobPDFDownload(job.id, job.title, job.company)}
         className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
       >
         <Download className="w-4 h-4" />
@@ -63,6 +65,7 @@ export default function JobDetailView({
         href={getApplyHref()}
         target={job.contact_type !== 'phone' ? '_blank' : undefined}
         rel="noopener noreferrer"
+        onClick={() => trackJobApply(job.id, job.title, job.company, job.contact_type)}
         className="flex items-center gap-2 px-6 py-3 bg-[#0f385a] text-white rounded-lg text-sm font-semibold hover:bg-[#0f385a]/90 transition-colors"
       >
         <ApplyIcon className="w-4 h-4" aria-hidden="true" />
@@ -79,6 +82,7 @@ export default function JobDetailView({
           download
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackJobPDFDownload(job.id, job.title, job.company)}
           className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
         >
           <Download className="w-4 h-4" />
@@ -89,6 +93,7 @@ export default function JobDetailView({
         href={getApplyHref()}
         target={job.contact_type !== 'phone' ? '_blank' : undefined}
         rel="noopener noreferrer"
+        onClick={() => trackJobApply(job.id, job.title, job.company, job.contact_type)}
         className="flex items-center gap-2 px-5 py-2 bg-[#0f385a] text-white rounded-lg text-sm font-medium hover:bg-[#0f385a]/90 transition-colors"
       >
         <ApplyIcon className="w-4 h-4" aria-hidden="true" />

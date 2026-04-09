@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { Footer } from "@/components/Footer";
+import { trackCertificateVerify } from "@/lib/analytics";
 
 export default function VerifyPage() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function VerifyPage() {
       return;
     }
     setError("");
+    trackCertificateVerify(trimmed);
     router.push(`/verify/${trimmed}`);
   };
 

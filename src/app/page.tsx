@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { ScrollReveal, AnimatedCounter } from "@/components/ui/scroll-reveal";
 import { ScrollSequenceHero } from "@/components/ui/scroll-sequence-hero";
+import { TrackedCTA } from "@/components/ui/tracked-cta";
 import { ArrowRight, ArrowUpRight, GraduationCap, Globe2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -133,20 +134,24 @@ export default function Home() {
                   className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 mb-0 sm:mb-14 animate-fade-in-up"
                   style={{ animationDelay: "300ms" }}
                 >
-                  <Link href="/contact" className="group">
-                    <Button size="lg" className="w-full sm:w-auto gap-2 h-10 sm:h-14 px-5 sm:px-8 bg-white text-primary hover:bg-white/90 shadow-xl shadow-black/30 font-semibold text-sm sm:text-base active:scale-[0.98] transition-all duration-200">
-                      Enquire Now
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 arrow-animate" />
-                    </Button>
-                  </Link>
-                  <Link href="/training">
-                    <Button
-                      size="lg"
-                      className="w-full sm:w-auto h-10 sm:h-14 px-5 sm:px-8 bg-white/10 border-2 border-white/50 text-white hover:bg-white/20 hover:border-white/70 font-semibold text-sm sm:text-base"
-                    >
-                      Explore Courses
-                    </Button>
-                  </Link>
+                  <TrackedCTA label="Enquire Now" page="home_hero">
+                    <Link href="/contact" className="group">
+                      <Button size="lg" className="w-full sm:w-auto gap-2 h-10 sm:h-14 px-5 sm:px-8 bg-white text-primary hover:bg-white/90 shadow-xl shadow-black/30 font-semibold text-sm sm:text-base active:scale-[0.98] transition-all duration-200">
+                        Enquire Now
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 arrow-animate" />
+                      </Button>
+                    </Link>
+                  </TrackedCTA>
+                  <TrackedCTA label="Explore Courses" page="home_hero">
+                    <Link href="/training">
+                      <Button
+                        size="lg"
+                        className="w-full sm:w-auto h-10 sm:h-14 px-5 sm:px-8 bg-white/10 border-2 border-white/50 text-white hover:bg-white/20 hover:border-white/70 font-semibold text-sm sm:text-base"
+                      >
+                        Explore Courses
+                      </Button>
+                    </Link>
+                  </TrackedCTA>
                 </div>
 
                 {/* Stats - hidden on very small screens */}
@@ -234,12 +239,14 @@ export default function Home() {
                     connecting trained professionals with leading employers in UAE,
                     Qatar, Saudi Arabia, Kuwait, Bahrain, and Oman.
                   </p>
-                  <Link href="/placement" className="group">
-                    <Button variant="outline" className="gap-2 h-12 px-6 hover:border-primary/50 active:scale-[0.98] transition-all duration-200">
-                      View Placement Network
-                      <ArrowRight className="w-4 h-4 arrow-animate" />
-                    </Button>
-                  </Link>
+                  <TrackedCTA label="View Placement Network" page="home_globe">
+                    <Link href="/placement" className="group">
+                      <Button variant="outline" className="gap-2 h-12 px-6 hover:border-primary/50 active:scale-[0.98] transition-all duration-200">
+                        View Placement Network
+                        <ArrowRight className="w-4 h-4 arrow-animate" />
+                      </Button>
+                    </Link>
+                  </TrackedCTA>
                 </ScrollReveal>
               </div>
             </div>
@@ -436,12 +443,14 @@ export default function Home() {
             {/* CTA */}
             <ScrollReveal delay={400}>
               <div className="mt-12 lg:mt-16 text-center">
-                <Link href="/about" className="group">
-                  <Button variant="outline" className="gap-2 h-12 px-8 hover:border-primary/50 active:scale-[0.98] transition-all duration-200">
-                    Learn more about us
-                    <ArrowRight className="w-4 h-4 arrow-animate" />
-                  </Button>
-                </Link>
+                <TrackedCTA label="Learn more about us" page="home_features">
+                  <Link href="/about" className="group">
+                    <Button variant="outline" className="gap-2 h-12 px-8 hover:border-primary/50 active:scale-[0.98] transition-all duration-200">
+                      Learn more about us
+                      <ArrowRight className="w-4 h-4 arrow-animate" />
+                    </Button>
+                  </Link>
+                </TrackedCTA>
               </div>
             </ScrollReveal>
           </div>
@@ -474,23 +483,27 @@ export default function Home() {
                 Global careers start here.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact" className="group">
-                  <Button
-                    size="lg"
-                    className="w-full sm:w-auto gap-2 bg-white text-primary hover:bg-white/90 h-14 px-8 shadow-lg font-semibold active:scale-[0.98] transition-all duration-200"
-                  >
-                    Enquire Now
-                    <ArrowRight className="w-5 h-5 arrow-animate" />
-                  </Button>
-                </Link>
-                <Link href="/verify">
-                  <Button
-                    size="lg"
-                    className="w-full sm:w-auto border-2 border-white bg-transparent text-white hover:bg-white/10 h-14 px-8 font-semibold"
-                  >
-                    Verify Certificate
-                  </Button>
-                </Link>
+                <TrackedCTA label="Enquire Now" page="home_cta">
+                  <Link href="/contact" className="group">
+                    <Button
+                      size="lg"
+                      className="w-full sm:w-auto gap-2 bg-white text-primary hover:bg-white/90 h-14 px-8 shadow-lg font-semibold active:scale-[0.98] transition-all duration-200"
+                    >
+                      Enquire Now
+                      <ArrowRight className="w-5 h-5 arrow-animate" />
+                    </Button>
+                  </Link>
+                </TrackedCTA>
+                <TrackedCTA label="Verify Certificate" page="home_cta">
+                  <Link href="/verify">
+                    <Button
+                      size="lg"
+                      className="w-full sm:w-auto border-2 border-white bg-transparent text-white hover:bg-white/10 h-14 px-8 font-semibold"
+                    >
+                      Verify Certificate
+                    </Button>
+                  </Link>
+                </TrackedCTA>
               </div>
             </ScrollReveal>
           </div>

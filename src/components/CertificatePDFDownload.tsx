@@ -6,6 +6,7 @@ import QRCode from "qrcode";
 import { Download } from "lucide-react";
 import CertificatePDF from "./CertificatePDF";
 import type { Certificate } from "@/types/database";
+import { trackCertificateDownload } from "@/lib/analytics";
 
 interface Props {
   certificate: Certificate;
@@ -24,6 +25,7 @@ export default function CertificatePDFDownload({
 
   async function handleDownload() {
     setIsGenerating(true);
+    trackCertificateDownload(certificate.certificate_id);
     try {
       const verificationUrl = `${window.location.origin}/verify/${certificate.certificate_id}`;
 

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/ui/mobile-nav";
 import { ScrollReveal, AnimatedCounter } from "@/components/ui/scroll-reveal";
+import { TrackedCTA } from "@/components/ui/tracked-cta";
 import {
   ArrowRight,
   GraduationCap,
@@ -445,6 +446,7 @@ function CourseOverviewSection({ courses }: { courses: Course[] }) {
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           {courses.map((course, index) => (
             <ScrollReveal key={course.id} delay={index * 100}>
+              <TrackedCTA label={course.title} page="training_courses">
               <Link
                 href={`#${course.id}`}
                 className="group block relative overflow-hidden rounded-2xl bg-secondary/50 hover:bg-secondary/70 transition-colors duration-300"
@@ -497,6 +499,7 @@ function CourseOverviewSection({ courses }: { courses: Course[] }) {
                   </span>
                 </div>
               </Link>
+              </TrackedCTA>
             </ScrollReveal>
           ))}
         </div>

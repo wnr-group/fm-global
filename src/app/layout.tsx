@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Poppins, Inter } from "next/font/google";
 import { SplashProvider } from "@/components/providers/splash-provider";
 import { ServiceWorkerProvider } from "@/components/providers/service-worker-provider";
+import { AnalyticsProvider } from "@/components/providers/analytics-provider";
 import "./globals.css";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-WGPMRWCJ";
@@ -140,7 +141,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         <ServiceWorkerProvider>
-          <SplashProvider>{children}</SplashProvider>
+          <AnalyticsProvider>
+            <SplashProvider>{children}</SplashProvider>
+          </AnalyticsProvider>
         </ServiceWorkerProvider>
       </body>
     </html>

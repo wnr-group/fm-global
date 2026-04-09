@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import { MapPin, ArrowRight } from 'lucide-react';
 import type { JobListing } from '@/types/jobs';
+import { trackJobView } from '@/lib/analytics';
 
 interface JobCardProps {
   job: JobListing;
@@ -10,6 +13,7 @@ export function JobCard({ job }: JobCardProps) {
   return (
     <Link
       href={`/placement/jobs/${job.id}`}
+      onClick={() => trackJobView(job.id, job.title, job.company)}
       className="group flex flex-col bg-background rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 ease-out p-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       aria-label={`View details for ${job.title} at ${job.company}`}
     >

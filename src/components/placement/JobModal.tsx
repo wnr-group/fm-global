@@ -3,6 +3,7 @@
 import { useEffect, useCallback } from 'react';
 import { X, MapPin, FileText, Mail, Phone, MessageCircle, Download } from 'lucide-react';
 import type { JobListing } from '@/types/jobs';
+import { trackJobApply, trackJobPDFDownload } from '@/lib/analytics';
 
 interface JobModalProps {
   job: JobListing | null;
@@ -157,6 +158,7 @@ export function JobModal({ job, onClose }: JobModalProps) {
               download
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackJobPDFDownload(job.id, job.title, job.company)}
               className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
             >
               <Download className="w-4 h-4" />
@@ -169,6 +171,7 @@ export function JobModal({ job, onClose }: JobModalProps) {
             href={getApplyHref()}
             target={job.contact_type !== 'phone' ? '_blank' : undefined}
             rel="noopener noreferrer"
+            onClick={() => trackJobApply(job.id, job.title, job.company, job.contact_type)}
             className="ml-auto flex items-center gap-2 px-5 py-2 bg-[#0f385a] text-white rounded-lg text-sm font-medium hover:bg-[#0f385a]/90 transition-colors"
           >
             <ApplyIcon className="w-4 h-4" aria-hidden="true" />

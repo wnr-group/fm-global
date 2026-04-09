@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { QRCodeSVG } from "qrcode.react";
 import { Share2, Check, Download, CheckCircle2, XCircle } from "lucide-react";
 import type { Certificate } from "@/types/database";
+import { trackCertificateShare, trackCertificateDownload } from "@/lib/analytics";
 
 const CertificatePDFDownload = dynamic(
   () => import("@/components/CertificatePDFDownload"),
@@ -43,6 +44,7 @@ export default function CertificateDisplay({ certificate }: Props) {
 
   async function handleShare() {
     await navigator.clipboard.writeText(window.location.href);
+    trackCertificateShare(certificate.certificate_id);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
