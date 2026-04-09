@@ -26,7 +26,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://fmglobalcareers.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.fmcareersglobal.com"
   ),
   title: {
     default: "FM Global Careers | Oil & Gas Training & Gulf Placement",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: "FM Global Careers",
   },
   other: {
-    "og:logo": "https://fmglobalcareers.com/Brand-Logo.png",
+    "og:logo": "https://www.fmcareersglobal.com/Brand-Logo.png",
   },
   twitter: {
     card: "summary_large_image",
@@ -74,8 +74,8 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "FM Global Careers",
-  url: "https://fmglobalcareers.com",
-  logo: "https://fmglobalcareers.com/apple-touch-icon.png",
+  url: "https://www.fmcareersglobal.com",
+  logo: "https://www.fmcareersglobal.com/apple-touch-icon.png",
   description:
     "Industry-focused Oil & Gas training and direct Gulf job placement.",
   address: {
