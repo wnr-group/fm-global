@@ -132,6 +132,7 @@ useEffect(() => {
                 <Link href="/about" className="text-sm text-white/80 hover:text-white px-4 py-2 rounded-full">About</Link>
                 <Link href="/training" className="text-sm text-white/80 hover:text-white px-4 py-2 rounded-full">Training</Link>
                 <Link href="/placement" className="text-sm text-white/80 hover:text-white px-4 py-2 rounded-full">Placement</Link>
+                <Link href="/partners" className="text-sm text-white/80 hover:text-white px-4 py-2 rounded-full">Partners</Link>
                 <Link href="/verify" className="text-sm text-white/80 hover:text-white px-4 py-2 rounded-full">Verify</Link>
                 <Link href="/contact" className="text-sm text-white bg-white/20 px-4 py-2 rounded-full font-medium">Contact</Link>
               </div>

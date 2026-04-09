@@ -129,88 +129,112 @@ export default async function PlacementPage() {
           aria-labelledby="placement-hero-heading"
           className="relative min-h-[70vh] bg-background overflow-hidden"
         >
-          {/* Decorative background — rich, layered */}
+          {/* Decorative background — bold, visible */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Gradient blobs */}
-            <div className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-primary/[0.08] to-transparent blur-3xl" />
-            <div className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-primary/[0.05] to-transparent blur-3xl" />
-            <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-primary/[0.04] to-transparent blur-3xl" />
+            {/* Base tint */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-primary/[0.05]" />
 
-            {/* Dot grid pattern */}
+            {/* Gradient blobs — strong */}
+            <div className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-primary/[0.07] blur-[100px]" />
+            <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-primary/[0.06] blur-[80px]" />
+            <div className="absolute top-1/4 left-1/2 w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[60px]" />
+
+            {/* Dot grid pattern — clearly visible */}
             <div
-              className="absolute inset-0 opacity-[0.04]"
+              className="absolute inset-0"
               style={{
-                backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
-                backgroundSize: '32px 32px',
+                backgroundImage: 'radial-gradient(circle, oklch(0.32 0.08 240 / 0.12) 1.2px, transparent 1.2px)',
+                backgroundSize: '28px 28px',
               }}
             />
 
-            {/* Decorative SVG arcs — flight paths */}
+            {/* SVG flight paths — bold strokes + animated dots */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1440 800" fill="none" preserveAspectRatio="xMidYMid slice">
-              {/* Curved connection lines */}
-              <path
-                d="M200 600 Q 500 200, 900 350"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeDasharray="6 8"
-                className="text-primary/[0.08]"
-              />
-              <path
-                d="M100 400 Q 400 100, 800 250"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeDasharray="4 6"
-                className="text-primary/[0.06]"
-              />
-              <path
-                d="M300 700 Q 700 300, 1100 400"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeDasharray="6 8"
-                className="text-primary/[0.07]"
-              />
-              <path
-                d="M50 300 Q 350 50, 750 200"
-                stroke="currentColor"
-                strokeWidth="0.5"
-                strokeDasharray="3 5"
-                className="text-primary/[0.05]"
-              />
+              {/* Curved flight routes */}
+              <path d="M100 650 Q 450 150, 950 350" stroke="oklch(0.32 0.08 240 / 0.15)" strokeWidth="1.5" strokeDasharray="8 6" />
+              <path d="M50 400 Q 400 50, 850 250" stroke="oklch(0.32 0.08 240 / 0.12)" strokeWidth="1.5" strokeDasharray="6 8" />
+              <path d="M250 750 Q 700 250, 1200 400" stroke="oklch(0.32 0.08 240 / 0.13)" strokeWidth="1.5" strokeDasharray="8 6" />
+              <path d="M-50 300 Q 300 -50, 750 180" stroke="oklch(0.32 0.08 240 / 0.10)" strokeWidth="1" strokeDasharray="4 6" />
+              <path d="M400 750 Q 800 400, 1300 500" stroke="oklch(0.32 0.08 240 / 0.10)" strokeWidth="1" strokeDasharray="5 7" />
 
-              {/* Animated traveling dots on paths */}
-              <circle r="3" className="fill-primary/20">
-                <animateMotion dur="8s" repeatCount="indefinite" path="M200 600 Q 500 200, 900 350" />
-              </circle>
-              <circle r="2.5" className="fill-primary/15">
-                <animateMotion dur="10s" repeatCount="indefinite" path="M100 400 Q 400 100, 800 250" />
-              </circle>
-              <circle r="3" className="fill-primary/20">
-                <animateMotion dur="12s" repeatCount="indefinite" path="M300 700 Q 700 300, 1100 400" />
-              </circle>
+              {/* Animated flight icons along paths */}
+              {/* Plane icon (Lucide Plane shape, pointing right) used as a reusable def */}
+              <defs>
+                <g id="plane-icon" transform="scale(-1,1)">
+                  <path d="M-8 0 L-3 -4 L6 -1 L10 -4 L12 -3 L9 0 L12 3 L10 4 L6 1 L-3 4 Z" />
+                </g>
+              </defs>
 
-              {/* Decorative location pins scattered */}
-              <g className="text-primary/[0.06]" fill="currentColor">
-                <circle cx="150" cy="200" r="4" />
-                <circle cx="350" cy="500" r="3" />
-                <circle cx="650" cy="150" r="3.5" />
-                <circle cx="1200" cy="300" r="3" />
-                <circle cx="1100" cy="600" r="4" />
-                <circle cx="500" cy="650" r="3" />
+              {/* Plane 1 — main route */}
+              <g fill="oklch(0.32 0.08 240 / 0.40)">
+                <g>
+                  <animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="M100 650 Q 450 150, 950 350" />
+                  <use href="#plane-icon" transform="scale(1.4)" />
+                </g>
+                {/* Vapor trail */}
+                <circle r="3" opacity="0.4">
+                  <animateMotion dur="8s" repeatCount="indefinite" path="M100 650 Q 450 150, 950 350" begin="-0.25s" />
+                </circle>
+                <circle r="2" opacity="0.2">
+                  <animateMotion dur="8s" repeatCount="indefinite" path="M100 650 Q 450 150, 950 350" begin="-0.5s" />
+                </circle>
+                <circle r="1.2" opacity="0.1">
+                  <animateMotion dur="8s" repeatCount="indefinite" path="M100 650 Q 450 150, 950 350" begin="-0.75s" />
+                </circle>
+              </g>
+
+              {/* Plane 2 */}
+              <g fill="oklch(0.32 0.08 240 / 0.30)">
+                <g>
+                  <animateMotion dur="11s" repeatCount="indefinite" rotate="auto" path="M50 400 Q 400 50, 850 250" />
+                  <use href="#plane-icon" transform="scale(1.1)" />
+                </g>
+                <circle r="2.5" opacity="0.3">
+                  <animateMotion dur="11s" repeatCount="indefinite" path="M50 400 Q 400 50, 850 250" begin="-0.3s" />
+                </circle>
+                <circle r="1.5" opacity="0.15">
+                  <animateMotion dur="11s" repeatCount="indefinite" path="M50 400 Q 400 50, 850 250" begin="-0.6s" />
+                </circle>
+              </g>
+
+              {/* Plane 3 */}
+              <g fill="oklch(0.32 0.08 240 / 0.35)">
+                <g>
+                  <animateMotion dur="13s" repeatCount="indefinite" rotate="auto" path="M250 750 Q 700 250, 1200 400" />
+                  <use href="#plane-icon" transform="scale(1.3)" />
+                </g>
+                <circle r="3" opacity="0.35">
+                  <animateMotion dur="13s" repeatCount="indefinite" path="M250 750 Q 700 250, 1200 400" begin="-0.3s" />
+                </circle>
+                <circle r="1.8" opacity="0.18">
+                  <animateMotion dur="13s" repeatCount="indefinite" path="M250 750 Q 700 250, 1200 400" begin="-0.6s" />
+                </circle>
+              </g>
+
+              {/* Static destination dots */}
+              <circle cx="140" cy="220" r="5" fill="oklch(0.32 0.08 240 / 0.12)" />
+              <circle cx="380" cy="520" r="4" fill="oklch(0.32 0.08 240 / 0.10)" />
+              <circle cx="680" cy="140" r="5" fill="oklch(0.32 0.08 240 / 0.12)" />
+              <circle cx="1220" cy="320" r="4" fill="oklch(0.32 0.08 240 / 0.10)" />
+              <circle cx="1100" cy="620" r="5" fill="oklch(0.32 0.08 240 / 0.12)" />
+              <circle cx="520" cy="680" r="4" fill="oklch(0.32 0.08 240 / 0.10)" />
+              <circle cx="900" cy="100" r="3.5" fill="oklch(0.32 0.08 240 / 0.08)" />
+              <circle cx="200" cy="450" r="3.5" fill="oklch(0.32 0.08 240 / 0.08)" />
+
+              {/* Small crosshair markers */}
+              <g stroke="oklch(0.32 0.08 240 / 0.15)" strokeWidth="1">
+                <line x1="135" y1="220" x2="145" y2="220" /><line x1="140" y1="215" x2="140" y2="225" />
+                <line x1="675" y1="140" x2="685" y2="140" /><line x1="680" y1="135" x2="680" y2="145" />
+                <line x1="1095" y1="620" x2="1105" y2="620" /><line x1="1100" y1="615" x2="1100" y2="625" />
               </g>
             </svg>
 
-            {/* Decorative corner accents */}
-            <div className="absolute top-0 left-0 w-48 h-48">
-              <div className="absolute top-8 left-8 w-24 h-px bg-primary/10" />
-              <div className="absolute top-8 left-8 h-24 w-px bg-primary/10" />
-            </div>
-            <div className="absolute bottom-0 right-0 w-48 h-48">
-              <div className="absolute bottom-8 right-8 w-24 h-px bg-primary/10" />
-              <div className="absolute bottom-8 right-8 h-24 w-px bg-primary/10" />
-            </div>
+            {/* Corner accents — visible */}
+            <div className="absolute top-6 left-6 w-16 h-16 border-l-2 border-t-2 border-primary/15 rounded-tl-sm" />
+            <div className="absolute bottom-6 right-6 w-16 h-16 border-r-2 border-b-2 border-primary/15 rounded-br-sm" />
 
             {/* Bottom fade */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
           </div>
 
           {/* Navigation */}
@@ -245,6 +269,9 @@ export default async function PlacementPage() {
                   </Link>
                   <Link href="/placement" className="text-sm text-primary bg-primary/10 px-4 py-2 rounded-full transition-colors font-medium">
                     Placement
+                  </Link>
+                  <Link href="/partners" className="text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 px-4 py-2 rounded-full transition-colors">
+                    Partners
                   </Link>
                   <Link href="/verify" className="text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 px-4 py-2 rounded-full transition-colors">
                     Verify

@@ -158,6 +158,9 @@ export default function AboutPage() {
                 <Link href="/placement" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">
                   Placement
                 </Link>
+                <Link href="/partners" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">
+                  Partners
+                </Link>
                 <Link href="/verify" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">
                   Verify
                 </Link>

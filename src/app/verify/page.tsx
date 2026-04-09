@@ -55,6 +55,7 @@ export default function VerifyPage() {
               <Link href="/about" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">About</Link>
               <Link href="/training" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">Training</Link>
               <Link href="/placement" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">Placement</Link>
+              <Link href="/partners" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">Partners</Link>
               <Link href="/verify" className="text-sm text-white bg-white/15 px-4 py-2 rounded-full transition-colors font-medium">Verify</Link>
               <Link href="/contact" className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors">Contact</Link>
             </div>

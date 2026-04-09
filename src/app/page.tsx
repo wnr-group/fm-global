@@ -69,6 +69,12 @@ export default function Home() {
                     Placement
                   </Link>
                   <Link
+                    href="/partners"
+                    className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+                  >
+                    Partners
+                  </Link>
+                  <Link
                     href="/verify"
                     className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
                   >
