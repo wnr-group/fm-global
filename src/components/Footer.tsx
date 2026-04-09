@@ -13,8 +13,8 @@ export function Footer() {
               className="inline-flex items-center gap-3 mb-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring rounded-sm group"
             >
               <Image
-                src="/Brand-Logo.png"
-                alt="FM Global Careers"
+                src="/Brand-Logo.webp"
+                alt="FM Global Careers logo"
                 width={56}
                 height={56}
                 className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"

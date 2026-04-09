@@ -34,7 +34,7 @@ export default function Home() {
                 >
                   <Image
                     src="/apple-touch-icon.png"
-                    alt="FM Global Careers"
+                    alt="FM Global Careers logo"
                     width={56}
                     height={56}
                     className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"

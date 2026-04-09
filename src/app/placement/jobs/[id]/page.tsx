@@ -25,8 +25,30 @@ export default async function JobDetailPage({ params }: PageProps) {
 
   if (!job || error) notFound();
 
+  const jobPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.description || `${job.title} position at ${job.company}`,
+    hiringOrganization: {
+      "@type": "Organization",
+      name: job.company,
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: job.location,
+    },
+    ...(job.salary_range && { baseSalary: { "@type": "MonetaryAmount", value: job.salary_range } }),
+    datePosted: job.created_at,
+    employmentType: "FULL_TIME",
+  };
+
   return (
     <main className="min-h-screen bg-gray-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }}
+      />
       <div className="bg-white border-b border-gray-100 sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link

@@ -39,7 +39,7 @@ export default function VerifyPage() {
             >
               <Image
                 src="/apple-touch-icon.png"
-                alt="FM Global Careers"
+                alt="FM Global Careers logo"
                 width={56}
                 height={56}
                 className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
@@ -175,7 +175,7 @@ export default function VerifyPage() {
     {/* Replace placeholder with actual image */}
     <div className="rounded-2xl overflow-hidden aspect-video relative transition-transform duration-300 hover:scale-[1.01]">
       <Image
-        src="/computer.png"
+        src="/computer.webp"
         alt="Certificate verification support"
         fill
         unoptimized

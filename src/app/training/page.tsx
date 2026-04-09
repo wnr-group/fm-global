@@ -431,12 +431,15 @@ function CourseOverviewSection({ courses }: { courses: Course[] }) {
     <section className="py-20 lg:py-28 bg-background">
       <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
         <ScrollReveal>
-          <div className="flex items-center gap-4 mb-12">
+          <div className="flex items-center gap-4 mb-6">
             <div className="h-px w-12 bg-primary" />
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               Our Programs
             </span>
           </div>
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.05] mb-12">
+            Explore Our Courses
+          </h2>
         </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">

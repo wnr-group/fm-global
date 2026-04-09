@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Poppins, Inter } from "next/font/google";
 import { SplashProvider } from "@/components/providers/splash-provider";
 import { ServiceWorkerProvider } from "@/components/providers/service-worker-provider";
 import "./globals.css";
+
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-WGPMRWCJ";
 
 // Brand typography: Poppins for headings (strong, modern, clean)
 const poppins = Poppins({
@@ -21,9 +24,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "FM Global Careers | Building Global Oil & Gas Careers",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://fmglobalcareers.com"
+  ),
+  title: {
+    default: "FM Global Careers | Oil & Gas Training & Gulf Placement",
+    template: "%s | FM Global Careers",
+  },
   description:
-    "FM Global Careers - Your pathway to international careers in Oil & Gas. Industry-focused training through FM Institute and global placement through FM International. Trusted by 500+ professionals across India and the Gulf region.",
+    "Industry-focused Oil & Gas training and direct Gulf job placement. 500+ professionals placed across UAE, Qatar, Saudi Arabia, Kuwait.",
   keywords: [
     "oil and gas training",
     "gulf job placement",
@@ -43,11 +52,54 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "FM Global Careers | Building Global Oil & Gas Careers",
+    title: "FM Global Careers | Oil & Gas Training & Gulf Placement",
     description:
-      "Your gateway to international careers in Oil & Gas. Training and placement for Gulf countries.",
+      "Industry-focused Oil & Gas training and direct Gulf job placement across UAE, Qatar, Saudi Arabia, Kuwait.",
     type: "website",
+    siteName: "FM Global Careers",
   },
+  twitter: {
+    card: "summary_large_image",
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "FM Global Careers",
+  url: "https://fmglobalcareers.com",
+  logo: "https://fmglobalcareers.com/apple-touch-icon.png",
+  description:
+    "Industry-focused Oil & Gas training and direct Gulf job placement.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "2/17, Pannaivilai Street",
+    addressLocality: "Thovalai",
+    addressRegion: "Tamil Nadu",
+    postalCode: "629301",
+    addressCountry: "IN",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+91-8807026768",
+      contactType: "training enquiries",
+      email: "fminstitute24@gmail.com",
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: "+91-7418912404",
+      contactType: "placement enquiries",
+      email: "fminternational.jobs@gmail.com",
+    },
+  ],
+  sameAs: [
+    "https://www.instagram.com/fminstitute_india/",
+    "https://www.linkedin.com/company/fm-institute-%E2%80%93-oil-gas-training-centre/",
+  ],
 };
 
 export default function RootLayout({
@@ -57,9 +109,36 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          id="gtm-head"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
       >
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <ServiceWorkerProvider>
           <SplashProvider>{children}</SplashProvider>
         </ServiceWorkerProvider>

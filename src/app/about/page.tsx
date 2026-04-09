@@ -46,7 +46,7 @@ export default function AboutPage() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/About-Hero.png')",
+            backgroundImage: "url('/About-Hero.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -75,7 +75,7 @@ export default function AboutPage() {
               >
                 <Image
                   src="/apple-touch-icon.png"
-                  alt="FM Global Careers"
+                  alt="FM Global Careers logo"
                   width={56}
                   height={56}
                   className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"

@@ -88,7 +88,7 @@ useEffect(() => {
         <div className="absolute inset-0">
           <Image
             src="/contact/contact-banner.png"  
-            alt="FM Global Institute"
+            alt="Oil and gas professionals at work — contact FM Global Careers"
             fill
             priority
             className="object-cover"
@@ -104,7 +104,7 @@ useEffect(() => {
               <Link href="/" className="flex items-center gap-3 group">
                 <Image
                 src="/apple-touch-icon.png"
-                alt="FM Global Careers"
+                alt="FM Global Careers logo"
                 width={56}
                 height={56}
                 className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
@@ -214,9 +214,9 @@ useEffect(() => {
                 Get In Touch
               </span>
             </div>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-white leading-[0.95] tracking-tight mb-6">
+            <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl text-white leading-[0.95] tracking-tight mb-6">
               Contact Us
-            </h1>
+            </h2>
             <p className="text-white/70 text-lg sm:text-xl max-w-lg leading-relaxed">
               Whether you have a training enquiry or a placement question, our team is ready
               to help you take the next step in your career.
@@ -628,8 +628,8 @@ useEffect(() => {
       <div className="sm:col-span-2 lg:col-span-1">
         <Link href="/" className="inline-flex items-center gap-3 mb-5 group">
           <Image
-            src="/Brand-Logo.png"
-            alt="FM Global Careers"
+            src="/Brand-Logo.webp"
+            alt="FM Global Careers logo"
             width={56}
             height={56}
             className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
