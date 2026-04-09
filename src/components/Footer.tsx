@@ -159,7 +159,8 @@ export function Footer() {
             &copy; {new Date().getFullYear()} FM Global Careers. All rights reserved.
           </p>
           <p className="text-xs text-background/40">
-            Building Global Oil &amp; Gas Careers
+            Powered by{" "}
+            <span className="text-background/60 font-medium">WnR Groups</span>
           </p>
         </div>
       </div>
