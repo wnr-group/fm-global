@@ -121,36 +121,47 @@ export interface Database {
         Relationships: []
       }
 
-      // ✅ UNCHANGED — keep as is
       enquiries: {
         Row: {
           id: string
+          type: 'contact' | 'partner'
           name: string
+          company: string | null
           email: string
           phone: string | null
+          country: string | null
+          sector: string | null
+          program: string | null
           message: string | null
-          source: string
-          status: 'new' | 'contacted' | 'closed'
+          read: boolean
           created_at: string
         }
         Insert: {
           id?: string
+          type: 'contact' | 'partner'
           name: string
+          company?: string | null
           email: string
           phone?: string | null
+          country?: string | null
+          sector?: string | null
+          program?: string | null
           message?: string | null
-          source: string
-          status?: 'new' | 'contacted' | 'closed'
+          read?: boolean
           created_at?: string
         }
         Update: {
           id?: string
+          type?: 'contact' | 'partner'
           name?: string
+          company?: string | null
           email?: string
           phone?: string | null
+          country?: string | null
+          sector?: string | null
+          program?: string | null
           message?: string | null
-          source?: string
-          status?: 'new' | 'contacted' | 'closed'
+          read?: boolean
           created_at?: string
         }
         Relationships: []
