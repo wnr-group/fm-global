@@ -71,7 +71,7 @@ export default async function Image() {
             lineHeight: 1.5,
           }}
         >
-          Industry-focused training and international placement across India and the Gulf region.
+          Industry-focused training and international placement across global markets.
         </p>
       </div>
     ),

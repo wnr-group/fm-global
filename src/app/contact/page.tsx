@@ -307,7 +307,7 @@ useEffect(() => {
               </span>
               <h2 className="font-display text-2xl lg:text-3xl text-white mb-2">FM International</h2>
               <p className="text-white/70 text-sm mb-8 leading-relaxed">
-                Enquiries about Gulf job placement, manpower solutions, and career opportunities.
+                Enquiries about Global job placement, manpower solutions, and career opportunities.
               </p>
 
               <ul className="space-y-5">
@@ -609,7 +609,7 @@ useEffect(() => {
               Ready to start?
             </p>
             <h2 className="font-display text-2xl sm:text-3xl text-white leading-tight">
-              Take the first step towards your Gulf career.
+              Take the first step towards your Global career.
             </h2>
           </div>
           <div className="flex gap-4 flex-shrink-0">

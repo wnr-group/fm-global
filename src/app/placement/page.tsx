@@ -246,7 +246,7 @@ export default async function PlacementPage() {
                   className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-sm group"
                 >
                   <Image
-                    src="/logo-fm-international.png"
+                    src="/logo-fm-international-v1.png"
                     alt="FM International"
                     width={56}
                     height={56}

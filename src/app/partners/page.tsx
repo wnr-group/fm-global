@@ -60,7 +60,7 @@ const benefits = [
     icon: Globe2,
     title: "Global Reach, Local Knowledge",
     description:
-      "We handle visa processing, mobilization, document legalization, and onboarding logistics — from India to your project site anywhere in the Gulf.",
+      "We handle visa processing, mobilization, document legalization, and onboarding logistics — from India to your project site anywhere in the Global.",
     size: "large",
     accent: "",
   },
@@ -164,7 +164,7 @@ export default function PartnersPage() {
                 className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded-sm group"
               >
                 <Image
-                  src="/logo-fm-international.png"
+                  src="/logo-fm-international-v1.png"
                   alt="FM International"
                   width={56}
                   height={56}
@@ -261,7 +261,7 @@ export default function PartnersPage() {
                 >
                   Access a verified pipeline of Oil & Gas professionals — engineers,
                   technicians, safety officers — ready to deploy to your projects
-                  across the Gulf and beyond.
+                  across the Global Overseas markets.
                 </p>
 
                 <div
@@ -297,7 +297,7 @@ export default function PartnersPage() {
                   {
                     value: "15+",
                     label: "Active Partners",
-                    sub: "Across Gulf & India",
+                    sub: "Across Worldwide",
                   },
                   {
                     value: "500+",
@@ -516,7 +516,7 @@ export default function PartnersPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       We handle visa processing, document legalization, medical
                       clearances, and mobilization logistics — from our base in Tamil
-                      Nadu to your project site anywhere in the Gulf or beyond.
+                      Nadu to your project site across worldwide.
                     </p>
                   </div>
 
