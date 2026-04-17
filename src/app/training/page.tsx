@@ -378,13 +378,13 @@ function HeroSection() {
             >
               <div>
                 <dd className="font-display text-4xl sm:text-5xl text-white mb-1">
-                  <AnimatedCounter value={500} suffix="+" />
+                  <AnimatedCounter value={2000} suffix="+" />
                 </dd>
                 <dt className="text-sm text-white/70 font-medium">Trained</dt>
               </div>
               <div>
                 <dd className="font-display text-4xl sm:text-5xl text-white mb-1">
-                  <AnimatedCounter value={500} suffix="+" />
+                  <AnimatedCounter value={3000} suffix="+" />
                 </dd>
                 <dt className="text-sm text-white/70 font-medium">Placements</dt>
               </div>
@@ -899,13 +899,13 @@ function CareerDestinationsSection() {
             <div className="grid sm:grid-cols-3 gap-8 text-center">
               <div>
                 <dd className="font-display text-4xl lg:text-5xl text-white mb-2">
-                  <AnimatedCounter value={500} suffix="+" />
+                  <AnimatedCounter value={2000} suffix="+" />
                 </dd>
                 <dt className="text-sm text-white/70">Students Trained</dt>
               </div>
               <div>
                 <dd className="font-display text-4xl lg:text-5xl text-white mb-2">
-                  <AnimatedCounter value={500} suffix="+" />
+                  <AnimatedCounter value={3000} suffix="+" />
                 </dd>
                 <dt className="text-sm text-white/70">Placements Supported</dt>
               </div>
@@ -949,7 +949,7 @@ function CTASection() {
             Ready to Build Your Global Career?
           </h2>
           <p className="text-lg text-white/75 mb-10 max-w-lg mx-auto">
-            Join 500+ professionals who transformed their careers with FM Institute.
+            Join 2000+ professionals who transformed their careers with FM Institute.
           </p>
 
           <Link href="/contact">

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | FM Global Careers",
   },
   description:
-    "Industry-focused Oil & Gas training and direct Global job placement. 500+ professionals placed across UAE, Qatar, Saudi Arabia, Kuwait.",
+    "Industry-focused Oil & Gas training and direct Global job placement. 3000+ professionals placed across UAE, Qatar, Saudi Arabia, Kuwait.",
   keywords: [
     "oil and gas training",
     "global job placement",

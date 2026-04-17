@@ -251,7 +251,7 @@ export default function AboutPage() {
             <div className="max-w-7xl mx-auto">
               <dl className="grid grid-cols-3 divide-x divide-white/10">
                 {[
-                  { value: "500+", label: "Placed" },
+                  { value: "3000+", label: "Placed" },
                   { value: "15+", label: "Partners" },
                   { value: "95%", label: "Success" },
                 ].map((stat) => (

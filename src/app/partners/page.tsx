@@ -300,7 +300,7 @@ export default function PartnersPage() {
                     sub: "Across Worldwide",
                   },
                   {
-                    value: "500+",
+                    value: "3000+",
                     label: "Successful Placements",
                     sub: "Across all sectors",
                   },
@@ -312,7 +312,7 @@ export default function PartnersPage() {
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="flex items-center gap-8 py-6 border-b border-white/10 last:border-0"
+                    className="flex items-center gap-15 py-6 border-b border-white/10 last:border-0"
                   >
                     <span className="font-display text-5xl text-white leading-none w-28 shrink-0">
                       {stat.value}

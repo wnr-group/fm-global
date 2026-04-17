@@ -167,7 +167,7 @@ export default function Home() {
                 >
                   <div>
                     <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
-                      <AnimatedCounter value={500} suffix="+" />
+                      <AnimatedCounter value={3000} suffix="+" />
                     </dd>
                     <dt className="text-xs sm:text-sm text-white/80 font-medium">
                       Students Placed

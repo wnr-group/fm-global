@@ -357,7 +357,7 @@ export default async function PlacementPage() {
                     </div>
                     <div>
                       <dd className="font-display text-2xl sm:text-3xl text-foreground mb-1">
-                        <AnimatedCounter value={500} suffix="" />
+                        <AnimatedCounter value={3000} suffix="" />
                         <span className="text-primary">+</span>
                       </dd>
                       <dt className="text-xs text-muted-foreground uppercase tracking-wider">

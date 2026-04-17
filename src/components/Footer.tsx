@@ -108,50 +108,76 @@ export function Footer() {
 
           {/* Social Media */}
           <div>
-            <h3 className="font-display text-background text-sm mb-4">Follow Us</h3>
-            <div className="space-y-3 text-sm text-background/70">
-              <a
-                href="https://www.instagram.com/fminstitute_india/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-background transition-colors"
-              >
-                <span className="text-background font-medium w-20 shrink-0">Instagram</span>
-                <span className="text-background/40">·</span>
-                <span>@fminstitute_india</span>
-              </a>
-              <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-background transition-colors"
-              >
-                <span className="text-background font-medium w-20 shrink-0">Facebook</span>
-                <span className="text-background/40">·</span>
-                <span>FM Institute | Thovalai</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/company/fm-institute-%E2%80%93-oil-gas-training-centre/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-background transition-colors"
-              >
-                <span className="text-background font-medium w-20 shrink-0">LinkedIn</span>
-                <span className="text-background/40">·</span>
-                <span>FM Institute</span>
-              </a>
-              <a
-                href="https://www.youtube.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-background transition-colors"
-              >
-                <span className="text-background font-medium w-20 shrink-0">YouTube</span>
-                <span className="text-background/40">·</span>
-                <span>FM Global Career</span>
-              </a>
-            </div>
-          </div>
+  <h3 className="font-display text-background text-sm mb-4">Follow Us</h3>
+  
+  {/* FM Institute */}
+  <h4 className="text-background font-semibold mt-2">FM Institute</h4>
+  <div className="space-y-3 text-sm text-background/70">
+    <a href="https://www.instagram.com/fminstitute_india/" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="flex items-center gap-2 hover:text-background transition-colors">
+      <span className="text-background font-medium w-20 shrink-0">Instagram</span>
+      <span className="text-background/40">·</span>
+      <span>@fminstitute_india</span>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61581995215764" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="flex items-center gap-2 hover:text-background transition-colors">
+      <span className="text-background font-medium w-20 shrink-0">Facebook</span>
+      <span className="text-background/40">·</span>
+      <span>FM Institute</span>
+    </a>
+    <a href="https://www.linkedin.com/company/fm-institute-%E2%80%93-oil-gas-training-centre/" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="flex items-center gap-2 hover:text-background transition-colors">
+      <span className="text-background font-medium w-20 shrink-0">LinkedIn</span>
+      <span className="text-background/40">·</span>
+      <span>FM Institute</span>
+    </a>
+    <a href="https://www.youtube.com/@fmglobalcareers" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="flex items-center gap-2 hover:text-background transition-colors">
+      <span className="text-background font-medium w-20 shrink-0">YouTube</span>
+      <span className="text-background/40">·</span>
+      <span>FM Global Career</span>
+    </a>
+  </div>
+
+  {/* FM International Placement Services */}
+  <h4 className="text-background font-semibold mt-4">FM International Placement Services</h4>
+  <div className="space-y-3 text-sm text-background/70">
+    <a href="https://www.instagram.com/fminternational_/" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="flex items-center gap-2 hover:text-background transition-colors">
+      <span className="text-background font-medium w-20 shrink-0">Instagram</span>
+      <span className="text-background/40">·</span>
+      <span>@fminternational_</span>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61579676398980" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="flex items-center gap-2 hover:text-background transition-colors">
+      <span className="text-background font-medium w-20 shrink-0">Facebook</span>
+      <span className="text-background/40">·</span>
+      <span>FM International Placement Services</span>
+    </a>
+    <a href="https://www.linkedin.com/company/fm-international-placement-services/" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="flex items-center gap-2 hover:text-background transition-colors">
+      <span className="text-background font-medium w-20 shrink-0">LinkedIn</span>
+      <span className="text-background/40">·</span>
+      <span>FM International Placement Services</span>
+    </a>
+  </div>
+</div>
+
+
         </div>
 
         <div className="border-t border-background/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
