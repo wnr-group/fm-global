@@ -42,3 +42,18 @@ export async function getJobListingById(
     return { data: null, error: 'Job listing not found' };
   }
 }
+
+export async function getPlacementCategories() {
+  const supabase = await createClient();
+  
+  const { data, error } = await supabase
+    .from('placement_categories')
+    .select('*')
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
+  return data;
+}
