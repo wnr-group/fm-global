@@ -32,7 +32,7 @@ export function TestimonialsSection() {
 
   const selectVideo = useCallback(
     (index: number) => {
-      if (index === activeIndex && !playing) return;
+      if (index === activeIndex && playing) return;
       const video = featuredRef.current;
       if (video) {
         video.pause();
@@ -169,6 +169,7 @@ export function TestimonialsSection() {
                 muted={muted}
                 preload="none"
                 className="absolute inset-0 w-full h-full object-cover"
+                aria-label={`Testimonial video ${activeIndex + 1} of ${testimonials.length}`}
                 onEnded={() => {
                   setPlaying(false);
                   setProgress(100);
@@ -184,7 +185,7 @@ export function TestimonialsSection() {
                 }`}
               >
                 <span
-                  className="w-16 h-16 sm:w-18 sm:h-18 rounded-full flex items-center justify-center border border-white/20 transition-transform duration-300 group-hover:scale-110"
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center border border-white/20 transition-transform duration-300 group-hover:scale-110"
                   style={{ backgroundColor: "oklch(0.15 0.03 240 / 0.6)" }}
                 >
                   {playing ? (
@@ -279,7 +280,7 @@ export function TestimonialsSection() {
                   onClick={() => selectVideo(index)}
                   aria-label={`Watch testimonial ${index + 1} of ${testimonials.length}`}
                   aria-current={isActive ? "true" : undefined}
-                  className="relative aspect-[9/16] rounded-xl overflow-hidden group/thumb focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  className={`relative aspect-[9/16] rounded-xl overflow-hidden group/thumb focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${!isActive ? "hover:opacity-75" : ""}`}
                   style={{
                     transitionProperty: "opacity, transform, box-shadow",
                     transitionDuration: "300ms",
@@ -289,18 +290,6 @@ export function TestimonialsSection() {
                     boxShadow: isActive
                       ? "0 0 0 2px oklch(0.96 0.005 240), 0 8px 24px -4px oklch(0 0 0 / 0.3)"
                       : "none",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.opacity = "0.75";
-                      e.currentTarget.style.transform = "scale(1.01)";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.opacity = "0.45";
-                      e.currentTarget.style.transform = "scale(1)";
-                    }
                   }}
                 >
                   {/* Poster image */}
