@@ -24,6 +24,7 @@ import Image from "next/image";
 import { Footer } from "@/components/Footer";
 import { CurrentOpenings } from "@/components/placement/CurrentOpenings";
 import { FloatingFlags } from "@/components/placement/FloatingFlags";
+import { TestimonialsSection } from "@/components/placement/TestimonialsSection";
 import { getActiveJobListings } from "./actions";
 import * as LucideIcons from "lucide-react";
 import { getPlacementCategories } from "./actions";
@@ -77,6 +78,38 @@ const regions = [
     cities: ["Muscat", "Sohar", "Sur"],
     industries: ["Oil & Gas", "Petrochemical"],
     jobs: "70+",
+  },
+  {
+    id: "europe",
+    country: "Europe",
+    shortName: "Europe",
+    cities: ["Germany", "Croatia", "Greece"],
+    industries: ["Oil & Gas", "Petrochemical", "Industrial"],
+    jobs: "100+",
+  },
+  {
+    id: "israel",
+    country: "Israel",
+    shortName: "Israel",
+    cities: ["Tel Aviv", "Haifa"],
+    industries: ["Oil & Gas", "Petrochemical"],
+    jobs: "40+",
+  },
+  {
+    id: "africa",
+    country: "Africa",
+    shortName: "Africa",
+    cities: ["Lagos", "Johannesburg", "Cairo"],
+    industries: ["Oil & Gas", "Mining", "Refinery"],
+    jobs: "60+",
+  },
+  {
+    id: "russia",
+    country: "Russia",
+    shortName: "Russia",
+    cities: ["Moscow", "St. Petersburg"],
+    industries: ["Oil & Gas", "Petrochemical"],
+    jobs: "50+",
   },
 ];
 
@@ -525,6 +558,9 @@ export default async function PlacementPage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <TestimonialsSection />
 
       {/* CTA Section */}
       <section

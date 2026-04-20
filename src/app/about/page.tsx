@@ -377,7 +377,7 @@ export default function AboutPage() {
                         FM Institute
                       </h3>
                       <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
-                        Industry-focused training arm equipping candidates with technical certifications and soft skills for international environments.
+                        FM Institute is not just another oil &amp; gas institute. It is a mobile-first, Tamil-based, affordable practical learning platform that helps freshers and working people enter the oil &amp; gas industry without attending physical classes.
                       </p>
                     </div>
 

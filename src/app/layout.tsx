@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | FM Global Careers",
   },
   description:
-    "Industry-focused Oil & Gas training and direct Global job placement. 3000+ professionals placed across UAE, Qatar, Saudi Arabia, Kuwait.",
+    "Industry-focused Oil & Gas training and direct Global job placement. 3000+ professionals placed across Gulf, Europe, Israel, Africa, Russia & India.",
   keywords: [
     "oil and gas training",
     "global job placement",
@@ -47,6 +47,10 @@ export const metadata: Metadata = {
     "UAE careers",
     "Qatar employment",
     "Saudi Arabia oil jobs",
+    "Europe oil gas jobs",
+    "Israel placement",
+    "Africa oil gas careers",
+    "Russia oil gas jobs",
   ],
   icons: {
     icon: "/favicon.ico",
@@ -55,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "FM Global Careers | Oil & Gas Training & Global Placement",
     description:
-      "Industry-focused Oil & Gas training and direct Global job placement across UAE, Qatar, Saudi Arabia, Kuwait.",
+      "Industry-focused Oil & Gas training and direct Global job placement across Gulf, Europe, Israel, Africa, Russia & India.",
     type: "website",
     siteName: "FM Global Careers",
   },

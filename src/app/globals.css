@@ -771,3 +771,12 @@ p {
 .ease-out-expo {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Hide scrollbar while preserving scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

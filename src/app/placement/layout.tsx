@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Global Job Placement — UAE, Qatar, Saudi, Kuwait Careers",
+  title: "Global Job Placement — Gulf, Europe, Israel, Africa & More",
   description:
-    "Direct Oil & Gas job placement in UAE, Qatar, Saudi Arabia, Kuwait, Bahrain & Oman. Browse current openings and apply through FM International.",
+    "Direct Oil & Gas job placement worldwide — Gulf, Europe, Israel, Africa, Russia & India. Browse current openings and apply through FM International.",
   alternates: { canonical: "/placement" },
   openGraph: {
     title: "Global Job Placement — FM International",

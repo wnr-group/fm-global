@@ -122,6 +122,10 @@ const mechanicalTechnician: Course = {
       { name: "UAE", flag: "🇦🇪", companies: "ADNOC, Dubai" },
       { name: "Qatar", flag: "🇶🇦", companies: "Qatar Gas" },
       { name: "Saudi Arabia", flag: "🇸🇦", companies: "Aramco Projects" },
+      { name: "Europe", flag: "🇪🇺", companies: "Petrofac, Wood Group" },
+      { name: "Israel", flag: "🇮🇱", companies: "Oil Refineries Ltd" },
+      { name: "Russia", flag: "🇷🇺", companies: "Gazprom, Lukoil" },
+      { name: "Africa", flag: "🇿🇦", companies: "Sasol, NNPC" },
     ],
   },
   whoCanJoin: [
@@ -185,6 +189,10 @@ const permitReceiver: Course = {
       { name: "UAE", flag: "🇦🇪", companies: "ADNOC, Dubai" },
       { name: "Qatar", flag: "🇶🇦", companies: "Qatar Gas, RasGas" },
       { name: "Saudi Arabia", flag: "🇸🇦", companies: "Aramco Projects" },
+      { name: "Europe", flag: "🇪🇺", companies: "Petrofac, Wood Group" },
+      { name: "Israel", flag: "🇮🇱", companies: "Oil Refineries Ltd" },
+      { name: "Russia", flag: "🇷🇺", companies: "Gazprom, Lukoil" },
+      { name: "Africa", flag: "🇿🇦", companies: "Sasol, NNPC" },
     ],
   },
   certification: [
@@ -223,11 +231,15 @@ const differentiators = [
   "Global interview preparation included",
 ];
 
-const gulfCountries = [
+const placementCountries = [
   { name: "Kuwait", flag: "🇰🇼", companies: "KNPC Projects" },
   { name: "UAE", flag: "🇦🇪", companies: "ADNOC, Dubai" },
   { name: "Qatar", flag: "🇶🇦", companies: "Qatar Gas, RasGas" },
   { name: "Saudi Arabia", flag: "🇸🇦", companies: "Aramco Projects" },
+  { name: "Europe", flag: "🇪🇺", companies: "Petrofac, Wood Group" },
+  { name: "Israel", flag: "🇮🇱", companies: "Oil Refineries Ltd" },
+  { name: "Russia", flag: "🇷🇺", companies: "Gazprom, Lukoil" },
+  { name: "Africa", flag: "🇿🇦", companies: "Sasol, NNPC" },
 ];
 
 // =============================================================================
@@ -368,7 +380,7 @@ function HeroSection() {
               className="text-lg sm:text-xl text-white/85 max-w-lg leading-relaxed mb-10 animate-fade-in-up"
               style={{ animationDelay: "200ms" }}
             >
-              Industry-focused training with direct placement to Kuwait, UAE, Qatar & Saudi Arabia.
+              Industry-focused training with direct placement worldwide — Gulf, Europe, Israel, Africa, Russia & India.
             </p>
 
             {/* Stats */}
@@ -879,7 +891,7 @@ function CareerDestinationsSection() {
 
               {/* Countries */}
               <div className="grid grid-cols-2 gap-6 mb-8">
-                {gulfCountries.map((country, i) => (
+                {placementCountries.map((country, i) => (
                   <div key={i}>
                     <div className="flex items-center gap-3 mb-1">
                       <span className="text-2xl">{country.flag}</span>

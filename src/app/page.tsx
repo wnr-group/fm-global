@@ -241,9 +241,7 @@ export default function Home() {
                     <span className="text-primary">opportunities worldwide</span>
                   </h2>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                    Our placement network spans across Global Overseas markets,
-                    connecting trained professionals with leading employers in UAE,
-                    Qatar, Saudi Arabia, Kuwait, Bahrain, and Oman.
+                    Our placement network spans the globe — connecting trained professionals with leading employers across the Gulf, Europe, Israel, Africa, Russia, and India.
                   </p>
                   <TrackedCTA label="View Placement Network" page="home_globe">
                     <Link href="/placement" className="group">
@@ -416,7 +414,7 @@ export default function Home() {
                 {
                   number: "02",
                   title: "Global Network",
-                  description: "Partnerships with companies in UAE, Qatar, Saudi Arabia, Kuwait, Bahrain, and Oman.",
+                  description: "Partnerships with employers across the Gulf, Europe, Israel, Africa, Russia, and India.",
                 },
                 {
                   number: "03",

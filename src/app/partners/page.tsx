@@ -498,10 +498,15 @@ export default function PartnersPage() {
                     </p>
                   </div>
 
-                  <span className="inline-flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-3 transition-all mt-6">
+                  <a
+                    href="/sample-placement-report.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-3 transition-all mt-6"
+                  >
                     View sample report
                     <ArrowUpRight className="w-4 h-4" />
-                  </span>
+                  </a>
                 </div>
               </ScrollReveal>
 
@@ -521,7 +526,7 @@ export default function PartnersPage() {
                   </div>
 
                   {/* Mini regional grid */}
-                  <div className="grid grid-cols-3 gap-3 w-full md:w-52 shrink-0">
+                  <div className="grid grid-cols-5 gap-3 w-full md:w-96 shrink-0">
                     {[
                       { code: "🇦🇪", name: "UAE" },
                       { code: "🇶🇦", name: "Qatar" },
@@ -529,6 +534,10 @@ export default function PartnersPage() {
                       { code: "🇰🇼", name: "Kuwait" },
                       { code: "🇧🇭", name: "Bahrain" },
                       { code: "🇴🇲", name: "Oman" },
+                      { code: "🇪🇺", name: "Europe" },
+                      { code: "🇮🇱", name: "Israel" },
+                      { code: "🇿🇦", name: "Africa" },
+                      { code: "🇷🇺", name: "Russia" },
                     ].map((r) => (
                       <div
                         key={r.name}
