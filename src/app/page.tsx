@@ -8,6 +8,7 @@ import { ArrowRight, ArrowUpRight, GraduationCap, Globe2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Footer } from "@/components/Footer";
+import { TestimonialsSection } from "@/components/placement/TestimonialsSection";
 
 export default function Home() {
   return (
@@ -512,6 +513,8 @@ export default function Home() {
             </ScrollReveal>
           </div>
         </section>
+
+        <TestimonialsSection />
 
         <Footer />
     </main>
