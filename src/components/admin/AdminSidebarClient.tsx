@@ -15,6 +15,7 @@ import {
   LogOut,
   Menu,
   X,
+  ListTree,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
@@ -42,6 +43,7 @@ export default function AdminSidebarClient({ unreadEnquiries }: AdminSidebarClie
     { label: "Students", href: "/admin/students", icon: Users },
     { label: "Job Listings", href: "/admin/jobs", icon: Briefcase },
     { label: "Enquiries", href: "/admin/enquiries", icon: Inbox, badge: unreadEnquiries > 0 ? unreadEnquiries : undefined },
+    { label: 'Placement Roles', href: '/admin/placement', icon: ListTree }
   ];
 
   return (

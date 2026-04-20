@@ -132,7 +132,7 @@ export default function Home() {
                   style={{ animationDelay: "200ms" }}
                 >
                   Industry-focused training with direct placement to leading companies
-                  across India and the Gulf region.
+                  across Global Overseas markets.
                 </p>
 
                 {/* CTAs */}
@@ -167,7 +167,7 @@ export default function Home() {
                 >
                   <div>
                     <dd className="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
-                      <AnimatedCounter value={500} suffix="+" />
+                      <AnimatedCounter value={3000} suffix="+" />
                     </dd>
                     <dt className="text-xs sm:text-sm text-white/80 font-medium">
                       Students Placed
@@ -241,9 +241,7 @@ export default function Home() {
                     <span className="text-primary">opportunities worldwide</span>
                   </h2>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                    Our placement network spans across India and the Gulf region,
-                    connecting trained professionals with leading employers in UAE,
-                    Qatar, Saudi Arabia, Kuwait, Bahrain, and Oman.
+                    Our placement network spans the globe — connecting trained professionals with leading employers across the Gulf, Europe, Israel, Africa, Russia, and India.
                   </p>
                   <TrackedCTA label="View Placement Network" page="home_globe">
                     <Link href="/placement" className="group">
@@ -349,7 +347,7 @@ export default function Home() {
                         FM International
                       </h3>
                       <p className="text-primary-foreground/75 text-base sm:text-lg leading-relaxed max-w-md">
-                        Direct placement in Gulf countries and across India. Connecting trained
+                        Direct placement in Global Overseas markets. Connecting trained
                         professionals with leading employers.
                       </p>
                     </div>
@@ -411,12 +409,12 @@ export default function Home() {
                 {
                   number: "01",
                   title: "Industry Certified",
-                  description: "Certifications recognized by employers across India and the Gulf region.",
+                  description: "Certifications recognized by employers across Global Overseas markets.",
                 },
                 {
                   number: "02",
                   title: "Global Network",
-                  description: "Partnerships with companies in UAE, Qatar, Saudi Arabia, Kuwait, Bahrain, and Oman.",
+                  description: "Partnerships with employers across the Gulf, Europe, Israel, Africa, Russia, and India.",
                 },
                 {
                   number: "03",

@@ -307,7 +307,7 @@ useEffect(() => {
               </span>
               <h2 className="font-display text-2xl lg:text-3xl text-white mb-2">FM International</h2>
               <p className="text-white/70 text-sm mb-8 leading-relaxed">
-                Enquiries about Gulf job placement, manpower solutions, and career opportunities.
+                Enquiries about Global job placement, manpower solutions, and career opportunities.
               </p>
 
               <ul className="space-y-5">
@@ -506,7 +506,7 @@ useEffect(() => {
   <div className="mt-10 p-6 sm:p-8 rounded-xl bg-[#0b1b2b] text-white shadow-lg">
 
     <h3 className="font-display text-lg mb-3">
-      Direct Registrar Access
+      FM Institute Email
     </h3>
 
     <p className="text-sm text-white/70 mb-4">
@@ -514,10 +514,10 @@ useEffect(() => {
     </p>
 
     <a
-      href="mailto:registrar@fmglobal.edu"
+      href="mailto:fminstitute24@gmail.com"
       className="inline-block text-red-400 text-sm tracking-wide hover:underline"
     >
-      REGISTRAR@FMGLOBAL.EDU →
+      FMINSTITUTE24@GMAIL.COM →
     </a>
 
   </div>
@@ -609,7 +609,7 @@ useEffect(() => {
               Ready to start?
             </p>
             <h2 className="font-display text-2xl sm:text-3xl text-white leading-tight">
-              Take the first step towards your Gulf career.
+              Take the first step towards your Global career.
             </h2>
           </div>
           <div className="flex gap-4 flex-shrink-0">
@@ -707,7 +707,7 @@ useEffect(() => {
 
     {/* Facebook */}
     <a
-      href="https://www.facebook.com/"
+      href="https://www.facebook.com/fminstitute"
       target="_blank"
       rel="noopener noreferrer"
       className="block hover:text-background transition"
@@ -740,7 +740,7 @@ useEffect(() => {
 
     {/* YouTube */}
     <a
-      href="https://www.youtube.com/"
+      href="https://www.youtube.com/@fmglobalcareers"
       target="_blank"
       rel="noopener noreferrer"
       className="block hover:text-background transition"
@@ -750,6 +750,7 @@ useEffect(() => {
     </a>
 
   </div>
+  
 </div>
 
     </div>

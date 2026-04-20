@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact Us — Training & Placement Enquiries",
   description:
-    "Get in touch with FM Institute for training enquiries or FM International for Gulf placement. Visit us in Thovalai, Tamil Nadu.",
+    "Get in touch with FM Institute for training enquiries or FM International for Global placement. Visit us in Thovalai, Tamil Nadu.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact FM Global Careers",
     description:
-      "Reach FM Institute for training or FM International for Gulf job placement enquiries.",
+      "Reach FM Institute for training or FM International for Global job placement enquiries.",
   },
 };
 

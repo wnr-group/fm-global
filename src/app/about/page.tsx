@@ -251,7 +251,7 @@ export default function AboutPage() {
             <div className="max-w-7xl mx-auto">
               <dl className="grid grid-cols-3 divide-x divide-white/10">
                 {[
-                  { value: "500+", label: "Placed" },
+                  { value: "3000+", label: "Placed" },
                   { value: "15+", label: "Partners" },
                   { value: "95%", label: "Success" },
                 ].map((stat) => (
@@ -377,7 +377,7 @@ export default function AboutPage() {
                         FM Institute
                       </h3>
                       <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
-                        Industry-focused training arm equipping candidates with technical certifications and soft skills for international environments.
+                        FM Institute is not just another oil &amp; gas institute. It is a mobile-first, Tamil-based, affordable practical learning platform that helps freshers and working people enter the oil &amp; gas industry without attending physical classes.
                       </p>
                     </div>
 

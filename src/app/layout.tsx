@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "https://www.fmcareersglobal.com"
   ),
   title: {
-    default: "FM Global Careers | Oil & Gas Training & Gulf Placement",
+    default: "FM Global Careers | Oil & Gas Training & Global Placement",
     template: "%s | FM Global Careers",
   },
   description:
-    "Industry-focused Oil & Gas training and direct Gulf job placement. 500+ professionals placed across UAE, Qatar, Saudi Arabia, Kuwait.",
+    "Industry-focused Oil & Gas training and direct Global job placement. 3000+ professionals placed across Gulf, Europe, Israel, Africa, Russia & India.",
   keywords: [
     "oil and gas training",
-    "gulf job placement",
+    "global job placement",
     "FM Institute",
     "FM International",
     "refinery jobs",
@@ -47,15 +47,19 @@ export const metadata: Metadata = {
     "UAE careers",
     "Qatar employment",
     "Saudi Arabia oil jobs",
+    "Europe oil gas jobs",
+    "Israel placement",
+    "Africa oil gas careers",
+    "Russia oil gas jobs",
   ],
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "FM Global Careers | Oil & Gas Training & Gulf Placement",
+    title: "FM Global Careers | Oil & Gas Training & Global Placement",
     description:
-      "Industry-focused Oil & Gas training and direct Gulf job placement across UAE, Qatar, Saudi Arabia, Kuwait.",
+      "Industry-focused Oil & Gas training and direct Global job placement across Gulf, Europe, Israel, Africa, Russia & India.",
     type: "website",
     siteName: "FM Global Careers",
   },
@@ -77,7 +81,7 @@ const organizationJsonLd = {
   url: "https://www.fmcareersglobal.com",
   logo: "https://www.fmcareersglobal.com/apple-touch-icon.png",
   description:
-    "Industry-focused Oil & Gas training and direct Gulf job placement.",
+    "Industry-focused Oil & Gas training and direct Global job placement.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "2/17, Pannaivilai Street",

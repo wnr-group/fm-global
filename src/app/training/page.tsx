@@ -76,7 +76,7 @@ const mechanicalTechnician: Course = {
     "14 Modules – Complete Shutdown Training",
     "Online Learning + Weekly Live Sessions",
     "Beginner to Advanced (ITI / Diploma Friendly)",
-    "Gulf Standard Training (KNPC, ADNOC, Qatar Gas)",
+    "International Standard Training (KNPC, ADNOC, Qatar Gas)",
     "Placement Support Available",
     "Training Duration: 1 Month",
   ],
@@ -122,6 +122,10 @@ const mechanicalTechnician: Course = {
       { name: "UAE", flag: "🇦🇪", companies: "ADNOC, Dubai" },
       { name: "Qatar", flag: "🇶🇦", companies: "Qatar Gas" },
       { name: "Saudi Arabia", flag: "🇸🇦", companies: "Aramco Projects" },
+      { name: "Europe", flag: "🇪🇺", companies: "Petrofac, Wood Group" },
+      { name: "Israel", flag: "🇮🇱", companies: "Oil Refineries Ltd" },
+      { name: "Russia", flag: "🇷🇺", companies: "Gazprom, Lukoil" },
+      { name: "Africa", flag: "🇿🇦", companies: "Sasol, NNPC" },
     ],
   },
   whoCanJoin: [
@@ -138,12 +142,12 @@ const permitReceiver: Course = {
   number: "02",
   title: "Permit Receiver",
   tagline: "Learn PTW System, Safety Procedures & Real Shutdown Site Practices",
-  image: "/training/course-permit-receiver.webp",
+  image: "/training/course-permit-receiver.png",
   highlights: [
     "No Experience Required",
-    "Gulf Standard Training (KNPC, ADNOC, Qatar Gas)",
+    "International Standard Training (KNPC, ADNOC, Qatar Gas)",
     "100% Online Training",
-    "Gulf Shutdown Job Opportunities",
+    "Global Shutdown Job Opportunities",
     "Training Duration: 1 Month",
   ],
   moduleCount: 10,
@@ -185,6 +189,10 @@ const permitReceiver: Course = {
       { name: "UAE", flag: "🇦🇪", companies: "ADNOC, Dubai" },
       { name: "Qatar", flag: "🇶🇦", companies: "Qatar Gas, RasGas" },
       { name: "Saudi Arabia", flag: "🇸🇦", companies: "Aramco Projects" },
+      { name: "Europe", flag: "🇪🇺", companies: "Petrofac, Wood Group" },
+      { name: "Israel", flag: "🇮🇱", companies: "Oil Refineries Ltd" },
+      { name: "Russia", flag: "🇷🇺", companies: "Gazprom, Lukoil" },
+      { name: "Africa", flag: "🇿🇦", companies: "Sasol, NNPC" },
     ],
   },
   certification: [
@@ -201,7 +209,7 @@ const permitReceiver: Course = {
     "Diploma / Engineering Graduates",
     "ITI Candidates",
     "Freshers (0 Experience)",
-    "Gulf Job Seekers",
+    "Global Job Seekers",
   ],
 };
 
@@ -220,14 +228,18 @@ const differentiators = [
   "Industry-standard shutdown training",
   "Designed for freshers (step-by-step)",
   "Focus on job-ready skills (not theory)",
-  "Gulf interview preparation included",
+  "Global interview preparation included",
 ];
 
-const gulfCountries = [
+const placementCountries = [
   { name: "Kuwait", flag: "🇰🇼", companies: "KNPC Projects" },
   { name: "UAE", flag: "🇦🇪", companies: "ADNOC, Dubai" },
   { name: "Qatar", flag: "🇶🇦", companies: "Qatar Gas, RasGas" },
   { name: "Saudi Arabia", flag: "🇸🇦", companies: "Aramco Projects" },
+  { name: "Europe", flag: "🇪🇺", companies: "Petrofac, Wood Group" },
+  { name: "Israel", flag: "🇮🇱", companies: "Oil Refineries Ltd" },
+  { name: "Russia", flag: "🇷🇺", companies: "Gazprom, Lukoil" },
+  { name: "Africa", flag: "🇿🇦", companies: "Sasol, NNPC" },
 ];
 
 // =============================================================================
@@ -295,7 +307,7 @@ function HeroSection() {
               className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded-sm group"
             >
               <Image
-                src="/logo-fm-institute.png"
+                src="/logo-fm-institute-v1.png"
                 alt="FM Institute"
                 width={56}
                 height={56}
@@ -361,14 +373,14 @@ function HeroSection() {
               style={{ animationDelay: "100ms" }}
             >
               Become Job-Ready for{" "}
-              <span className="text-white">Gulf Shutdown Projects</span>
+              <span className="text-white">Global Shutdown Projects</span>
             </h1>
 
             <p
               className="text-lg sm:text-xl text-white/85 max-w-lg leading-relaxed mb-10 animate-fade-in-up"
               style={{ animationDelay: "200ms" }}
             >
-              Industry-focused training with direct placement to Kuwait, UAE, Qatar & Saudi Arabia.
+              Industry-focused training with direct placement worldwide — Gulf, Europe, Israel, Africa, Russia & India.
             </p>
 
             {/* Stats */}
@@ -378,13 +390,13 @@ function HeroSection() {
             >
               <div>
                 <dd className="font-display text-4xl sm:text-5xl text-white mb-1">
-                  <AnimatedCounter value={500} suffix="+" />
+                  <AnimatedCounter value={2000} suffix="+" />
                 </dd>
                 <dt className="text-sm text-white/70 font-medium">Trained</dt>
               </div>
               <div>
                 <dd className="font-display text-4xl sm:text-5xl text-white mb-1">
-                  <AnimatedCounter value={500} suffix="+" />
+                  <AnimatedCounter value={3000} suffix="+" />
                 </dd>
                 <dt className="text-sm text-white/70 font-medium">Placements</dt>
               </div>
@@ -805,7 +817,7 @@ function WhyChooseSection() {
             Why FM Institute
           </span>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] mb-12 max-w-2xl">
-            From Online Learning to Gulf Site Confidence
+            From Online Learning to Global Site Confidence
           </h2>
         </ScrollReveal>
 
@@ -874,12 +886,12 @@ function CareerDestinationsSection() {
                 Career Destinations
               </span>
               <h2 className="font-display text-4xl sm:text-5xl text-foreground leading-[1.05] mb-8">
-                Your Gateway to Gulf Opportunities
+                Your Gateway to Global Opportunities
               </h2>
 
               {/* Countries */}
               <div className="grid grid-cols-2 gap-6 mb-8">
-                {gulfCountries.map((country, i) => (
+                {placementCountries.map((country, i) => (
                   <div key={i}>
                     <div className="flex items-center gap-3 mb-1">
                       <span className="text-2xl">{country.flag}</span>
@@ -899,18 +911,18 @@ function CareerDestinationsSection() {
             <div className="grid sm:grid-cols-3 gap-8 text-center">
               <div>
                 <dd className="font-display text-4xl lg:text-5xl text-white mb-2">
-                  <AnimatedCounter value={500} suffix="+" />
+                  <AnimatedCounter value={2000} suffix="+" />
                 </dd>
                 <dt className="text-sm text-white/70">Students Trained</dt>
               </div>
               <div>
                 <dd className="font-display text-4xl lg:text-5xl text-white mb-2">
-                  <AnimatedCounter value={500} suffix="+" />
+                  <AnimatedCounter value={3000} suffix="+" />
                 </dd>
                 <dt className="text-sm text-white/70">Placements Supported</dt>
               </div>
               <div>
-                <dd className="font-display text-4xl lg:text-5xl text-white mb-2">Gulf</dd>
+                <dd className="font-display text-4xl lg:text-5xl text-white mb-2">Global</dd>
                 <dt className="text-sm text-white/70">Project Opportunities</dt>
               </div>
             </div>
@@ -946,10 +958,10 @@ function CTASection() {
             Start Your Journey
           </span>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] mb-6">
-            Ready to Build Your Gulf Career?
+            Ready to Build Your Global Career?
           </h2>
           <p className="text-lg text-white/75 mb-10 max-w-lg mx-auto">
-            Join 500+ professionals who transformed their careers with FM Institute.
+            Join 2000+ professionals who transformed their careers with FM Institute.
           </p>
 
           <Link href="/contact">

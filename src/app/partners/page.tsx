@@ -60,7 +60,7 @@ const benefits = [
     icon: Globe2,
     title: "Global Reach, Local Knowledge",
     description:
-      "We handle visa processing, mobilization, document legalization, and onboarding logistics — from India to your project site anywhere in the Gulf.",
+      "We handle visa processing, mobilization, document legalization, and onboarding logistics — from India to your project site anywhere in the Global.",
     size: "large",
     accent: "",
   },
@@ -164,7 +164,7 @@ export default function PartnersPage() {
                 className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded-sm group"
               >
                 <Image
-                  src="/logo-fm-international.png"
+                  src="/logo-fm-international-v1.png"
                   alt="FM International"
                   width={56}
                   height={56}
@@ -261,7 +261,7 @@ export default function PartnersPage() {
                 >
                   Access a verified pipeline of Oil & Gas professionals — engineers,
                   technicians, safety officers — ready to deploy to your projects
-                  across the Gulf and beyond.
+                  across the Global Overseas markets.
                 </p>
 
                 <div
@@ -297,10 +297,10 @@ export default function PartnersPage() {
                   {
                     value: "15+",
                     label: "Active Partners",
-                    sub: "Across Gulf & India",
+                    sub: "Across Worldwide",
                   },
                   {
-                    value: "500+",
+                    value: "3000+",
                     label: "Successful Placements",
                     sub: "Across all sectors",
                   },
@@ -312,7 +312,7 @@ export default function PartnersPage() {
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="flex items-center gap-8 py-6 border-b border-white/10 last:border-0"
+                    className="flex items-center gap-15 py-6 border-b border-white/10 last:border-0"
                   >
                     <span className="font-display text-5xl text-white leading-none w-28 shrink-0">
                       {stat.value}
@@ -498,10 +498,15 @@ export default function PartnersPage() {
                     </p>
                   </div>
 
-                  <span className="inline-flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-3 transition-all mt-6">
+                  <a
+                    href="/sample-placement-report.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-3 transition-all mt-6"
+                  >
                     View sample report
                     <ArrowUpRight className="w-4 h-4" />
-                  </span>
+                  </a>
                 </div>
               </ScrollReveal>
 
@@ -516,12 +521,12 @@ export default function PartnersPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       We handle visa processing, document legalization, medical
                       clearances, and mobilization logistics — from our base in Tamil
-                      Nadu to your project site anywhere in the Gulf or beyond.
+                      Nadu to your project site across worldwide.
                     </p>
                   </div>
 
                   {/* Mini regional grid */}
-                  <div className="grid grid-cols-3 gap-3 w-full md:w-52 shrink-0">
+                  <div className="grid grid-cols-5 gap-3 w-full md:w-96 shrink-0">
                     {[
                       { code: "🇦🇪", name: "UAE" },
                       { code: "🇶🇦", name: "Qatar" },
@@ -529,6 +534,10 @@ export default function PartnersPage() {
                       { code: "🇰🇼", name: "Kuwait" },
                       { code: "🇧🇭", name: "Bahrain" },
                       { code: "🇴🇲", name: "Oman" },
+                      { code: "🇪🇺", name: "Europe" },
+                      { code: "🇮🇱", name: "Israel" },
+                      { code: "🇿🇦", name: "Africa" },
+                      { code: "🇷🇺", name: "Russia" },
                     ].map((r) => (
                       <div
                         key={r.name}
