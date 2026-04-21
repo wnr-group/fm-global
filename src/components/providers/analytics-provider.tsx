@@ -7,6 +7,7 @@ import {
   trackContactClick,
   trackSocialClick,
   trackFileDownload,
+  trackMetaPageView,
 } from "@/lib/analytics";
 
 const MILESTONES = [25, 50, 75, 100];
@@ -24,9 +25,10 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const firedRef = useRef<Set<number>>(new Set());
 
-  // Reset milestones on route change
+  // Reset milestones on route change + fire Meta PageView
   useEffect(() => {
     firedRef.current = new Set();
+    trackMetaPageView();
   }, [pathname]);
 
   // Scroll depth tracking
