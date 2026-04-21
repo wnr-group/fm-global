@@ -32,6 +32,7 @@ export function trackFormSubmit(formName: string) {
 
 export function trackFormSuccess(formName: string) {
   push({ event: "form_success", form_name: formName });
+  trackMetaLead(formName);
 }
 
 export function trackFormError(formName: string, error?: string) {
@@ -44,6 +45,7 @@ export function trackFormError(formName: string, error?: string) {
 
 export function trackJobView(jobId: string, jobTitle: string, company: string) {
   push({ event: "job_view", job_id: jobId, job_title: jobTitle, company });
+  trackMetaViewContent(jobTitle, "job");
 }
 
 export function trackJobApply(
@@ -100,6 +102,9 @@ export function trackContactClick(
   page: string
 ) {
   push({ event: "contact_click", contact_type: type, contact_value: value, page });
+  if (type !== "email") {
+    trackMetaContact(type);
+  }
 }
 
 export function trackSocialClick(platform: string, url: string) {
@@ -128,6 +133,7 @@ export function trackScrollDepth(depth: number, page: string) {
 
 export function trackCourseClick(courseId: string, courseTitle: string) {
   push({ event: "course_click", course_id: courseId, course_title: courseTitle });
+  trackMetaViewContent(courseTitle, "course");
 }
 
 // ---------------------------------------------------------------------------
@@ -139,11 +145,37 @@ export function trackFileDownload(fileName: string, fileType: string) {
 }
 
 // ---------------------------------------------------------------------------
+// Meta Pixel
+// ---------------------------------------------------------------------------
+
+function pixel(event: string, data?: Record<string, unknown>) {
+  if (typeof window === "undefined" || !window.fbq) return;
+  window.fbq("track", event, data);
+}
+
+export function trackMetaPageView() {
+  pixel("PageView");
+}
+
+export function trackMetaLead(formName: string) {
+  pixel("Lead", { content_name: formName });
+}
+
+export function trackMetaViewContent(name: string, type: string) {
+  pixel("ViewContent", { content_name: name, content_type: type });
+}
+
+export function trackMetaContact(method: string) {
+  pixel("Contact", { contact_method: method });
+}
+
+// ---------------------------------------------------------------------------
 // TypeScript global augmentation
 // ---------------------------------------------------------------------------
 
 declare global {
   interface Window {
     dataLayer: DataLayerEvent[];
+    fbq: (type: string, event: string, data?: Record<string, unknown>) => void;
   }
 }
