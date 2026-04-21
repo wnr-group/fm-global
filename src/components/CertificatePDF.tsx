@@ -16,258 +16,242 @@ interface Props {
   verificationUrl: string;
 }
 
-// Brand: Dark Azure #0f385a (matches globals.css --color-dark-azure)
-const PRIMARY = "#0f385a";
-
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
     backgroundColor: "#ffffff",
-    flexDirection: "column",
     fontFamily: "Helvetica",
+    position: "relative",
+    width: "100%",
+    height: "100%",
   },
 
-  // ── Header ────────────────────────────────────────────────────────
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    paddingBottom: 12,
+  // ── Curve Borders (absolute, drawn first so content sits above) ────
+  topBorder: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: 450, // adjust if curve looks stretched
   },
-  headerDivider: {
-    height: 2,
-    backgroundColor: PRIMARY,
-    marginBottom: 24,
-  },
-  brandName: {
-    fontSize: 20,
-    fontFamily: "Helvetica-Bold",
-    color: PRIMARY,
-  },
-  brandSub: {
-    fontSize: 8,
-    color: "#6b7280",
-    marginTop: 3,
-  },
-  certTypeLabel: {
-    fontSize: 9,
-    color: "#6b7280",
+  bottomBorder: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    height: 450,
   },
 
-  // ── Body ──────────────────────────────────────────────────────────
-  body: {
-    flex: 1,
+  // ── Content (absolute, layered above borders) ──────────────────────
+  content: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingHorizontal: 60,
+    paddingTop: 20,
+    paddingBottom: 20,
+    flexDirection: "column",
     alignItems: "center",
+  },
+
+  // ── Top row: logo center, QR right ────────────────────────────────
+  topRow: {
+    width: "100%",
+    flexDirection: "row",
     justifyContent: "center",
-  },
-  smallLabel: {
-    fontSize: 8,
-    color: "#9ca3af",
-    marginBottom: 6,
-  },
-  recipientName: {
-    fontSize: 32,
-    fontFamily: "Helvetica-Bold",
-    color: "#111827",
-    textAlign: "center",
-    marginBottom: 10,
-  },
-  courseName: {
-    fontSize: 18,
-    fontFamily: "Helvetica-Bold",
-    color: PRIMARY,
-    textAlign: "center",
-    marginBottom: 14,
-  },
-  divider: {
-    width: 220,
-    height: 1,
-    backgroundColor: "#e5e7eb",
-    marginVertical: 14,
-  },
-
-  // Details row
-  detailsRow: {
-    flexDirection: "row",
     alignItems: "flex-start",
+    marginTop: 70,
+    position: "relative",
   },
-  detailBlock: {
-    alignItems: "center",
-    marginHorizontal: 14,
-  },
-  detailLabel: {
-    fontSize: 7,
-    color: "#9ca3af",
-    marginBottom: 2,
-  },
-  detailValue: {
-    fontSize: 10,
-    fontFamily: "Helvetica-Bold",
-    color: "#374151",
-  },
-  courseDescription: {
-    fontSize: 8,
-    color: "#6b7280",
-    textAlign: "center",
-    maxWidth: 400,
-    lineHeight: 1.5,
-    marginTop: 8,
-  },
-
-  // Status badge
-  statusBadge: {
-    paddingHorizontal: 10,
-    paddingVertical: 3,
-    borderRadius: 8,
-    marginTop: 12,
-  },
-  statusText: {
-    fontSize: 8,
-    fontFamily: "Helvetica-Bold",
-    color: "#ffffff",
-  },
-
-  // ── Footer ────────────────────────────────────────────────────────
-  footerDivider: {
-    height: 1,
-    backgroundColor: "#e5e7eb",
-    marginTop: 16,
-    marginBottom: 10,
-  },
-  footer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
-  },
-  footerText: {
-    fontSize: 7,
-    color: "#9ca3af",
-    marginBottom: 2,
-  },
-  footerBold: {
-    fontSize: 7,
-    fontFamily: "Helvetica-Bold",
-    color: "#6b7280",
-    marginBottom: 2,
+  logo: {
+    width: 80,
+    height: 80,
   },
   qrBlock: {
+    position: "absolute",
+    right: 0,
+    top: 0,
     alignItems: "center",
   },
   qrImage: {
-    width: 72,
-    height: 72,
+    width: 70,
+    height: 70,
   },
   qrLabel: {
-    fontSize: 6,
-    color: "#9ca3af",
+    fontSize: 7,
+    color: "#444444",
     marginTop: 3,
     textAlign: "center",
+    width: 100,
+  },
+
+  // ── Title ─────────────────────────────────────────────────────────
+  certificateTitle: {
+    fontSize: 46,
+    fontFamily: "Helvetica-Bold",
+    color: "#111111",
+    textAlign: "center",
+    letterSpacing: 6,
+    marginTop: 10,
+    marginBottom: 0,
+  },
+
+  // ── "OF COMPLETION" row with decorative lines ─────────────────────
+  completionRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 4,
+    marginBottom: 10,
+  },
+  redLine: {
+    width: 45,
+    height: 2,
+    backgroundColor: "#c0392b",
+    marginHorizontal: 8,
+  },
+  completionText: {
+    fontSize: 12,
+    color: "#333333",
+    letterSpacing: 4,
+    fontFamily: "Helvetica",
+  },
+
+  // ── Body text ─────────────────────────────────────────────────────
+  certifyText: {
+    fontSize: 12,
+    color: "#222222",
+    textAlign: "center",
+    fontFamily: "Helvetica-Bold",
+    marginBottom: 8,
+  },
+
+  // ── Recipient name ────────────────────────────────────────────────
+  recipientName: {
+    fontSize: 52,
+    fontFamily: "Times-Roman",
+    color: "#111111",
+    textAlign: "center",
+    marginBottom: 4,
+  },
+  nameDivider: {
+    width: 340,
+    height: 2,
+    backgroundColor: "#c0392b",
+    marginBottom: 12,
+  },
+
+  // ── Description ───────────────────────────────────────────────────
+  description: {
+    fontSize: 12,
+    fontFamily: "Helvetica-Bold",
+    color: "#222222",
+    textAlign: "center",
+    maxWidth: 600,
+    lineHeight: 1.6,
+    marginBottom: 16,
+  },
+
+  // ── Signature block ───────────────────────────────────────────────
+  signatureBlock: {
+    alignItems: "center",
+    marginTop: 7,
+  },
+  signatureImage: {
+    width: 130,
+    height: 40,
+    marginBottom: 5,
+  },
+  signatureLine: {
+    width: 130,
+    height: 2,
+    backgroundColor: "#c0392b",
+    marginBottom: 4,
+  },
+  signatoryName: {
+    fontSize: 15,
+    fontFamily: "Helvetica-Bold",
+    color: "#111111",
+    textAlign: "center",
+  },
+  signatoryRole: {
+    fontSize: 13,
+    color: "#444444",
+    textAlign: "center",
+    marginTop: 2,
   },
 });
 
-export default function CertificatePDF({ certificate, qrCodeDataUrl }: Props) {
-  const issueDate = new Date(certificate.issue_date).toLocaleDateString(
-    "en-GB",
-    { day: "2-digit", month: "long", year: "numeric" }
-  );
+export default function CertificatePDF({
+  certificate,
+  qrCodeDataUrl,
+}: Props) {
 
-  const statusColor =
-    certificate.status === "active" ? "#16a34a" : "#dc2626";
-  const statusLabel =
-    certificate.status === "active" ? "Valid Certificate" : "Revoked";
+  const courseDescription = certificate.course_description
+    ? `has successfully completed the prescribed course of study and training in ${certificate.course_name.toUpperCase()}. ${certificate.course_description}`
+    : `has successfully completed the prescribed course of study and training in ${certificate.course_name.toUpperCase()}.`;
+
 
   return (
     <Document>
       <Page size="A4" orientation="landscape" style={styles.page}>
-        {/* Header */}
-        <View style={styles.header}>
-          <View>
-            <Text style={styles.brandName}>FM Global Careers</Text>
-            <Text style={styles.brandSub}>
-              International Oil &amp; Gas Training &amp; Placement
-            </Text>
-          </View>
-          <View>
-            <Text style={styles.certTypeLabel}>Certificate of Completion</Text>
-          </View>
-        </View>
-        <View style={styles.headerDivider} />
 
-        {/* Body */}
-        <View style={styles.body}>
-          <Text style={styles.smallLabel}>THIS IS TO CERTIFY THAT</Text>
+        {/* ── Curved Borders rendered FIRST (bottom layer) ── */}
+        <Image src="/certificate-top-border.png" style={styles.topBorder} />
+        <Image src="/certificate-bottom-border.png" style={styles.bottomBorder} />
+
+        {/* ── Content rendered SECOND (top layer) ── */}
+        <View style={styles.content}>
+
+          {/* Top row: logo center + QR right */}
+          <View style={styles.topRow}>
+            <Image src="/logo-fm-institute-v1.png" style={styles.logo} />
+            {qrCodeDataUrl ? (
+              <View style={styles.qrBlock}>
+                <Image src={qrCodeDataUrl} style={styles.qrImage} />
+                <Text style={styles.qrLabel}>certificate no -</Text>
+                <Text style={styles.qrLabel}>{certificate.certificate_id}</Text>
+              </View>
+            ) : null}
+          </View>
+
+          {/* CERTIFICATE */}
+          <Text style={styles.certificateTitle}>CERTIFICATE</Text>
+
+          {/* OF COMPLETION with red lines */}
+          <View style={styles.completionRow}>
+            <View style={styles.redLine} />
+            <Text style={styles.completionText}>OF COMPLETION</Text>
+            <View style={styles.redLine} />
+          </View>
+
+          {/* This is to certify that */}
+          <Text style={styles.certifyText}>This is to certify that</Text>
+
+          {/* Recipient name */}
           <Text style={styles.recipientName}>{certificate.student_name}</Text>
-          <Text style={styles.smallLabel}>HAS SUCCESSFULLY COMPLETED</Text>
-          <Text style={styles.courseName}>{certificate.course_name}</Text>
-          <View style={styles.divider} />
+          <View style={styles.nameDivider} />
 
-          {/* Details row */}
-          <View style={styles.detailsRow}>
-            <View style={styles.detailBlock}>
-              <Text style={styles.detailLabel}>ISSUED ON</Text>
-              <Text style={styles.detailValue}>{issueDate}</Text>
-            </View>
-            {certificate.instructor_name ? (
-              <View style={styles.detailBlock}>
-                <Text style={styles.detailLabel}>INSTRUCTOR</Text>
-                <Text style={styles.detailValue}>
-                  {certificate.instructor_name}
-                </Text>
-              </View>
-            ) : null}
-            {certificate.duration ? (
-              <View style={styles.detailBlock}>
-                <Text style={styles.detailLabel}>DURATION</Text>
-                <Text style={styles.detailValue}>{certificate.duration}</Text>
-              </View>
-            ) : null}
-            {certificate.lectures_count != null &&
-            certificate.lectures_count > 0 ? (
-              <View style={styles.detailBlock}>
-                <Text style={styles.detailLabel}>LECTURES</Text>
-                <Text style={styles.detailValue}>
-                  {String(certificate.lectures_count)}
-                </Text>
-              </View>
-            ) : null}
-          </View>
+          {/* Description */}
+          <Text style={styles.description}>{courseDescription}</Text>
 
-          {certificate.course_description ? (
-            <Text style={styles.courseDescription}>
-              {certificate.course_description}
+          {/* Signature */}
+          <View style={styles.signatureBlock}>
+            {certificate.signature_url ? (
+              <Image src={certificate.signature_url} style={styles.signatureImage} />
+            ) : (
+              // 2. Fallback space if no signature is present
+              <View style={{ height: 80 }} />
+            )}
+            <View style={styles.signatureLine} />
+            <Text style={styles.signatoryName}>
+              {certificate.instructor_name ?? "Palani . M"}
             </Text>
-          ) : null}
-
-          {/* Status badge */}
-          <View
-            style={[styles.statusBadge, { backgroundColor: statusColor }]}
-          >
-            <Text style={styles.statusText}>{statusLabel}</Text>
+            <Text style={styles.signatoryRole}>Training Head</Text>
           </View>
         </View>
 
-        {/* Footer */}
-        <View style={styles.footerDivider} />
-        <View style={styles.footer}>
-          <View>
-            <Text style={styles.footerBold}>
-              Certificate ID: {certificate.certificate_id}
-            </Text>
-            {certificate.reference_number ? (
-              <Text style={styles.footerText}>
-                Reference: {certificate.reference_number}
-              </Text>
-            ) : null}
-            <Text style={styles.footerText}>Issued by FM Global Careers</Text>
-          </View>
-          {qrCodeDataUrl ? (
-            <View style={styles.qrBlock}>
-              {/* eslint-disable-next-line jsx-a11y/alt-text */}
-              <Image src={qrCodeDataUrl} style={styles.qrImage} />
-              <Text style={styles.qrLabel}>Scan to verify</Text>
-            </View>
-          ) : null}
-        </View>
       </Page>
     </Document>
   );

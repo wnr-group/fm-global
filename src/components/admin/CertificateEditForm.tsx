@@ -56,6 +56,7 @@ const editCertificateSchema = z.object({
     .optional(),
   issue_date: z.string().min(1, "Issue date is required"),
   reference_number: z.string().optional(),
+  signature_url: z.string().optional().nullable(),
 });
 
 type EditFormData = z.infer<typeof editCertificateSchema>;
@@ -126,6 +127,19 @@ export default function CertificateEditForm({ certificate }: Props) {
   const [showModal, setShowModal] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
+  // Handling signature image
+  const [signatureImage, setSignatureImage] = useState<string | null>(null);
+
+  function handleSignatureUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setSignatureImage(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  }
+
   // Auto-dismiss toast after 4 seconds — exact same pattern as CreateCertificateForm
   useEffect(() => {
     if (!toast) return;
@@ -151,6 +165,7 @@ export default function CertificateEditForm({ certificate }: Props) {
       lectures_count: certificate.lectures_count ?? undefined,
       issue_date: certificate.issue_date,
       reference_number: certificate.reference_number ?? "",
+      signature_url: certificate.signature_url ?? "",
     },
   });
 
@@ -160,6 +175,28 @@ export default function CertificateEditForm({ certificate }: Props) {
     setIsSubmitting(true);
     try {
       const supabase = createClient();
+
+      //uploading signature image to supabase storage
+      let finalSignatureUrl = currentCert.signature_url;
+
+      if (signatureImage) {
+        const base64Response = await fetch(signatureImage);
+        const blob = await base64Response.blob();
+        const fileName = `sig_${Date.now()}.png`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("signatures")
+          .upload(fileName, blob, { contentType: 'image/png' });
+
+        if (uploadError) throw uploadError;
+
+        const { data: urlData } = supabase.storage
+          .from("signatures")
+          .getPublicUrl(fileName);
+
+        finalSignatureUrl = urlData.publicUrl;
+      }
+
       const { data: updated, error } = await supabase
         .from("certificates")
         .update({
@@ -174,6 +211,7 @@ export default function CertificateEditForm({ certificate }: Props) {
           reference_number: data.reference_number || null,
           // NOT updated: id, certificate_id, created_at, status
           // updated_at is auto-updated by the DB trigger
+          signature_url: finalSignatureUrl,
         })
         .eq("id", currentCert.id)
         .select()
@@ -289,6 +327,7 @@ export default function CertificateEditForm({ certificate }: Props) {
           </button>
         </div>
       )}
+
 
       {/* ── Confirmation Modal ───────────────────────────────────────── */}
       {showModal && (
@@ -638,6 +677,53 @@ export default function CertificateEditForm({ certificate }: Props) {
                   <h2 className="text-sm font-semibold text-foreground">
                     Certificate Details
                   </h2>
+                </div>
+
+                {/* Inserting signature image upload input */}
+                <div className="bg-background rounded-xl border border-border overflow-hidden mb-4">
+                  <div className="px-6 py-3.5 border-b border-border bg-secondary/20">
+                    <h2 className="text-sm font-semibold text-foreground">
+                      Authorized Signature
+                    </h2>
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center gap-6">
+                      {/* Current Signature from DB */}
+                      <div className="space-y-1.5">
+                        <p className="text-xs text-muted-foreground">Current Signature</p>
+                        <div className="h-16 w-32 border border-border rounded bg-white flex items-center justify-center overflow-hidden">
+                          {currentCert.signature_url ? (
+                            <img src={currentCert.signature_url} alt="Current" className="max-h-full" />
+                          ) : (
+                            <span className="text-[10px] text-muted-foreground uppercase">No Image</span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* New Preview (only shows if a file is picked) */}
+                      {signatureImage && (
+                        <div className="space-y-1.5">
+                          <p className="text-xs text-green-600 font-medium">New Signature (Preview)</p>
+                          <div className="h-16 w-32 border border-green-200 rounded bg-white flex items-center justify-center overflow-hidden">
+                            <img src={signatureImage} alt="New Preview" className="max-h-full" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-sm font-medium">Change Signature Image</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleSignatureUpload}
+                        className="w-full h-10 rounded-lg border border-border px-3 py-1.5 text-sm"
+                      />
+                      <p className="text-[10px] text-muted-foreground">
+                        Recommended: Transparent PNG, approx 400x150px.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className="p-6 grid sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">

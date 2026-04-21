@@ -9,7 +9,7 @@ import type { Certificate } from "@/types/database";
 import { trackCertificateDownload } from "@/lib/analytics";
 
 interface Props {
-  certificate: Certificate;
+  certificate: Certificate; 
   /** Override button classes — defaults to the CertificateDisplay style */
   className?: string;
   /** Override icon classes — defaults to w-4 h-4 */

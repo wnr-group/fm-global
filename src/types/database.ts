@@ -413,6 +413,7 @@ export interface Database {
           reference_number: string | null
           created_at: string
           updated_at: string
+          signature_url?: string | null;
         }
         Insert: {
           id?: string
@@ -429,6 +430,7 @@ export interface Database {
           reference_number?: string | null
           created_at?: string
           updated_at?: string
+          signature_url?: string | null;
         }
         Update: {
           id?: string
@@ -445,6 +447,7 @@ export interface Database {
           reference_number?: string | null
           created_at?: string
           updated_at?: string
+          signature_url?: string | null;
         }
         Relationships: []
       }
