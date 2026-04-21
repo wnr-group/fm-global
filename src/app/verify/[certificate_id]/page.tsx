@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   return {
     title: `Certificate Verification - ${cert.student_name} | FM Global`,
-    description: `Verify the certificate awarded to ${cert.student_name} for ${cert.course_name} by FM Global.`,
+    description: `Verify the  certificate awarded to ${cert.student_name} for ${cert.course_name} by FM Global.`,
     openGraph: {
       title: `Certificate Verification - ${cert.student_name} | FM Global`,
       description: `Verify the certificate awarded to ${cert.student_name} for ${cert.course_name} by FM Global.`,

@@ -46,6 +46,7 @@ const certificateSchema = z.object({
   issue_date: z.string().min(1, "Issue date is required"),
   reference_number: z.string().optional(),
   status: z.enum(["active", "revoked"]),
+  signature_url: z.string().optional().nullable(),
 });
 
 type CertificateFormData = z.infer<typeof certificateSchema>;
@@ -68,6 +69,8 @@ function inputClass(hasError: boolean): string {
   ].join(" ");
 }
 
+
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function CreateCertificateForm() {
@@ -75,6 +78,24 @@ export default function CreateCertificateForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [toast, setToast] = useState<ToastState | null>(null);
+
+  const [signatureImage, setSignatureImage] = useState<string | null>(null);
+
+function handleSignatureUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  if (file.size > 2 * 1024 * 1024) {
+    setToast({ type: "error", message: "Image is too large. Max 2MB." });
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    setSignatureImage(reader.result as string);
+  };
+  reader.readAsDataURL(file);
+}
 
   // Auto-dismiss toast after 4 seconds
   useEffect(() => {
@@ -100,6 +121,7 @@ export default function CreateCertificateForm() {
       issue_date: new Date().toISOString().split("T")[0],
       reference_number: "",
       status: "active",
+      signature_url: "",
     },
   });
 
@@ -112,10 +134,10 @@ export default function CreateCertificateForm() {
 
   const previewDate = watched.issue_date
     ? new Date(watched.issue_date + "T00:00:00").toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      })
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
     : "—";
 
   // ── Submit ─────────────────────────────────────────────────────────────────
@@ -124,6 +146,26 @@ export default function CreateCertificateForm() {
     setIsSubmitting(true);
     try {
       const supabase = createClient();
+      let finalSignatureUrl = null;
+
+      if (signatureImage) {
+      const base64Response = await fetch(signatureImage);
+      const blob = await base64Response.blob();
+      const fileName = `sig_${Date.now()}.png`;
+
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("signatures")
+        .upload(fileName, blob, { contentType: 'image/png' });
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from("signatures")
+        .getPublicUrl(fileName);
+      
+      finalSignatureUrl = urlData.publicUrl;
+    }
+
       const { data: newCert, error } = await supabase
         .from("certificates")
         .insert([
@@ -138,6 +180,7 @@ export default function CreateCertificateForm() {
             issue_date: data.issue_date,
             reference_number: data.reference_number || null,
             status: data.status,
+            signature_url: finalSignatureUrl,
           },
         ])
         .select()
@@ -504,6 +547,30 @@ export default function CreateCertificateForm() {
                 Certificate Details
               </h2>
             </div>
+            <div className="bg-background rounded-xl border border-border overflow-hidden mb-6">
+  <div className="px-6 py-3.5 border-b border-border bg-secondary/20">
+    <h2 className="text-sm font-semibold text-foreground">Authorized Signature</h2>
+  </div>
+  <div className="p-6">
+    <div className="space-y-1.5">
+      <label className="block text-sm font-medium text-foreground">
+        Upload Signature (Image)
+      </label>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleSignatureUpload}
+        className="w-full text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+      />
+      {signatureImage && (
+        <div className="mt-4">
+          <p className="text-xs text-muted-foreground mb-2">Preview:</p>
+          <img src={signatureImage} alt="Signature" className="h-16 border rounded p-1 bg-white" />
+        </div>
+      )}
+    </div>
+  </div>
+</div>
             <div className="p-6 grid sm:grid-cols-2 gap-5">
               <div className="space-y-1.5">
                 <label
