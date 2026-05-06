@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background py-16 lg:py-20" role="contentinfo">
+    <footer className="bg-foreground text-background pt-16 pb-4 lg:pt-20 pb-4" role="contentinfo">
       <div className="w-full px-5 sm:px-8 lg:px-[6%] xl:px-[8%]">
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand */}
@@ -184,12 +184,22 @@ export function Footer() {
           <p className="text-sm text-background/60">
             &copy; {new Date().getFullYear()} FM Global Careers. All rights reserved.
           </p>
-          <p className="text-xs text-background/40">
-            Powered by{" "}
-            <span className="text-background/60 font-medium">WnR Groups</span>
-          </p>
         </div>
       </div>
+
+<div className="mt-6 pt-4 border-t border-white/10 text-center">
+  <p className="text-xs text-gray-400">
+    Powered by{' '}
+    <a
+      href="https://www.wnradvisory.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:underline hover:text-gray-300 transition-colors"
+    >
+      WnR Group
+    </a>
+  </p>
+</div>
     </footer>
   );
 }
